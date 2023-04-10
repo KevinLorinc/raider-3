@@ -1,0 +1,69 @@
+Apr 10, 2023 6:20:08 PM de.gurkenlabs.litiengine.environment.tilemap.xml.TmxMap checkVersion
+WARNING: Tiled version 1.10.0 of map "tutorial" is greater than the supported version 1.2.x. Some features may not work.
+Apr 10, 2023 6:20:08 PM de.gurkenlabs.litiengine.environment.tilemap.xml.TmxMap checkVersion
+WARNING: Tiled version 1.10.0 of map "null" is greater than the supported version 1.2.x. Some features may not work.
+Apr 10, 2023 6:20:08 PM de.gurkenlabs.litiengine.DefaultUncaughtExceptionHandler uncaughtException
+SEVERE: Game crashed! :(
+de.gurkenlabs.litiengine.resources.ResourceLoadException: de.gurkenlabs.litiengine.resources.ResourceLoadException: de.gurkenlabs.litiengine.environment.tilemap.xml.TmxException: javax.xml.bind.UnmarshalException
+ - with linked exception:
+[java.io.FileNotFoundException: /Users/kevinlorinc/git/raider-3/raider-3-lib/bin/git/raider-3/raider-3-lib/maps/props.tsx (No such file or directory)]
+	at de.gurkenlabs.litiengine.resources.ResourcesContainer.loadResource(ResourcesContainer.java:391)
+	at java.base/java.util.concurrent.ConcurrentHashMap.computeIfAbsent(ConcurrentHashMap.java:1708)
+	at de.gurkenlabs.litiengine.resources.ResourcesContainer.get(ResourcesContainer.java:273)
+	at de.gurkenlabs.litiengine.resources.ResourcesContainer.get(ResourcesContainer.java:207)
+	at de.gurkenlabs.litiengine.environment.GameWorld.getEnvironment(GameWorld.java:316)
+	at de.gurkenlabs.litiengine.environment.GameWorld.loadEnvironment(GameWorld.java:421)
+	at raider.Main.main(Main.java:30)
+Caused by: de.gurkenlabs.litiengine.resources.ResourceLoadException: de.gurkenlabs.litiengine.environment.tilemap.xml.TmxException: javax.xml.bind.UnmarshalException
+ - with linked exception:
+[java.io.FileNotFoundException: /Users/kevinlorinc/git/raider-3/raider-3-lib/bin/git/raider-3/raider-3-lib/maps/props.tsx (No such file or directory)]
+	at de.gurkenlabs.litiengine.resources.ResourcesContainer.loadResource(ResourcesContainer.java:391)
+	at java.base/java.util.concurrent.ConcurrentHashMap.computeIfAbsent(ConcurrentHashMap.java:1708)
+	at de.gurkenlabs.litiengine.resources.ResourcesContainer.get(ResourcesContainer.java:273)
+	at de.gurkenlabs.litiengine.resources.ResourcesContainer.get(ResourcesContainer.java:278)
+	at de.gurkenlabs.litiengine.resources.ResourcesContainer.get(ResourcesContainer.java:211)
+	at de.gurkenlabs.litiengine.environment.tilemap.xml.Tileset.finish(Tileset.java:313)
+	at de.gurkenlabs.litiengine.environment.tilemap.xml.TmxMap.finish(TmxMap.java:307)
+	at de.gurkenlabs.litiengine.resources.Maps.load(Maps.java:118)
+	at de.gurkenlabs.litiengine.resources.Maps.load(Maps.java:32)
+	at de.gurkenlabs.litiengine.resources.ResourcesContainer.loadResource(ResourcesContainer.java:389)
+	... 6 more
+Caused by: de.gurkenlabs.litiengine.environment.tilemap.xml.TmxException: javax.xml.bind.UnmarshalException
+ - with linked exception:
+[java.io.FileNotFoundException: /Users/kevinlorinc/git/raider-3/raider-3-lib/bin/git/raider-3/raider-3-lib/maps/props.tsx (No such file or directory)]
+	at de.gurkenlabs.litiengine.resources.Tilesets.load(Tilesets.java:25)
+	at de.gurkenlabs.litiengine.resources.Tilesets.load(Tilesets.java:13)
+	at de.gurkenlabs.litiengine.resources.ResourcesContainer.loadResource(ResourcesContainer.java:389)
+	... 15 more
+Caused by: javax.xml.bind.UnmarshalException
+ - with linked exception:
+[java.io.FileNotFoundException: /Users/kevinlorinc/git/raider-3/raider-3-lib/bin/git/raider-3/raider-3-lib/maps/props.tsx (No such file or directory)]
+	at com.sun.xml.bind.v2.runtime.unmarshaller.UnmarshallerImpl.unmarshal0(UnmarshallerImpl.java:231)
+	at com.sun.xml.bind.v2.runtime.unmarshaller.UnmarshallerImpl.unmarshal(UnmarshallerImpl.java:199)
+	at javax.xml.bind.helpers.AbstractUnmarshallerImpl.unmarshal(AbstractUnmarshallerImpl.java:170)
+	at javax.xml.bind.helpers.AbstractUnmarshallerImpl.unmarshal(AbstractUnmarshallerImpl.java:175)
+	at javax.xml.bind.helpers.AbstractUnmarshallerImpl.unmarshal(AbstractUnmarshallerImpl.java:184)
+	at de.gurkenlabs.litiengine.util.io.XmlUtilities.read(XmlUtilities.java:99)
+	at de.gurkenlabs.litiengine.resources.Tilesets.load(Tilesets.java:21)
+	... 17 more
+Caused by: java.io.FileNotFoundException: /Users/kevinlorinc/git/raider-3/raider-3-lib/bin/git/raider-3/raider-3-lib/maps/props.tsx (No such file or directory)
+	at java.base/java.io.FileInputStream.open0(Native Method)
+	at java.base/java.io.FileInputStream.open(FileInputStream.java:216)
+	at java.base/java.io.FileInputStream.<init>(FileInputStream.java:157)
+	at java.base/java.io.FileInputStream.<init>(FileInputStream.java:111)
+	at java.base/sun.net.www.protocol.file.FileURLConnection.connect(FileURLConnection.java:86)
+	at java.base/sun.net.www.protocol.file.FileURLConnection.getInputStream(FileURLConnection.java:189)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLEntityManager.setupCurrentEntity(XMLEntityManager.java:653)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLVersionDetector.determineDocVersion(XMLVersionDetector.java:150)
+	at java.xml/com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:861)
+	at java.xml/com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:825)
+	at java.xml/com.sun.org.apache.xerces.internal.parsers.XMLParser.parse(XMLParser.java:141)
+	at java.xml/com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser.parse(AbstractSAXParser.java:1224)
+	at java.xml/com.sun.org.apache.xerces.internal.jaxp.SAXParserImpl$JAXPSAXParser.parse(SAXParserImpl.java:637)
+	at com.sun.xml.bind.v2.runtime.unmarshaller.UnmarshallerImpl.unmarshal0(UnmarshallerImpl.java:228)
+	... 23 more
+
+Apr 10, 2023 6:20:57 PM de.gurkenlabs.litiengine.environment.tilemap.xml.TmxMap checkVersion
+WARNING: Tiled version 1.10.0 of map "tutorial" is greater than the supported version 1.2.x. Some features may not work.
+Apr 10, 2023 6:20:58 PM de.gurkenlabs.litiengine.environment.tilemap.xml.TmxMap checkVersion
+WARNING: Tiled version 1.10.0 of map "null" is greater than the supported version 1.2.x. Some features may not work.
