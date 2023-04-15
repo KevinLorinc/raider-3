@@ -23,6 +23,14 @@ public class Main {
 		System.out.println("fuck you");
 		System.out.println("fuck you");
 		System.out.println("fuck you");
+		System.out.println("fuck you");
+		System.out.println("fuck you");
+		System.out.println("fuck you");
+		System.out.println("fuck you");
+		System.out.println("fuck you");
+		System.out.println("fuck you");
+		System.out.println("fuck you");
+		System.out.println("fuck you");
 		Game.info().setName("Raider");
 		Game.info().setVersion("v1.0.1");
 			
