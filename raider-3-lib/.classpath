@@ -6,20 +6,7 @@
 			<attribute name="gradle_used_by_scope" value="main,test"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="src" output="bin/main" path="src/main/resources">
-		<attributes>
-			<attribute name="gradle_scope" value="main"/>
-			<attribute name="gradle_used_by_scope" value="main,test"/>
-		</attributes>
-	</classpathentry>
 	<classpathentry kind="src" output="bin/test" path="src/test/java">
-		<attributes>
-			<attribute name="test" value="true"/>
-			<attribute name="gradle_scope" value="test"/>
-			<attribute name="gradle_used_by_scope" value="test"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="src" output="bin/test" path="src/test/resources">
 		<attributes>
 			<attribute name="test" value="true"/>
 			<attribute name="gradle_scope" value="test"/>
@@ -34,10 +21,5 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.buildship.core.gradleclasspathcontainer"/>
-	<classpathentry kind="lib" path="/Users/kevinlorinc/.gradle/caches/modules-2/files-2.1/de.gurkenlabs/litiengine/0.5.1/5491cecc30e176b8f8a256c28065c463820c7a1c/litiengine-0.5.1.jar" sourcepath="/Users/kevinlorinc/.gradle/caches/modules-2/files-2.1/de.gurkenlabs/litiengine/0.5.1/1b107726e47886c39950b78af8c1a21750186e91/litiengine-0.5.1-sources.jar">
-		<attributes>
-			<attribute name="gradle_used_by_scope" value="main,test"/>
-		</attributes>
-	</classpathentry>
 	<classpathentry kind="output" path="bin/default"/>
 </classpath>

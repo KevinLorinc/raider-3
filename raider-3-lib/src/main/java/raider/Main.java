@@ -28,7 +28,7 @@ public class Main {
 		Game.screens().add(new InGameScreen());
 		
 		Game.world().loadEnvironment("tutorial.tmx"); 
-		
+		 
 		Game.start();
 	}
 
