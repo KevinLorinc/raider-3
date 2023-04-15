@@ -17,6 +17,8 @@ public class Main {
 	public static void main(String[] args) {
 		System.out.println("fuck you");
 		System.out.println("fuck you");
+		System.out.println("fuck you");
+		System.out.println("fuck you");
 		Game.info().setName("Raider");
 		Game.info().setVersion("v1.0.1");
 			
