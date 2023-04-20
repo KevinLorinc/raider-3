@@ -48,6 +48,7 @@ public class Player extends Creature implements IUpdateable{
 	private static Player instance;
 	private PlayerState state = PlayerState.CONTROLLABLE;//for testing purposes might need to be changed to Controllable once we get litidata in
 	private Direction lastFaced;
+	private Direction xSpriteSheet;
 	
 	private MeleeAttack meleeAttack;
 	
@@ -61,14 +62,13 @@ public class Player extends Creature implements IUpdateable{
 		meleeAttack = new MeleeAttack(this);
 		
 		lastFaced = Direction.RIGHT;
+		xSpriteSheet = Direction.RIGHT;
 		
 		this.movement().onMovementCheck(e -> {//this line may cause the whole thing to not work properly
 	      return this.getState() == PlayerState.CONTROLLABLE;
 	    });
 		
 		this.onMoved(e -> {
-			
-			
 			if(this.getFacingDirection() == Direction.RIGHT)
 				lastFaced = Direction.RIGHT;
 			else if(this.getFacingDirection() == Direction.LEFT)
@@ -162,7 +162,11 @@ public class Player extends Creature implements IUpdateable{
 		return RaidersMath.getMouseDirection(mousePosition, playerLoc);
 		
 	}
-
+	/* Uses mouse location to find which spritesheet to use, to be used in update(), most likely will be moved to logic
+	public Direction findXSpriteSheet() {
+		
+	}
+*/
 	@Override
 	public void update() {
 		//System.out.println(this.calcDirection());

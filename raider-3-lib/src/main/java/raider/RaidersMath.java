@@ -5,9 +5,10 @@ import java.awt.geom.Point2D;
 
 import de.gurkenlabs.litiengine.Direction;
 import de.gurkenlabs.litiengine.Game;
+import de.gurkenlabs.litiengine.IUpdateable;
 import entities.Player;
 
-public class RaidersMath {
+public class RaidersMath implements IUpdateable{
 	public static Direction getMouseDirection(Point mouseLoc, Point2D playerLoc) {
 		int width = Game.window().getWidth();
 		int height = Game.window().getHeight();
@@ -51,6 +52,11 @@ public class RaidersMath {
 	}
 	
 	public static double getRenderScale(double w, double h) {
+		System.out.println("Renderscale: " + w/Game.world().camera().getViewport().getWidth()+" "+ h/Game.world().camera().getViewport().getHeight());
 		return w/Game.world().camera().getViewport().getWidth();
+	}
+	
+	public void update() {
+		//System.out.println()
 	}
 }
