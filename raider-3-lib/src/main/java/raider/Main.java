@@ -15,8 +15,6 @@ public class Main {
 	 * @param args command line arguments
 	 */
 	public static void main(String[] args) {
-		System.out.println("Kush");
-
 		Game.info().setName("Raider");
 		Game.info().setVersion("v1.0.1");
 			

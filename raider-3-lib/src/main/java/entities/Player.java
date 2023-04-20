@@ -47,7 +47,6 @@ public class Player extends Creature implements IUpdateable{
 	
 	private static Player instance;
 	private PlayerState state = PlayerState.CONTROLLABLE;//for testing purposes might need to be changed to Controllable once we get litidata in
-	private Direction lastFaced;
 	private Direction xSpriteSheet;
 	
 	private MeleeAttack meleeAttack;
@@ -58,22 +57,13 @@ public class Player extends Creature implements IUpdateable{
 	private Player() {
 		super("raider");
 		
-		
 		meleeAttack = new MeleeAttack(this);
-		
-		lastFaced = Direction.RIGHT;
 		xSpriteSheet = Direction.RIGHT;
 		
 		this.movement().onMovementCheck(e -> {//this line may cause the whole thing to not work properly
 	      return this.getState() == PlayerState.CONTROLLABLE;
 	    });
-		
-		this.onMoved(e -> {
-			if(this.getFacingDirection() == Direction.RIGHT)
-				lastFaced = Direction.RIGHT;
-			else if(this.getFacingDirection() == Direction.LEFT)
-				lastFaced = Direction.LEFT;
-		});
+
 	}
 	
 	/**
@@ -106,28 +96,10 @@ public class Player extends Creature implements IUpdateable{
 		
 	    animationController.add(new Animation(walk,true));
 	    
-		animationController.addRule(x -> (this.getFacingDirection() == Direction.LEFT) && this.isIdle(), x -> "raider-idle-left");
-		animationController.addRule(x -> (this.getFacingDirection() == Direction.RIGHT) && this.isIdle(), x -> "raider-idle-right");
-		
-		animationController.addRule(x -> (this.getFacingDirection() == Direction.UP) && this.isIdle(), x -> {
-			if(lastFaced == Direction.RIGHT) return "raider-idle-right";
-			else return "raider-idle-left";
-		});
-		
-		animationController.addRule(x -> (this.getFacingDirection() == Direction.UP) && !this.isIdle(), x -> {
-			if(lastFaced == Direction.RIGHT) return "raider-walk-right";
-			else return "raider-walk-left";
-		});
-		
-		animationController.addRule(x -> (this.getFacingDirection() == Direction.DOWN) && this.isIdle(), x -> {
-			if(lastFaced == Direction.RIGHT) return "raider-idle-right";
-			else return "raider-idle-left";
-		});
-		
-		animationController.addRule(x -> (this.getFacingDirection() == Direction.DOWN) && !this.isIdle(), x -> {
-			if(lastFaced == Direction.RIGHT) return "raider-walk-right";
-			else return "raider-walk-left";
-		});
+	    animationController.addRule(x -> (this.calcDirection() == Direction.LEFT) && this.isIdle(), x -> "raider-idle-left");
+	    animationController.addRule(x -> (this.calcDirection() == Direction.LEFT) && !this.isIdle(), x -> "raider-walk-left");
+	    animationController.addRule(x -> (this.calcDirection() == Direction.RIGHT) && this.isIdle(), x -> "raider-idle-right");
+	    animationController.addRule(x -> (this.calcDirection() == Direction.RIGHT) && !this.isIdle(), x -> "raider-walk-right");
 		
 	    CreatureShadowImageEffect effect = new CreatureShadowImageEffect(this, new Color(24, 30, 28, 100));
 	    effect.setOffsetY(1);
@@ -156,10 +128,14 @@ public class Player extends Creature implements IUpdateable{
 		return meleeAttack;
 	}
 	
+	/**
+	 * takes the player location and mouse location and uses the raiders math method left or right to get the direction of the mouse relative to the player
+	 * @return the direction of the mouse relative to the player
+	 */
 	public Direction calcDirection() {
 		Point mousePosition = Game.window().getRenderComponent().getMousePosition();
 		Point2D playerLoc = Game.world().camera().getViewportLocation(this);
-		return RaidersMath.getMouseDirection(mousePosition, playerLoc);
+		return RaidersMath.getLeftOrRight(mousePosition, playerLoc);//changed temporarily to test left or right
 		
 	}
 	/* Uses mouse location to find which spritesheet to use, to be used in update(), most likely will be moved to logic
@@ -167,6 +143,10 @@ public class Player extends Creature implements IUpdateable{
 		
 	}
 */
+	
+	/**
+	 * updates every frame for testing purposes
+	 */
 	@Override
 	public void update() {
 		//System.out.println(this.calcDirection());
