@@ -47,7 +47,7 @@ public class Player extends Creature implements IUpdateable{
 	
 	private static Player instance;
 	private PlayerState state = PlayerState.CONTROLLABLE;//for testing purposes might need to be changed to Controllable once we get litidata in
-	private Direction xSpriteSheet;
+	private boolean hasSword;
 	
 	private MeleeAttack meleeAttack;
 	
@@ -58,7 +58,6 @@ public class Player extends Creature implements IUpdateable{
 		super("raider");
 		
 		meleeAttack = new MeleeAttack(this);
-		xSpriteSheet = Direction.RIGHT;
 		
 		this.movement().onMovementCheck(e -> {//this line may cause the whole thing to not work properly
 	      return this.getState() == PlayerState.CONTROLLABLE;
@@ -89,17 +88,43 @@ public class Player extends Creature implements IUpdateable{
 	
 	@Override
 	protected IEntityAnimationController<?> createAnimationController() {
+		//manually toggle whether has sword or not
+		hasSword = true;
+		
 		Spritesheet idle = Resources.spritesheets().get("raider-idle-right");
 		Spritesheet walk = Resources.spritesheets().get("raider-walk-right");
 		
-		IEntityAnimationController<?> animationController = new CreatureAnimationController<Player>(this,new Animation(idle,false));
+		Spritesheet idleSword = Resources.spritesheets().get("raider-idleSword-right");
+		Spritesheet walkSword = Resources.spritesheets().get("raider-walkSword-right");
 		
-	    animationController.add(new Animation(walk,true));
+		IEntityAnimationController<?> animationController;
+		
+		//if(!hasSword) {
+			animationController = new CreatureAnimationController<Player>(this,new Animation(idle,false));
+			animationController.add(new Animation(walk,true));
+			animationController.add(new Animation(walkSword,true));
+			/*
+			if(hasSword) {
+			animationController.setDefault(new Animation(idleSword,false));
+			}
+			*/
+			
+		//}else {
+		//	animationController = new CreatureAnimationController<Player>(this,new Animation(idleSword,false));
+		//	animationController.add(new Animation(walkSword,true));
+		//}
+		
 	    
-	    animationController.addRule(x -> (this.calcDirection() == Direction.LEFT) && this.isIdle(), x -> "raider-idle-left");
-	    animationController.addRule(x -> (this.calcDirection() == Direction.LEFT) && !this.isIdle(), x -> "raider-walk-left");
-	    animationController.addRule(x -> (this.calcDirection() == Direction.RIGHT) && this.isIdle(), x -> "raider-idle-right");
-	    animationController.addRule(x -> (this.calcDirection() == Direction.RIGHT) && !this.isIdle(), x -> "raider-walk-right");
+	    
+	    animationController.addRule(x -> (this.calcDirection() == Direction.LEFT) && this.isIdle() && !hasSword, x -> "raider-idle-left");
+	    animationController.addRule(x -> (this.calcDirection() == Direction.LEFT) && !this.isIdle() && !hasSword, x -> "raider-walk-left");
+	    animationController.addRule(x -> (this.calcDirection() == Direction.RIGHT) && this.isIdle() && !hasSword, x -> "raider-idle-right");
+	    animationController.addRule(x -> (this.calcDirection() == Direction.RIGHT) && !this.isIdle() && !hasSword, x -> "raider-walk-right");
+	    
+	    animationController.addRule(x -> (this.calcDirection() == Direction.LEFT) && this.isIdle() && hasSword, x -> "raider-idleSword-left");
+	    animationController.addRule(x -> (this.calcDirection() == Direction.LEFT) && !this.isIdle() && hasSword, x -> "raider-walkSword-left");
+	    animationController.addRule(x -> (this.calcDirection() == Direction.RIGHT) && this.isIdle() && hasSword, x -> "raider-idleSword-right");
+	    animationController.addRule(x -> (this.calcDirection() == Direction.RIGHT) && !this.isIdle() && hasSword, x -> "raider-walkSword-right");
 		
 	    CreatureShadowImageEffect effect = new CreatureShadowImageEffect(this, new Color(24, 30, 28, 100));
 	    effect.setOffsetY(1);
@@ -130,19 +155,22 @@ public class Player extends Creature implements IUpdateable{
 	
 	/**
 	 * takes the player location and mouse location and uses the raiders math method left or right to get the direction of the mouse relative to the player
+	 * if mouse out of bounds default direction right to avoid console nullpointer spam
 	 * @return the direction of the mouse relative to the player
 	 */
 	public Direction calcDirection() {
 		Point mousePosition = Game.window().getRenderComponent().getMousePosition();
 		Point2D playerLoc = Game.world().camera().getViewportLocation(this);
-		return RaidersMath.getLeftOrRight(mousePosition, playerLoc);//changed temporarily to test left or right
+		
+		Direction toReturn = null;
+			try {
+				toReturn = RaidersMath.getLeftOrRight(mousePosition, playerLoc); //changed temporarily to test left or right
+			}catch(NullPointerException e){
+				toReturn = Direction.RIGHT;
+			}
+			return toReturn;
 		
 	}
-	/* Uses mouse location to find which spritesheet to use, to be used in update(), most likely will be moved to logic
-	public Direction findXSpriteSheet() {
-		
-	}
-*/
 	
 	/**
 	 * updates every frame for testing purposes

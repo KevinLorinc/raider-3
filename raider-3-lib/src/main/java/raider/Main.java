@@ -24,7 +24,7 @@ public class Main {
 		PlayerInput.init();
 		
 		
-		Resources.load("gamev5.litidata");
+		Resources.load("gamev4.litidata");
 		Game.screens().add(new InGameScreen());
 		
 		Game.world().loadEnvironment("tutorial.tmx"); 
