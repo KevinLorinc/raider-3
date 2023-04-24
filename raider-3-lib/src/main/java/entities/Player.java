@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.awt.geom.Point2D;
+import java.util.*;
 
 import abilities.MeleeAttack;
 import de.gurkenlabs.litiengine.Direction;
@@ -90,6 +91,8 @@ public class Player extends Creature implements IUpdateable{
 	
 	@Override
 	protected IEntityAnimationController<?> createAnimationController() {
+		
+		
 		Spritesheet idle = Resources.spritesheets().get("raider-idle-right");
 		Spritesheet walk = Resources.spritesheets().get("raider-walk-right");
 		
@@ -102,6 +105,7 @@ public class Player extends Creature implements IUpdateable{
 			animationController = new CreatureAnimationController<Player>(this,new Animation(idle,false));
 			animationController.add(new Animation(walk,true));
 			animationController.add(new Animation(walkSword,true));
+			animationController.add(new Animation(idleSword, true));
 			/*
 			if(hasSword) {
 			animationController.setDefault(new Animation(idleSword,false));
@@ -113,6 +117,8 @@ public class Player extends Creature implements IUpdateable{
 		//	animationController.add(new Animation(walkSword,true));
 		//}
 		
+			for(Spritesheet x : Resources.spritesheets().getAll())
+				System.out.println(x.getName());
 	    
 	    
 	    animationController.addRule(x -> (this.calcDirection() == Direction.LEFT) && this.isIdle() && !equipped, x -> "raider-idle-left");
