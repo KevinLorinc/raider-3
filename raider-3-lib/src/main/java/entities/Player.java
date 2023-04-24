@@ -47,7 +47,7 @@ public class Player extends Creature implements IUpdateable{
 	
 	private static Player instance;
 	private PlayerState state = PlayerState.CONTROLLABLE;//for testing purposes might need to be changed to Controllable once we get litidata in
-	private boolean hasSword;
+	private boolean equipped;
 	
 	private MeleeAttack meleeAttack;
 	
@@ -56,6 +56,8 @@ public class Player extends Creature implements IUpdateable{
 	 */
 	private Player() {
 		super("raider");
+		
+		equipped = false;
 		
 		meleeAttack = new MeleeAttack(this);
 		
@@ -88,9 +90,6 @@ public class Player extends Creature implements IUpdateable{
 	
 	@Override
 	protected IEntityAnimationController<?> createAnimationController() {
-		//manually toggle whether has sword or not
-		hasSword = true;
-		
 		Spritesheet idle = Resources.spritesheets().get("raider-idle-right");
 		Spritesheet walk = Resources.spritesheets().get("raider-walk-right");
 		
@@ -116,16 +115,16 @@ public class Player extends Creature implements IUpdateable{
 		
 	    
 	    
-	    animationController.addRule(x -> (this.calcDirection() == Direction.LEFT) && this.isIdle() && !hasSword, x -> "raider-idle-left");
-	    animationController.addRule(x -> (this.calcDirection() == Direction.LEFT) && !this.isIdle() && !hasSword, x -> "raider-walk-left");
-	    animationController.addRule(x -> (this.calcDirection() == Direction.RIGHT) && this.isIdle() && !hasSword, x -> "raider-idle-right");
-	    animationController.addRule(x -> (this.calcDirection() == Direction.RIGHT) && !this.isIdle() && !hasSword, x -> "raider-walk-right");
+	    animationController.addRule(x -> (this.calcDirection() == Direction.LEFT) && this.isIdle() && !equipped, x -> "raider-idle-left");
+	    animationController.addRule(x -> (this.calcDirection() == Direction.LEFT) && !this.isIdle() && !equipped, x -> "raider-walk-left");
+	    animationController.addRule(x -> (this.calcDirection() == Direction.RIGHT) && this.isIdle() && !equipped, x -> "raider-idle-right");
+	    animationController.addRule(x -> (this.calcDirection() == Direction.RIGHT) && !this.isIdle() && !equipped, x -> "raider-walk-right");
 	    
-	    animationController.addRule(x -> (this.calcDirection() == Direction.LEFT) && this.isIdle() && hasSword, x -> "raider-idleSword-left");
-	    animationController.addRule(x -> (this.calcDirection() == Direction.LEFT) && !this.isIdle() && hasSword, x -> "raider-walkSword-left");
-	    animationController.addRule(x -> (this.calcDirection() == Direction.RIGHT) && this.isIdle() && hasSword, x -> "raider-idleSword-right");
-	    animationController.addRule(x -> (this.calcDirection() == Direction.RIGHT) && !this.isIdle() && hasSword, x -> "raider-walkSword-right");
-		
+	    animationController.addRule(x -> (this.calcDirection() == Direction.LEFT) && this.isIdle() && equipped, x -> "raider-idleSword-left");
+	    animationController.addRule(x -> (this.calcDirection() == Direction.LEFT) && !this.isIdle() && equipped, x -> "raider-walkSword-left");
+	    animationController.addRule(x -> (this.calcDirection() == Direction.RIGHT) && this.isIdle() && equipped, x -> "raider-idleSword-right");
+	    animationController.addRule(x -> (this.calcDirection() == Direction.RIGHT) && !this.isIdle() && equipped, x -> "raider-walkSword-right");
+	
 	    CreatureShadowImageEffect effect = new CreatureShadowImageEffect(this, new Color(24, 30, 28, 100));
 	    effect.setOffsetY(1);
 	    animationController.add(effect);
@@ -149,8 +148,20 @@ public class Player extends Creature implements IUpdateable{
 	  this.state = state;
 	}
 	
+	/**
+	 * get the melee attack object to call methods on
+	 * @return the melee attack instance
+	 */
 	public MeleeAttack getMeleeAttack() {
 		return meleeAttack;
+	}
+	
+	public void setEquipped(boolean set) {
+		equipped = set;
+	}
+	
+	public boolean getEquipped() {
+		return equipped;
 	}
 	
 	/**

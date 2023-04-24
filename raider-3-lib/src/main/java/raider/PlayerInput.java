@@ -43,6 +43,15 @@ public class PlayerInput {
 		  
 		  Player.instance().getMeleeAttack().cast();
 	  });
+	  
+	  //used to equip a weapon
+	  Input.keyboard().onKeyPressed(KeyEvent.VK_Q, e -> {
+		  if (Player.instance().getState() == PlayerState.LOCKED || Player.instance().isDead()) {
+		    return;
+		  }
+		  
+		  Player.instance().setEquipped(!Player.instance().getEquipped());
+	  });
   	}
 }
 
