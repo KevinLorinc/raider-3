@@ -65,7 +65,7 @@ public class PlayerInput {
 			  else
 			Player.instance().animations().play("raider-walkSwordAttack1-left");
 
-		  else
+		 else
 			  if(Player.instance().calcDirection().equals(Direction.RIGHT))
 			Player.instance().animations().play("raider-walkSwordAttack2-right");
 			  else

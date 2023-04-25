@@ -117,18 +117,18 @@ public class Player extends Creature implements IUpdateable{
 		
 		IEntityAnimationController<?> animationController;
 		
-			animationController = new CreatureAnimationController<Player>(this,new Animation(idle,false));
-			animationController.add(new Animation(walk,true));
-			animationController.add(new Animation(walkSwordRight,true));
-			animationController.add(new Animation(idleSwordRight, true));
-			animationController.add(new Animation(idleAttackRight ,false));
-			animationController.add(new Animation(idleSwordLeft, true));
-			animationController.add(new Animation(walkSwordLeft ,true));
-			animationController.add(new Animation(walkAttackRight1, false));
-			animationController.add(new Animation(walkAttackRight2,false));
-			animationController.add(new Animation(walkAttackLeft1, false));
-			animationController.add(new Animation(walkAttackLeft2,false));
-			animationController.add(new Animation(idleAttackLeft, false));
+		animationController = new CreatureAnimationController<Player>(this,new Animation(idle,false));
+		animationController.add(new Animation(walk,true));
+		animationController.add(new Animation(walkSwordRight,true));
+		animationController.add(new Animation(idleSwordRight, true));
+		animationController.add(new Animation(idleAttackRight ,false));
+		animationController.add(new Animation(idleSwordLeft, true));
+		animationController.add(new Animation(walkSwordLeft ,true));
+		animationController.add(new Animation(walkAttackRight1, false));
+		animationController.add(new Animation(walkAttackRight2,false));
+		animationController.add(new Animation(walkAttackLeft1, false));
+		animationController.add(new Animation(walkAttackLeft2,false));
+		animationController.add(new Animation(idleAttackLeft, false));
 			
 	    animationController.addRule(x -> (this.calcDirection() == Direction.LEFT) && this.isIdle() && !equipped, x -> "raider-idle-left");
 	    animationController.addRule(x -> (this.calcDirection() == Direction.LEFT) && !this.isIdle() && !equipped, x -> "raider-walk-left");
@@ -197,13 +197,26 @@ public class Player extends Creature implements IUpdateable{
 		Point2D playerLoc = Game.world().camera().getViewportLocation(this);
 		
 		Direction toReturn = null;
-			try {
-				toReturn = RaidersMath.getLeftOrRight(mousePosition, playerLoc); //changed temporarily to test left or right
-			}catch(NullPointerException e){
-				toReturn = Direction.RIGHT;
-			}
-			return toReturn;
+		try {
+			toReturn = RaidersMath.getLeftOrRight(mousePosition, playerLoc); //changed temporarily to test left or right
+		}catch(NullPointerException e){
+			toReturn = Direction.RIGHT;
+		}
+		return toReturn;
 		
+	}
+	
+	public Direction calcAttackDirection() {
+		Point mousePosition = Game.window().getRenderComponent().getMousePosition();
+		Point2D playerLoc = Game.world().camera().getViewportLocation(this);
+		
+		Direction toReturn = null;
+		try {
+			toReturn = RaidersMath.getAttackDirection(mousePosition, playerLoc);
+		}catch(NullPointerException e){
+			toReturn = Direction.RIGHT;
+		}
+		return toReturn;
 	}
 	
 	/**
@@ -211,6 +224,6 @@ public class Player extends Creature implements IUpdateable{
 	 */
 	@Override
 	public void update() {
-		//System.out.println(this.calcDirection());
+		//System.out.println(this.calcAttackDirection());
 	}
 }
