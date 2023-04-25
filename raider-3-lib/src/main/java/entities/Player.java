@@ -98,7 +98,7 @@ public class Player extends Creature implements IUpdateable{
 		
 		Spritesheet idleSword = Resources.spritesheets().get("raider-idleSword-right");
 		Spritesheet walkSword = Resources.spritesheets().get("raider-walkSword-right");
-		
+		Spritesheet idleAttack = Resources.spritesheets().get("raider-idleSwordAttack-right");
 		IEntityAnimationController<?> animationController;
 		
 		//if(!hasSword) {
@@ -106,6 +106,7 @@ public class Player extends Creature implements IUpdateable{
 			animationController.add(new Animation(walk,true));
 			animationController.add(new Animation(walkSword,true));
 			animationController.add(new Animation(idleSword, true));
+			animationController.add(new Animation(idleAttack ,false));
 			/*
 			if(hasSword) {
 			animationController.setDefault(new Animation(idleSword,false));

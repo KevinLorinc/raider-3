@@ -2,7 +2,10 @@ package raider;
 
 import java.awt.event.KeyEvent;
 
+import de.gurkenlabs.litiengine.graphics.Spritesheet;
+import de.gurkenlabs.litiengine.graphics.animation.Animation;
 import de.gurkenlabs.litiengine.input.Input;
+import de.gurkenlabs.litiengine.resources.Resources;
 import raider.RaidersLogic.GameState;
 import entities.Player;
 import entities.Player.PlayerState;
@@ -42,6 +45,7 @@ public class PlayerInput {
 		  }
 		  
 		  Player.instance().getMeleeAttack().cast();
+		  Player.instance().animations().play("raider-idleSwordAttack-right");
 	  });
 	  
 	  //used to equip a weapon
