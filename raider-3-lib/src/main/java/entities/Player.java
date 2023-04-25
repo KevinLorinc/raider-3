@@ -6,6 +6,7 @@ import java.awt.event.KeyEvent;
 import java.awt.geom.Point2D;
 import java.util.*;
 
+import abilities.SpinAttack;
 import abilities.MeleeAttack;
 import de.gurkenlabs.litiengine.Direction;
 import de.gurkenlabs.litiengine.Game;
@@ -50,6 +51,7 @@ public class Player extends Creature implements IUpdateable{
 	private PlayerState state = PlayerState.CONTROLLABLE;//for testing purposes might need to be changed to Controllable once we get litidata in
 	private boolean equipped;
 	
+	private SpinAttack spinAttack;
 	private MeleeAttack meleeAttack;
 	
 	/**
@@ -60,6 +62,7 @@ public class Player extends Creature implements IUpdateable{
 		
 		equipped = false;
 		
+		spinAttack = new SpinAttack(this);
 		meleeAttack = new MeleeAttack(this);
 		
 		this.movement().onMovementCheck(e -> {//this line may cause the whole thing to not work properly
@@ -105,9 +108,15 @@ public class Player extends Creature implements IUpdateable{
 		Spritesheet walkSwordLeft = Resources.spritesheets().get("raider-walkSword-left");
 		
 		Spritesheet idleAttackRight = Resources.spritesheets().get("raider-idleSwordAttack-right");
+		Spritesheet walkAttackRight1 = Resources.spritesheets().get("raider-walkSwordAttack1-right");
+		Spritesheet walkAttackRight2 = Resources.spritesheets().get("raider-walkSwordAttack2-right");
+		
+		Spritesheet idleAttackLeft = Resources.spritesheets().get("raider-idleSwordAttack-left");
+		Spritesheet walkAttackLeft1 = Resources.spritesheets().get("raider-walkSwordAttack1-left");
+		Spritesheet walkAttackLeft2 = Resources.spritesheets().get("raider-walkSwordAttack2-left");
+		
 		IEntityAnimationController<?> animationController;
 		
-		//if(!hasSword) {
 			animationController = new CreatureAnimationController<Player>(this,new Animation(idle,false));
 			animationController.add(new Animation(walk,true));
 			animationController.add(new Animation(walkSwordRight,true));
@@ -115,21 +124,12 @@ public class Player extends Creature implements IUpdateable{
 			animationController.add(new Animation(idleAttackRight ,false));
 			animationController.add(new Animation(idleSwordLeft, true));
 			animationController.add(new Animation(walkSwordLeft ,true));
+			animationController.add(new Animation(walkAttackRight1, false));
+			animationController.add(new Animation(walkAttackRight2,false));
+			animationController.add(new Animation(walkAttackLeft1, false));
+			animationController.add(new Animation(walkAttackLeft2,false));
+			animationController.add(new Animation(idleAttackLeft, false));
 			
-			/*
-			if(hasSword) {
-			animationController.setDefault(new Animation(idleSword,false));
-			}
-			*/
-			
-		//}else {
-		//	animationController = new CreatureAnimationController<Player>(this,new Animation(idleSword,false));
-		//	animationController.add(new Animation(walkSword,true));
-		//}
-		
-			
-	    
-	    
 	    animationController.addRule(x -> (this.calcDirection() == Direction.LEFT) && this.isIdle() && !equipped, x -> "raider-idle-left");
 	    animationController.addRule(x -> (this.calcDirection() == Direction.LEFT) && !this.isIdle() && !equipped, x -> "raider-walk-left");
 	    animationController.addRule(x -> (this.calcDirection() == Direction.RIGHT) && this.isIdle() && !equipped, x -> "raider-idle-right");
@@ -161,6 +161,14 @@ public class Player extends Creature implements IUpdateable{
 	 */
 	public void setState(PlayerState state) {
 	  this.state = state;
+	}
+	
+	/**
+	 * get the spin attack object to call methods on
+	 * @return the spin attack instance
+	 */
+	public SpinAttack getSpinAttack() {
+		return spinAttack;
 	}
 	
 	/**

@@ -12,17 +12,17 @@ import de.gurkenlabs.litiengine.graphics.animation.Animation;
 import de.gurkenlabs.litiengine.resources.Resources;
 import entities.Player;
 
-@AbilityInfo(name = "MeleeAttack", cooldown = 350, range = 0, impact = 15, impactAngle = 360, value = 10, duration = 200, multiTarget = true)
-public class MeleeAttack extends Ability{
+@AbilityInfo(name = "SpinAttack", cooldown = 700, range = 0, impact = 15, impactAngle = 360, value = 10, duration = 400, multiTarget = true)
+public class SpinAttack extends Ability{
 
-	public MeleeAttack(Creature executor) {
+	public SpinAttack(Creature executor) {
 		super(executor);
 		
-		this.addEffect(new MeleeAttackEffect(this));
+		this.addEffect(new SpinAttackEffect(this));
 	}
 	
-	private static class MeleeAttackEffect extends Effect{
-		protected MeleeAttackEffect (Ability ability) {
+	private static class SpinAttackEffect extends Effect{
+		protected SpinAttackEffect (Ability ability) {
 			super(ability, EffectTarget.EXECUTINGENTITY);
 		}
 		

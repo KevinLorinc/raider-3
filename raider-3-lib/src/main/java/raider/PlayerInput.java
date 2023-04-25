@@ -2,6 +2,7 @@ package raider;
 
 import java.awt.event.KeyEvent;
 
+import de.gurkenlabs.litiengine.Direction;
 import de.gurkenlabs.litiengine.graphics.Spritesheet;
 import de.gurkenlabs.litiengine.graphics.animation.Animation;
 import de.gurkenlabs.litiengine.input.Input;
@@ -44,9 +45,32 @@ public class PlayerInput {
 		    return;
 		  }
 		  
-		  Player.instance().getMeleeAttack().cast();
-		  Player.instance().animations().play("raider-idleSwordAttack-right");
+		  Player.instance().getSpinAttack().cast();
+		  if(Player.instance().calcDirection().equals(Direction.RIGHT))
+			Player.instance().animations().play("raider-idleSwordAttack-right");
+		  else
+			Player.instance().animations().play("raider-idleSwordAttack-left");
 	  });
+	  
+	  Input.keyboard().onKeyPressed(KeyEvent.VK_F, e -> {
+		  if (Player.instance().getState() == PlayerState.LOCKED || Player.instance().isDead()) {
+		    return;
+		  }
+		  
+		  Player.instance().getMeleeAttack().cast();
+		  long random = Math.round(Math.random());
+		  if(random==1)
+			  if(Player.instance().calcDirection().equals(Direction.RIGHT))
+		  	Player.instance().animations().play("raider-walkSwordAttack1-right");
+			  else
+			Player.instance().animations().play("raider-walkSwordAttack1-left");
+
+		  else
+			  if(Player.instance().calcDirection().equals(Direction.RIGHT))
+			Player.instance().animations().play("raider-walkSwordAttack2-right");
+			  else
+			Player.instance().animations().play("raider-walkSwordAttack2-left");	  
+		  });
 	  
 	  //used to equip a weapon
 	  Input.keyboard().onKeyPressed(KeyEvent.VK_Q, e -> {
