@@ -92,21 +92,30 @@ public class Player extends Creature implements IUpdateable{
 	@Override
 	protected IEntityAnimationController<?> createAnimationController() {
 		
+		for(Spritesheet x : Resources.spritesheets().getAll())
+			System.out.println(x.getName());
 		
 		Spritesheet idle = Resources.spritesheets().get("raider-idle-right");
 		Spritesheet walk = Resources.spritesheets().get("raider-walk-right");
 		
-		Spritesheet idleSword = Resources.spritesheets().get("raider-idleSword-right");
-		Spritesheet walkSword = Resources.spritesheets().get("raider-walkSword-right");
-		Spritesheet idleAttack = Resources.spritesheets().get("raider-idleSwordAttack-right");
+		Spritesheet idleSwordRight = Resources.spritesheets().get("raider-idleSword-right");
+		Spritesheet walkSwordRight = Resources.spritesheets().get("raider-walkSword-right");
+		
+		Spritesheet idleSwordLeft = Resources.spritesheets().get("raider-idleSword-left");
+		Spritesheet walkSwordLeft = Resources.spritesheets().get("raider-walkSword-left");
+		
+		Spritesheet idleAttackRight = Resources.spritesheets().get("raider-idleSwordAttack-right");
 		IEntityAnimationController<?> animationController;
 		
 		//if(!hasSword) {
 			animationController = new CreatureAnimationController<Player>(this,new Animation(idle,false));
 			animationController.add(new Animation(walk,true));
-			animationController.add(new Animation(walkSword,true));
-			animationController.add(new Animation(idleSword, true));
-			animationController.add(new Animation(idleAttack ,false));
+			animationController.add(new Animation(walkSwordRight,true));
+			animationController.add(new Animation(idleSwordRight, true));
+			animationController.add(new Animation(idleAttackRight ,false));
+			animationController.add(new Animation(idleSwordLeft, true));
+			animationController.add(new Animation(walkSwordLeft ,true));
+			
 			/*
 			if(hasSword) {
 			animationController.setDefault(new Animation(idleSword,false));
@@ -118,8 +127,7 @@ public class Player extends Creature implements IUpdateable{
 		//	animationController.add(new Animation(walkSword,true));
 		//}
 		
-			for(Spritesheet x : Resources.spritesheets().getAll())
-				System.out.println(x.getName());
+			
 	    
 	    
 	    animationController.addRule(x -> (this.calcDirection() == Direction.LEFT) && this.isIdle() && !equipped, x -> "raider-idle-left");
