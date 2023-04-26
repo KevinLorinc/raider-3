@@ -250,3 +250,10 @@ public class Player extends Creature implements IUpdateable{
 		//System.out.println(this.calcAttackDirection());
 	}
 }
+/*
+
+
+8==========================D
+
+
+*/
