@@ -12,7 +12,7 @@ import de.gurkenlabs.litiengine.graphics.animation.Animation;
 import de.gurkenlabs.litiengine.resources.Resources;
 import entities.Player;
 
-@AbilityInfo(name = "SpinAttack", cooldown = 700, range = 0, impact = 15, impactAngle = 360, value = 10, duration = 400, multiTarget = true)
+@AbilityInfo(name = "SpinAttack", cooldown = 700, range = 0, impact = 15, impactAngle = 360, value = 5, duration = 400, multiTarget = true)
 public class SpinAttack extends Ability{
 
 	public SpinAttack(Creature executor) {

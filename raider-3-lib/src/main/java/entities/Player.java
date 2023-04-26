@@ -101,44 +101,61 @@ public class Player extends Creature implements IUpdateable{
 		Spritesheet idle = Resources.spritesheets().get("raider-idle-right");
 		Spritesheet walk = Resources.spritesheets().get("raider-walk-right");
 		
-		Spritesheet idleSwordRight = Resources.spritesheets().get("raider-idleSword-right");
-		Spritesheet walkSwordRight = Resources.spritesheets().get("raider-walkSword-right");
+		Spritesheet idleSwordR = Resources.spritesheets().get("raider-idle-sword-right");
+		Spritesheet walkSwordR = Resources.spritesheets().get("raider-walk-sword-right");
 		
-		Spritesheet idleSwordLeft = Resources.spritesheets().get("raider-idleSword-left");
-		Spritesheet walkSwordLeft = Resources.spritesheets().get("raider-walkSword-left");
+		Spritesheet idleSwordL = Resources.spritesheets().get("raider-idle-sword-left");
+		Spritesheet walkSwordL = Resources.spritesheets().get("raider-walk-sword-left");
 		
-		Spritesheet idleAttackRight = Resources.spritesheets().get("raider-idleSwordAttack-right");
-		Spritesheet walkAttackRight1 = Resources.spritesheets().get("raider-walkSwordAttack1-right");
-		Spritesheet walkAttackRight2 = Resources.spritesheets().get("raider-walkSwordAttack2-right");
+		//Spritesheet idleSwordLeft = Resources.spritesheets().get("raider-idleSword-left");
+		//Spritesheet walkSwordLeft = Resources.spritesheets().get("raider-walkSword-left");
 		
-		Spritesheet idleAttackLeft = Resources.spritesheets().get("raider-idleSwordAttack-left");
-		Spritesheet walkAttackLeft1 = Resources.spritesheets().get("raider-walkSwordAttack1-left");
-		Spritesheet walkAttackLeft2 = Resources.spritesheets().get("raider-walkSwordAttack2-left");
+		Spritesheet swordSpinR = Resources.spritesheets().get("raider-idle-swordSpin-right");
+		Spritesheet swordMeleeSideR = Resources.spritesheets().get("raider-idle-swordMeleeSide-right");
+		Spritesheet swordMeleeDownR = Resources.spritesheets().get("raider-idle-swordMeleeDown-right");
+		Spritesheet swordMeleeUpR = Resources.spritesheets().get("raider-idle-swordMeleeUp-right");
+		
+		Spritesheet swordSpinL = Resources.spritesheets().get("raider-idle-swordSpin-left");
+		Spritesheet swordMeleeSideL = Resources.spritesheets().get("raider-idle-swordMeleeSide-left");
+		Spritesheet swordMeleeDownL = Resources.spritesheets().get("raider-idle-swordMeleeDown-left");
+		Spritesheet swordMeleeUpL = Resources.spritesheets().get("raider-idle-swordMeleeUp-left");
+		
+		
+		//Spritesheet idleAttackLeft = Resources.spritesheets().get("raider-idleSwordAttack-left");
+		//Spritesheet walkAttackLeft1 = Resources.spritesheets().get("raider-walkSwordAttack1-left");
+		//Spritesheet walkAttackLeft2 = Resources.spritesheets().get("raider-walkSwordAttack2-left");
 		
 		IEntityAnimationController<?> animationController;
 		
 		animationController = new CreatureAnimationController<Player>(this,new Animation(idle,false));
 		animationController.add(new Animation(walk,true));
-		animationController.add(new Animation(walkSwordRight,true));
-		animationController.add(new Animation(idleSwordRight, true));
-		animationController.add(new Animation(idleAttackRight ,false));
-		animationController.add(new Animation(idleSwordLeft, true));
-		animationController.add(new Animation(walkSwordLeft ,true));
-		animationController.add(new Animation(walkAttackRight1, false));
-		animationController.add(new Animation(walkAttackRight2,false));
-		animationController.add(new Animation(walkAttackLeft1, false));
-		animationController.add(new Animation(walkAttackLeft2,false));
-		animationController.add(new Animation(idleAttackLeft, false));
+		animationController.add(new Animation(walkSwordR,true));
+		animationController.add(new Animation(idleSwordR, true));
+		animationController.add(new Animation(swordSpinR,false));
+		animationController.add(new Animation(walkSwordL,true));
+		animationController.add(new Animation(idleSwordL, true));
+		animationController.add(new Animation(swordSpinL,false));
+		//animationController.add(new Animation(idleSwordLeft, true));
+		//animationController.add(new Animation(walkSwordLeft ,true));
+		animationController.add(new Animation(swordMeleeSideR, false));
+		animationController.add(new Animation(swordMeleeDownR,false));
+		animationController.add(new Animation(swordMeleeUpR,false));
+		animationController.add(new Animation(swordMeleeSideL, false));
+		animationController.add(new Animation(swordMeleeDownL,false));
+		animationController.add(new Animation(swordMeleeUpL,false));
+		//animationController.add(new Animation(walkAttackLeft1, false));
+		//animationController.add(new Animation(walkAttackLeft2,false));
+		//animationController.add(new Animation(idleAttackLeft, false));
 			
-	    animationController.addRule(x -> (this.calcDirection() == Direction.LEFT) && this.isIdle() && !equipped, x -> "raider-idle-left");
-	    animationController.addRule(x -> (this.calcDirection() == Direction.LEFT) && !this.isIdle() && !equipped, x -> "raider-walk-left");
-	    animationController.addRule(x -> (this.calcDirection() == Direction.RIGHT) && this.isIdle() && !equipped, x -> "raider-idle-right");
-	    animationController.addRule(x -> (this.calcDirection() == Direction.RIGHT) && !this.isIdle() && !equipped, x -> "raider-walk-right");
+	    animationController.addRule(x -> (this.calcFacingDirection() == Direction.LEFT) && this.isIdle() && !equipped, x -> "raider-idle-left");
+	    animationController.addRule(x -> (this.calcFacingDirection() == Direction.LEFT) && !this.isIdle() && !equipped, x -> "raider-walk-left");
+	    animationController.addRule(x -> (this.calcFacingDirection() == Direction.RIGHT) && this.isIdle() && !equipped, x -> "raider-idle-right");
+	    animationController.addRule(x -> (this.calcFacingDirection() == Direction.RIGHT) && !this.isIdle() && !equipped, x -> "raider-walk-right");
 	    
-	    animationController.addRule(x -> (this.calcDirection() == Direction.LEFT) && this.isIdle() && equipped, x -> "raider-idleSword-left");
-	    animationController.addRule(x -> (this.calcDirection() == Direction.LEFT) && !this.isIdle() && equipped, x -> "raider-walkSword-left");
-	    animationController.addRule(x -> (this.calcDirection() == Direction.RIGHT) && this.isIdle() && equipped, x -> "raider-idleSword-right");
-	    animationController.addRule(x -> (this.calcDirection() == Direction.RIGHT) && !this.isIdle() && equipped, x -> "raider-walkSword-right");
+	    animationController.addRule(x -> (this.calcFacingDirection() == Direction.LEFT) && this.isIdle() && equipped, x -> "raider-idle-sword-left");
+	    animationController.addRule(x -> (this.calcFacingDirection() == Direction.LEFT) && !this.isIdle() && equipped, x -> "raider-walk-sword-left");
+	    animationController.addRule(x -> (this.calcFacingDirection() == Direction.RIGHT) && this.isIdle() && equipped, x -> "raider-idle-sword-right");
+	    animationController.addRule(x -> (this.calcFacingDirection() == Direction.RIGHT) && !this.isIdle() && equipped, x -> "raider-walk-sword-right");
 	
 	    CreatureShadowImageEffect effect = new CreatureShadowImageEffect(this, new Color(24, 30, 28, 100));
 	    effect.setOffsetY(1);
@@ -188,11 +205,12 @@ public class Player extends Creature implements IUpdateable{
 	}
 	
 	/**
-	 * takes the player location and mouse location and uses the raiders math method left or right to get the direction of the mouse relative to the player
+	 * takes the player and mouse location and uses the raiders math method left or right to get the direction of the mouse relative to the player
 	 * if mouse out of bounds default direction right to avoid console nullpointer spam
-	 * @return the direction of the mouse relative to the player
+	 * used for determining which spritesheet to be used
+	 * @return the direction of the mouse relative to the player, always Left or Right
 	 */
-	public Direction calcDirection() {
+	public Direction calcFacingDirection() {
 		Point mousePosition = Game.window().getRenderComponent().getMousePosition();
 		Point2D playerLoc = Game.world().camera().getViewportLocation(this);
 		
@@ -206,6 +224,11 @@ public class Player extends Creature implements IUpdateable{
 		
 	}
 	
+	/**
+	 * uses player and mouse location to find whether mouse is Up,Down,Left,or Right of the player, which is the attack direction
+	 * if mouse out of bounds default direction right to avoid console nullpointer spam
+	 * @return the direction of the mouse relative to the player, either Up, Down, Left, or Right
+	 */
 	public Direction calcAttackDirection() {
 		Point mousePosition = Game.window().getRenderComponent().getMousePosition();
 		Point2D playerLoc = Game.world().camera().getViewportLocation(this);

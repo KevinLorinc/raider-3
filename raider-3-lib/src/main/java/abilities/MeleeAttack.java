@@ -12,7 +12,7 @@ import de.gurkenlabs.litiengine.graphics.animation.Animation;
 import de.gurkenlabs.litiengine.resources.Resources;
 import entities.Player;
 
-@AbilityInfo(name = "MeleeAttack", cooldown = 350, range = 0, impact = 15, impactAngle = 360, value = 10, duration = 200, multiTarget = true)
+@AbilityInfo(name = "MeleeAttack", cooldown = 350, range = 0, impact = 15, impactAngle = 360, value = 1, duration = 200, multiTarget = true)
 public class MeleeAttack extends Ability{
 
 	public MeleeAttack(Creature executor) {

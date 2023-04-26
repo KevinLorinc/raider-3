@@ -46,10 +46,10 @@ public class PlayerInput {
 		  }
 		  
 		  Player.instance().getSpinAttack().cast();
-		  if(Player.instance().calcDirection().equals(Direction.RIGHT))
-			Player.instance().animations().play("raider-idleSwordAttack-right");
+		  if(Player.instance().calcFacingDirection().equals(Direction.RIGHT))
+			Player.instance().animations().play("raider-idle-swordSpin-right");
 		  else
-			Player.instance().animations().play("raider-idleSwordAttack-left");
+			Player.instance().animations().play("raider-idle-swordSpin-left");
 	  });
 	  
 	  Input.keyboard().onKeyPressed(KeyEvent.VK_F, e -> {
@@ -58,18 +58,22 @@ public class PlayerInput {
 		  }
 		  
 		  Player.instance().getMeleeAttack().cast();
-		  long random = Math.round(Math.random());
-		  if(random==1)
-			  if(Player.instance().calcDirection().equals(Direction.RIGHT))
-		  	Player.instance().animations().play("raider-walkSwordAttack1-right");
-			  else
-			Player.instance().animations().play("raider-walkSwordAttack1-left");
-
-		 else
-			  if(Player.instance().calcDirection().equals(Direction.RIGHT))
-			Player.instance().animations().play("raider-walkSwordAttack2-right");
-			  else
-			Player.instance().animations().play("raider-walkSwordAttack2-left");	  
+		  
+		  Direction attack = Player.instance().calcAttackDirection();
+		  Direction facing = Player.instance().calcFacingDirection();
+		  
+		  if(attack.equals(Direction.RIGHT)) {
+			  Player.instance().animations().play("raider-idle-swordMeleeSide-right");
+		  }else if(attack.equals(Direction.LEFT)) {
+			  Player.instance().animations().play("raider-idle-swordMeleeSide-left");
+		  }else if(attack.equals(Direction.UP)) {
+			  if(facing.equals(Direction.RIGHT)) Player.instance().animations().play("raider-idle-swordMeleeUp-right");
+			  else Player.instance().animations().play("raider-idle-swordMeleeUp-left");
+		  }else {
+			  if(facing.equals(Direction.RIGHT)) Player.instance().animations().play("raider-idle-swordMeleeDown-right");
+			  else Player.instance().animations().play("raider-idle-swordMeleeDown-left");
+		  }
+		  
 		  });
 	  
 	  //used to equip a weapon
