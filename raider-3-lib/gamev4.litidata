@@ -889,6 +889,96 @@
       <property name="collisionValign" value="DOWN"/>
      </properties>
     </object>
+    <object id="100" name="enemy1" type="SPAWNPOINT" x="96" y="384" width="32" height="32">
+     <properties>
+      <property name="collisionAlign" value="CENTER"/>
+      <property name="collisionType" value="DYNAMIC"/>
+      <property name="collisionValign" value="DOWN"/>
+      <property name="spawnDirection" value="DOWN"/>
+      <property name="spawnPivot" value="DIMENSION_CENTER"/>
+     </properties>
+    </object>
+    <object id="101" name="enemy2" type="SPAWNPOINT" x="160" y="384" width="32" height="32">
+     <properties>
+      <property name="collisionAlign" value="CENTER"/>
+      <property name="collisionType" value="DYNAMIC"/>
+      <property name="collisionValign" value="DOWN"/>
+      <property name="spawnDirection" value="DOWN"/>
+      <property name="spawnPivot" value="DIMENSION_CENTER"/>
+     </properties>
+    </object>
+    <object id="102" name="enemy3" type="SPAWNPOINT" x="704" y="192" width="32" height="32">
+     <properties>
+      <property name="collisionAlign" value="CENTER"/>
+      <property name="collisionType" value="DYNAMIC"/>
+      <property name="collisionValign" value="DOWN"/>
+      <property name="spawnDirection" value="DOWN"/>
+      <property name="spawnPivot" value="DIMENSION_CENTER"/>
+     </properties>
+    </object>
+    <object id="103" name="enemy4" type="SPAWNPOINT" x="608" y="384" width="32" height="32">
+     <properties>
+      <property name="collisionAlign" value="CENTER"/>
+      <property name="collisionType" value="DYNAMIC"/>
+      <property name="collisionValign" value="DOWN"/>
+      <property name="spawnDirection" value="DOWN"/>
+      <property name="spawnPivot" value="DIMENSION_CENTER"/>
+     </properties>
+    </object>
+    <object id="104" name="enemy5" type="SPAWNPOINT" x="704" y="320" width="32" height="32">
+     <properties>
+      <property name="collisionAlign" value="CENTER"/>
+      <property name="collisionType" value="DYNAMIC"/>
+      <property name="collisionValign" value="DOWN"/>
+      <property name="spawnDirection" value="DOWN"/>
+      <property name="spawnPivot" value="DIMENSION_CENTER"/>
+     </properties>
+    </object>
+    <object id="105" name="enemy6" type="SPAWNPOINT" x="896" y="192" width="32" height="32">
+     <properties>
+      <property name="collisionAlign" value="CENTER"/>
+      <property name="collisionType" value="DYNAMIC"/>
+      <property name="collisionValign" value="DOWN"/>
+      <property name="spawnDirection" value="DOWN"/>
+      <property name="spawnPivot" value="DIMENSION_CENTER"/>
+     </properties>
+    </object>
+    <object id="106" name="enemy7" type="SPAWNPOINT" x="1056" y="192" width="32" height="32">
+     <properties>
+      <property name="collisionAlign" value="CENTER"/>
+      <property name="collisionType" value="DYNAMIC"/>
+      <property name="collisionValign" value="DOWN"/>
+      <property name="spawnDirection" value="DOWN"/>
+      <property name="spawnPivot" value="DIMENSION_CENTER"/>
+     </properties>
+    </object>
+    <object id="107" name="enemy8" type="SPAWNPOINT" x="1248" y="0" width="32" height="32">
+     <properties>
+      <property name="collisionAlign" value="CENTER"/>
+      <property name="collisionType" value="DYNAMIC"/>
+      <property name="collisionValign" value="DOWN"/>
+      <property name="spawnDirection" value="DOWN"/>
+      <property name="spawnPivot" value="DIMENSION_CENTER"/>
+     </properties>
+    </object>
+    <object id="108" name="enemy9" type="SPAWNPOINT" x="1472" y="512" width="32" height="32">
+     <properties>
+      <property name="collisionAlign" value="CENTER"/>
+      <property name="collisionType" value="DYNAMIC"/>
+      <property name="collisionValign" value="DOWN"/>
+      <property name="spawnDirection" value="DOWN"/>
+      <property name="spawnPivot" value="DIMENSION_CENTER"/>
+     </properties>
+    </object>
+    <object id="109" name="enemy10" type="SPAWNPOINT" x="1344" y="544" width="32" height="32">
+     <properties>
+      <property name="collisionAlign" value="CENTER"/>
+      <property name="collisionType" value="DYNAMIC"/>
+      <property name="collisionValign" value="DOWN"/>
+      <property name="spawnDirection" value="DOWN"/>
+      <property name="spawnPivot" value="DIMENSION_CENTER"/>
+     </properties>
+    </object>
    </objectgroup>
    <objectgroup id="12" name="spawns" visible="1">
     <object id="83" name="enter" type="SPAWNPOINT" x="64" y="96" width="32" height="32">
@@ -950,6 +1040,37 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
    </layer>
+   <objectgroup id="0" name="triggers" visible="1">
+    <object id="110" name="chest1" type="TRIGGER" x="272" y="16" width="64" height="64">
+     <properties>
+      <property name="collisionAlign" value="CENTER"/>
+      <property name="collisionType" value="DYNAMIC"/>
+      <property name="collisionValign" value="DOWN"/>
+      <property name="triggerActivation" value="COLLISION"/>
+      <property name="triggerOneTime" type="bool" value="true"/>
+      <property name="triggerTarget" value="0"/>
+      <property name="triggermessage" value="Sword Obtained!"/>
+     </properties>
+    </object>
+    <object id="111" name="chest2" type="TRIGGER" x="752" y="0" width="64" height="48">
+     <properties>
+      <property name="collisionAlign" value="CENTER"/>
+      <property name="collisionType" value="DYNAMIC"/>
+      <property name="collisionValign" value="DOWN"/>
+      <property name="triggerActivation" value="COLLISION"/>
+      <property name="triggerOneTime" type="bool" value="true"/>
+     </properties>
+    </object>
+    <object id="112" name="chest3" type="TRIGGER" x="848" y="0" width="64" height="48">
+     <properties>
+      <property name="collisionAlign" value="CENTER"/>
+      <property name="collisionType" value="DYNAMIC"/>
+      <property name="collisionValign" value="DOWN"/>
+      <property name="triggerActivation" value="COLLISION"/>
+      <property name="triggerOneTime" type="bool" value="true"/>
+     </properties>
+    </object>
+   </objectgroup>
   </map>
  </maps>
  <spriteSheets>
