@@ -56,4 +56,12 @@ public class Minion extends Enemy {
 	public Spawnpoint getSpawn() {
 	    return spawn;
 	}
+
+	/**
+	 * checks if this enemy is in range of players
+	 */
+	@Override
+	public void updateTarget() {
+		this.setTarget(Player.instance());
+	}
 }
