@@ -4,7 +4,12 @@ import java.util.HashMap;
 import java.util.LinkedList;
 
 import de.gurkenlabs.litiengine.Game;
+import de.gurkenlabs.litiengine.entities.CollisionBox;
 import de.gurkenlabs.litiengine.entities.Spawnpoint;
+import de.gurkenlabs.litiengine.entities.behavior.AStarGrid;
+import de.gurkenlabs.litiengine.entities.behavior.AStarNode;
+import de.gurkenlabs.litiengine.environment.Environment;
+import de.gurkenlabs.litiengine.environment.EnvironmentListener;
 import de.gurkenlabs.litiengine.graphics.Camera;
 import de.gurkenlabs.litiengine.graphics.PositionLockCamera;
 import entities.Minion;
@@ -29,6 +34,7 @@ public final class RaidersLogic{
 	private static GameState state;
 	
 	private static final HashMap<String, LinkedList<EnemySpawnEvent>> spawnEvents = new HashMap<String, LinkedList<EnemySpawnEvent>>();
+	private static final HashMap<String, AStarGrid> grids = new HashMap<String, AStarGrid>();
 	
 	
 	/**
@@ -50,21 +56,43 @@ public final class RaidersLogic{
 	 * initializes the logic for the Raiders game
 	 */
 	public static void init() {	 
-	    Game.world().onLoaded(e -> {
-	    	Camera camera = new PositionLockCamera(Player.instance());
-   		 	camera.setClampToMap(true);
-   		 	Game.world().setCamera(camera);
-	    	setState(GameState.INGAME);
-	        Player.instance().getHitPoints().setToMax();
-	        Player.instance().setIndestructible(false);
-	        Player.instance().setCollision(true);
-	        
-	        // spawn the player instance on the spawn point with the name "enter"
-	        Spawnpoint enter =  e.getSpawnpoint("enter");
-	        if (enter != null) {
-	          enter.spawn(Player.instance());
-	        }
-	      });
+		Game.world().addListener(new EnvironmentListener() {
+			/**
+			 * makes updates to what happens when the environemnt is initialized
+			 */
+			@Override
+		    public void initialized(Environment e) {
+				Camera camera = new PositionLockCamera(Player.instance());
+				camera.setClampToMap(true);
+				Game.world().setCamera(camera);
+				Player.instance().getHitPoints().setToMax();
+		        Player.instance().setIndestructible(false);
+		        Player.instance().setCollision(true);
+
+		        Game.world().camera().setFocus(e.getCenter());
+		        Spawnpoint spawn = e.getSpawnpoint("enter");
+		        if (spawn != null) {
+		          spawn.spawn(Player.instance());
+		        }
+		        //i have no clue what this does tbh
+		        AStarGrid grid = new AStarGrid(e.getMap().getSizeInPixels(), 8);
+		        for (CollisionBox collisionBox : e.getEntities(CollisionBox.class)) {
+		          for (AStarNode node : grid.getIntersectedNodes(collisionBox.getBoundingBox())) {
+		              node.setPenalty(AStarGrid.PENALTY_STATIC_PROP);
+		          }
+		        }
+		        grid.setAllowCuttingCorners(false);
+		        grids.put(e.getMap().getName(), grid);
+			}
+			
+			/**
+			 * we'll need to update this when we implement the boss map
+			 */
+			@Override
+			public void loaded(Environment e) {
+				
+			}
+		});
 	    
 	    Game.loop().attach(RaidersLogic::update);
 	}
@@ -85,7 +113,9 @@ public final class RaidersLogic{
 		RaidersLogic.state = state;
 	}
 	
-	//may not be needed I'll see how things unfold
+	/**
+	 * when a new environment is loaded, spawn events are handled. added to game loop in the init method
+	 */
 	private static void update() {
 	    if (Game.world().environment() == null || !Game.screens().current().getName().equals("GAME")) {
 	      return;
@@ -94,6 +124,9 @@ public final class RaidersLogic{
 	    handleEnemySpawns();
 	}
 	
+	/**
+	 * handles all the spawn events and avoids some errors
+	 */
 	private static void handleEnemySpawns() {
 	    if (Game.world().environment() == null) {
 	      return;
@@ -112,6 +145,10 @@ public final class RaidersLogic{
 	  }
 	}
 	
+	/**
+	 * spawns enemies given an event which attaches a name to the spawn
+	 * @param event the spawn event that you want to execute
+	 */
 	private static void spawnEnemy(EnemySpawnEvent event) {//will have to change once we add more
 	    event.finished = true;
 
@@ -140,5 +177,17 @@ public final class RaidersLogic{
 		public EnemySpawnEvent(String spawnPoint) {
 		  this.spawnPoint = spawnPoint;
 		}
+	}
+	
+	/**
+	 * gets the current grid that is loaded
+	 * @return the current grid
+	 */
+	public static AStarGrid getCurrentGrid() {
+	    if (Game.world().environment() == null || !grids.containsKey(Game.world().environment().getMap().getName())) {
+	      return null;
+	    }
+
+	    return grids.get(Game.world().environment().getMap().getName());
 	}
 }
