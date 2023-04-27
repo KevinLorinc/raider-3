@@ -49,7 +49,9 @@ public class Player extends Creature implements IUpdateable{
 	
 	private static Player instance;
 	private PlayerState state = PlayerState.CONTROLLABLE;//for testing purposes might need to be changed to Controllable once we get litidata in
+	
 	private boolean equipped;
+	private boolean swordObtained;
 	
 	private SpinAttack spinAttack;
 	private MeleeAttack meleeAttack;
@@ -61,6 +63,7 @@ public class Player extends Creature implements IUpdateable{
 		super("raider");
 		
 		equipped = false;
+		swordObtained = false;
 		
 		spinAttack = new SpinAttack(this);
 		meleeAttack = new MeleeAttack(this);

@@ -208,28 +208,14 @@
     <property name="collisionValign" value="DOWN"/>
    </properties>
   </object>
-  <object id="2" type="COLLISIONBOX" x="480" y="296" width="359">
+  <object id="5" type="COLLISIONBOX" x="600" y="480" width="7" height="77">
    <properties>
     <property name="collisionAlign" value="CENTER"/>
     <property name="collisionType" value="STATIC"/>
     <property name="collisionValign" value="DOWN"/>
    </properties>
   </object>
-  <object id="3" type="COLLISIONBOX" x="480" y="296" height="228">
-   <properties>
-    <property name="collisionAlign" value="CENTER"/>
-    <property name="collisionType" value="STATIC"/>
-    <property name="collisionValign" value="DOWN"/>
-   </properties>
-  </object>
-  <object id="5" type="COLLISIONBOX" x="600" y="480" width="7" height="64">
-   <properties>
-    <property name="collisionAlign" value="CENTER"/>
-    <property name="collisionType" value="STATIC"/>
-    <property name="collisionValign" value="DOWN"/>
-   </properties>
-  </object>
-  <object id="6" type="COLLISIONBOX" x="608" y="480" width="96" height="44">
+  <object id="6" type="COLLISIONBOX" x="608" y="480" width="96" height="49">
    <properties>
     <property name="collisionAlign" value="CENTER"/>
     <property name="collisionType" value="STATIC"/>
@@ -243,7 +229,7 @@
     <property name="collisionValign" value="DOWN"/>
    </properties>
   </object>
-  <object id="8" type="COLLISIONBOX" x="704" y="448" width="96" height="44">
+  <object id="8" type="COLLISIONBOX" x="704" y="448" width="96" height="49">
    <properties>
     <property name="collisionAlign" value="CENTER"/>
     <property name="collisionType" value="STATIC"/>
@@ -257,35 +243,7 @@
     <property name="collisionValign" value="DOWN"/>
    </properties>
   </object>
-  <object id="10" type="COLLISIONBOX" x="800" y="384" width="96" height="44">
-   <properties>
-    <property name="collisionAlign" value="CENTER"/>
-    <property name="collisionType" value="STATIC"/>
-    <property name="collisionValign" value="DOWN"/>
-   </properties>
-  </object>
-  <object id="11" type="COLLISIONBOX" x="896" y="384" width="7" height="65">
-   <properties>
-    <property name="collisionAlign" value="CENTER"/>
-    <property name="collisionType" value="STATIC"/>
-    <property name="collisionValign" value="DOWN"/>
-   </properties>
-  </object>
-  <object id="12" type="COLLISIONBOX" x="896" y="448" width="64" height="44">
-   <properties>
-    <property name="collisionAlign" value="CENTER"/>
-    <property name="collisionType" value="STATIC"/>
-    <property name="collisionValign" value="DOWN"/>
-   </properties>
-  </object>
-  <object id="13" type="COLLISIONBOX" x="960" y="448" width="7" height="67">
-   <properties>
-    <property name="collisionAlign" value="CENTER"/>
-    <property name="collisionType" value="STATIC"/>
-    <property name="collisionValign" value="DOWN"/>
-   </properties>
-  </object>
-  <object id="14" type="COLLISIONBOX" x="960" y="512" width="192" height="44">
+  <object id="14" type="COLLISIONBOX" x="960" y="512" width="192" height="49">
    <properties>
     <property name="collisionAlign" value="CENTER"/>
     <property name="collisionType" value="STATIC"/>
@@ -299,7 +257,7 @@
     <property name="collisionValign" value="DOWN"/>
    </properties>
   </object>
-  <object id="16" type="COLLISIONBOX" x="1152" y="448" width="64" height="44">
+  <object id="16" type="COLLISIONBOX" x="1152" y="448" width="64" height="49">
    <properties>
     <property name="collisionAlign" value="CENTER"/>
     <property name="collisionType" value="STATIC"/>
@@ -313,28 +271,21 @@
     <property name="collisionValign" value="DOWN"/>
    </properties>
   </object>
-  <object id="18" type="COLLISIONBOX" x="1216" y="256" width="32" height="44">
+  <object id="18" type="COLLISIONBOX" x="1216" y="256" width="32" height="49">
    <properties>
     <property name="collisionAlign" value="CENTER"/>
     <property name="collisionType" value="STATIC"/>
     <property name="collisionValign" value="DOWN"/>
    </properties>
   </object>
-  <object id="19" type="COLLISIONBOX" x="1248" y="256" width="8" height="76">
+  <object id="19" type="COLLISIONBOX" x="1248" y="256" width="8" height="81">
    <properties>
     <property name="collisionAlign" value="CENTER"/>
     <property name="collisionType" value="STATIC"/>
     <property name="collisionValign" value="DOWN"/>
    </properties>
   </object>
-  <object id="20" type="COLLISIONBOX" x="1304" y="256" width="8" height="76">
-   <properties>
-    <property name="collisionAlign" value="CENTER"/>
-    <property name="collisionType" value="STATIC"/>
-    <property name="collisionValign" value="DOWN"/>
-   </properties>
-  </object>
-  <object id="21" type="COLLISIONBOX" x="1312" y="256" width="224" height="44">
+  <object id="20" type="COLLISIONBOX" x="1304" y="256" width="8" height="81">
    <properties>
     <property name="collisionAlign" value="CENTER"/>
     <property name="collisionType" value="STATIC"/>
@@ -348,77 +299,63 @@
     <property name="collisionValign" value="DOWN"/>
    </properties>
   </object>
-  <object id="24" type="COLLISIONBOX" x="512" y="512" width="32" height="44">
+  <object id="24" type="COLLISIONBOX" x="512" y="512" width="32" height="49">
    <properties>
     <property name="collisionAlign" value="CENTER"/>
     <property name="collisionType" value="STATIC"/>
     <property name="collisionValign" value="DOWN"/>
    </properties>
   </object>
-  <object id="25" type="COLLISIONBOX" x="480" y="480" width="64" height="44">
+  <object id="25" type="COLLISIONBOX" x="480" y="480" width="64" height="49">
    <properties>
     <property name="collisionAlign" value="CENTER"/>
     <property name="collisionType" value="STATIC"/>
     <property name="collisionValign" value="DOWN"/>
    </properties>
   </object>
-  <object id="26" type="COLLISIONBOX" x="544" y="480" width="8" height="64">
+  <object id="26" type="COLLISIONBOX" x="544" y="480" width="8" height="81">
    <properties>
     <property name="collisionAlign" value="CENTER"/>
     <property name="collisionType" value="STATIC"/>
     <property name="collisionValign" value="DOWN"/>
    </properties>
   </object>
-  <object id="28" type="COLLISIONBOX" x="832" y="122" width="130" height="26">
+  <object id="28" type="COLLISIONBOX" x="832" y="128" width="130" height="17">
    <properties>
     <property name="collisionAlign" value="CENTER"/>
     <property name="collisionType" value="STATIC"/>
     <property name="collisionValign" value="DOWN"/>
    </properties>
   </object>
-  <object id="29" type="COLLISIONBOX" x="925" y="114" width="35" height="16">
+  <object id="30" type="COLLISIONBOX" x="960" y="269" width="29.6667" height="62">
    <properties>
     <property name="collisionAlign" value="CENTER"/>
     <property name="collisionType" value="STATIC"/>
     <property name="collisionValign" value="DOWN"/>
    </properties>
   </object>
-  <object id="30" type="COLLISIONBOX" x="960" y="273.667" width="29.6667" height="52">
+  <object id="32" type="COLLISIONBOX" x="960" y="320" width="64" height="49">
    <properties>
     <property name="collisionAlign" value="CENTER"/>
     <property name="collisionType" value="STATIC"/>
     <property name="collisionValign" value="DOWN"/>
    </properties>
   </object>
-  <object id="31" type="COLLISIONBOX" x="960" y="72" width="576">
+  <object id="33" type="COLLISIONBOX" x="1088" y="320" width="64" height="49">
    <properties>
     <property name="collisionAlign" value="CENTER"/>
     <property name="collisionType" value="STATIC"/>
     <property name="collisionValign" value="DOWN"/>
    </properties>
   </object>
-  <object id="32" type="COLLISIONBOX" x="960" y="320" width="64" height="44">
+  <object id="34" type="COLLISIONBOX" x="1024" y="320" width="8" height="81">
    <properties>
     <property name="collisionAlign" value="CENTER"/>
     <property name="collisionType" value="STATIC"/>
     <property name="collisionValign" value="DOWN"/>
    </properties>
   </object>
-  <object id="33" type="COLLISIONBOX" x="1088" y="320" width="64" height="44">
-   <properties>
-    <property name="collisionAlign" value="CENTER"/>
-    <property name="collisionType" value="STATIC"/>
-    <property name="collisionValign" value="DOWN"/>
-   </properties>
-  </object>
-  <object id="34" type="COLLISIONBOX" x="1024" y="320" width="8" height="76">
-   <properties>
-    <property name="collisionAlign" value="CENTER"/>
-    <property name="collisionType" value="STATIC"/>
-    <property name="collisionValign" value="DOWN"/>
-   </properties>
-  </object>
-  <object id="35" type="COLLISIONBOX" x="1081" y="320" width="8" height="76">
+  <object id="35" type="COLLISIONBOX" x="1081" y="320" width="8" height="81">
    <properties>
     <property name="collisionAlign" value="CENTER"/>
     <property name="collisionType" value="STATIC"/>
@@ -439,14 +376,14 @@
     <property name="collisionValign" value="DOWN"/>
    </properties>
   </object>
-  <object id="38" type="COLLISIONBOX" x="1210" y="192" width="38" height="11.25">
+  <object id="38" type="COLLISIONBOX" x="1210" y="192" width="38" height="13.25">
    <properties>
     <property name="collisionAlign" value="CENTER"/>
     <property name="collisionType" value="STATIC"/>
     <property name="collisionValign" value="DOWN"/>
    </properties>
   </object>
-  <object id="39" type="COLLISIONBOX" x="1309.67" y="128" width="162.333" height="44">
+  <object id="39" type="COLLISIONBOX" x="1309.67" y="128" width="162.333" height="49">
    <properties>
     <property name="collisionAlign" value="CENTER"/>
     <property name="collisionType" value="STATIC"/>
@@ -460,21 +397,21 @@
     <property name="collisionValign" value="DOWN"/>
    </properties>
   </object>
-  <object id="41" type="COLLISIONBOX" x="1472" y="128" width="8" height="76">
+  <object id="41" type="COLLISIONBOX" x="1472" y="128" width="8" height="81">
    <properties>
     <property name="collisionAlign" value="CENTER"/>
     <property name="collisionType" value="STATIC"/>
     <property name="collisionValign" value="DOWN"/>
    </properties>
   </object>
-  <object id="42" type="COLLISIONBOX" x="1248" y="128" width="8" height="76">
+  <object id="42" type="COLLISIONBOX" x="1248" y="128" width="8" height="82">
    <properties>
     <property name="collisionAlign" value="CENTER"/>
     <property name="collisionType" value="STATIC"/>
     <property name="collisionValign" value="DOWN"/>
    </properties>
   </object>
-  <object id="43" type="COLLISIONBOX" x="1304" y="128" width="8" height="76">
+  <object id="43" type="COLLISIONBOX" x="1304" y="128" width="8" height="81">
    <properties>
     <property name="collisionAlign" value="CENTER"/>
     <property name="collisionType" value="STATIC"/>
@@ -509,21 +446,21 @@
     <property name="collisionValign" value="DOWN"/>
    </properties>
   </object>
-  <object id="48" type="COLLISIONBOX" x="1536" y="71.9565" width="8" height="68.0435">
+  <object id="48" type="COLLISIONBOX" x="1536" y="71.9565" width="8" height="73.044">
    <properties>
     <property name="collisionAlign" value="CENTER"/>
     <property name="collisionType" value="STATIC"/>
     <property name="collisionValign" value="DOWN"/>
    </properties>
   </object>
-  <object id="49" type="COLLISIONBOX" x="1592" y="0" width="8" height="140">
+  <object id="49" type="COLLISIONBOX" x="1592" y="0" width="8" height="145">
    <properties>
     <property name="collisionAlign" value="CENTER"/>
     <property name="collisionType" value="STATIC"/>
     <property name="collisionValign" value="DOWN"/>
    </properties>
   </object>
-  <object id="50" type="COLLISIONBOX" x="512" y="320" width="32" height="96">
+  <object id="50" type="COLLISIONBOX" x="512" y="320" width="32" height="113">
    <properties>
     <property name="collisionAlign" value="CENTER"/>
     <property name="collisionType" value="STATIC"/>
@@ -537,42 +474,42 @@
     <property name="collisionValign" value="DOWN"/>
    </properties>
   </object>
-  <object id="52" type="COLLISIONBOX" x="1312.85" y="607.771" width="29.9091" height="7.5625">
+  <object id="52" type="COLLISIONBOX" x="1312.85" y="607.771" width="29.9091" height="8">
    <properties>
     <property name="collisionAlign" value="CENTER"/>
     <property name="collisionType" value="STATIC"/>
     <property name="collisionValign" value="DOWN"/>
    </properties>
   </object>
-  <object id="53" type="COLLISIONBOX" x="1345.25" y="511.875" width="29.5" height="7.375">
+  <object id="53" type="COLLISIONBOX" x="1345.25" y="511.875" width="29.5" height="8">
    <properties>
     <property name="collisionAlign" value="CENTER"/>
     <property name="collisionType" value="STATIC"/>
     <property name="collisionValign" value="DOWN"/>
    </properties>
   </object>
-  <object id="54" type="COLLISIONBOX" x="1409.25" y="575.688" width="29.75" height="7.4375">
+  <object id="54" type="COLLISIONBOX" x="1409.25" y="575.688" width="29.75" height="8">
    <properties>
     <property name="collisionAlign" value="CENTER"/>
     <property name="collisionType" value="STATIC"/>
     <property name="collisionValign" value="DOWN"/>
    </properties>
   </object>
-  <object id="55" type="COLLISIONBOX" x="1408" y="480" width="32" height="8.25">
+  <object id="55" type="COLLISIONBOX" x="1408" y="480" width="32" height="8">
    <properties>
     <property name="collisionAlign" value="CENTER"/>
     <property name="collisionType" value="STATIC"/>
     <property name="collisionValign" value="DOWN"/>
    </properties>
   </object>
-  <object id="56" type="COLLISIONBOX" x="1472" y="480" width="32" height="8.25">
+  <object id="56" type="COLLISIONBOX" x="1472" y="480" width="32" height="8">
    <properties>
     <property name="collisionAlign" value="CENTER"/>
     <property name="collisionType" value="STATIC"/>
     <property name="collisionValign" value="DOWN"/>
    </properties>
   </object>
-  <object id="57" type="COLLISIONBOX" x="1696" y="0" width="32" height="44">
+  <object id="57" type="COLLISIONBOX" x="1696" y="0" width="32" height="49">
    <properties>
     <property name="collisionAlign" value="CENTER"/>
     <property name="collisionType" value="STATIC"/>
@@ -586,21 +523,21 @@
     <property name="collisionValign" value="DOWN"/>
    </properties>
   </object>
-  <object id="59" type="COLLISIONBOX" x="1696" y="135.636" width="32" height="100.364">
+  <object id="59" type="COLLISIONBOX" x="1696" y="128" width="32" height="113">
    <properties>
     <property name="collisionAlign" value="CENTER"/>
     <property name="collisionType" value="STATIC"/>
     <property name="collisionValign" value="DOWN"/>
    </properties>
   </object>
-  <object id="60" type="COLLISIONBOX" x="1728" y="192" width="64" height="44">
+  <object id="60" type="COLLISIONBOX" x="1728" y="192" width="64" height="49">
    <properties>
     <property name="collisionAlign" value="CENTER"/>
     <property name="collisionType" value="STATIC"/>
     <property name="collisionValign" value="DOWN"/>
    </properties>
   </object>
-  <object id="61" type="COLLISIONBOX" x="1792" y="160" width="128" height="32">
+  <object id="61" type="COLLISIONBOX" x="1792" y="160" width="128" height="49">
    <properties>
     <property name="collisionAlign" value="CENTER"/>
     <property name="collisionType" value="STATIC"/>
@@ -614,7 +551,7 @@
     <property name="collisionValign" value="DOWN"/>
    </properties>
   </object>
-  <object id="63" type="COLLISIONBOX" x="1696" y="327.273" width="96" height="100.727">
+  <object id="63" type="COLLISIONBOX" x="1696" y="320" width="96" height="113">
    <properties>
     <property name="collisionAlign" value="CENTER"/>
     <property name="collisionType" value="STATIC"/>
@@ -628,7 +565,7 @@
     <property name="collisionValign" value="DOWN"/>
    </properties>
   </object>
-  <object id="65" type="COLLISIONBOX" x="1696" y="519.818" width="32" height="99">
+  <object id="65" type="COLLISIONBOX" x="1696" y="512" width="32" height="113">
    <properties>
     <property name="collisionAlign" value="CENTER"/>
     <property name="collisionType" value="STATIC"/>
@@ -642,14 +579,14 @@
     <property name="collisionValign" value="DOWN"/>
    </properties>
   </object>
-  <object id="67" type="COLLISIONBOX" x="1505" y="543.87" width="29.8182" height="7.13043">
+  <object id="67" type="COLLISIONBOX" x="1505" y="543.87" width="29.8182" height="8">
    <properties>
     <property name="collisionAlign" value="CENTER"/>
     <property name="collisionType" value="STATIC"/>
     <property name="collisionValign" value="DOWN"/>
    </properties>
   </object>
-  <object id="68" type="COLLISIONBOX" x="1511.33" y="607.918" width="17.6957" height="6.18321">
+  <object id="68" type="COLLISIONBOX" x="1504" y="608" width="32" height="8">
    <properties>
     <property name="collisionAlign" value="CENTER"/>
     <property name="collisionType" value="STATIC"/>
@@ -663,28 +600,28 @@
     <property name="collisionValign" value="DOWN"/>
    </properties>
   </object>
-  <object id="70" type="COLLISIONBOX" x="320" y="72.0273" width="96" height="97.9727">
+  <object id="70" type="COLLISIONBOX" x="320" y="64" width="96" height="113.973">
    <properties>
     <property name="collisionAlign" value="CENTER"/>
     <property name="collisionType" value="STATIC"/>
     <property name="collisionValign" value="DOWN"/>
    </properties>
   </object>
-  <object id="71" type="COLLISIONBOX" x="416" y="96" width="256" height="44">
+  <object id="71" type="COLLISIONBOX" x="416" y="96" width="256" height="49">
    <properties>
     <property name="collisionAlign" value="CENTER"/>
     <property name="collisionType" value="STATIC"/>
     <property name="collisionValign" value="DOWN"/>
    </properties>
   </object>
-  <object id="72" type="COLLISIONBOX" x="672" y="128" width="96" height="44">
+  <object id="72" type="COLLISIONBOX" x="672" y="128" width="96" height="49">
    <properties>
     <property name="collisionAlign" value="CENTER"/>
     <property name="collisionType" value="STATIC"/>
     <property name="collisionValign" value="DOWN"/>
    </properties>
   </object>
-  <object id="73" type="COLLISIONBOX" x="704" y="72.6667" width="64" height="67.3333">
+  <object id="73" type="COLLISIONBOX" x="704" y="64" width="64" height="67.3333">
    <properties>
     <property name="collisionAlign" value="CENTER"/>
     <property name="collisionType" value="STATIC"/>
@@ -698,14 +635,14 @@
     <property name="collisionValign" value="DOWN"/>
    </properties>
   </object>
-  <object id="78" type="COLLISIONBOX" x="256" y="330.576" width="32" height="27.0909">
+  <object id="78" type="COLLISIONBOX" x="256" y="318.576" width="32" height="39.091">
    <properties>
     <property name="collisionAlign" value="CENTER"/>
     <property name="collisionType" value="STATIC"/>
     <property name="collisionValign" value="DOWN"/>
    </properties>
   </object>
-  <object id="2" type="COLLISIONBOX" x="960.5" y="207" width="29.6667" height="29">
+  <object id="2" type="COLLISIONBOX" x="960.5" y="207" width="29.6667" height="34">
    <properties>
     <property name="collisionAlign" value="CENTER"/>
     <property name="collisionType" value="STATIC"/>
@@ -733,49 +670,21 @@
     <property name="collisionValign" value="DOWN"/>
    </properties>
   </object>
-  <object id="7" type="COLLISIONBOX" x="192.333" y="330.455" width="32" height="27.0909">
+  <object id="7" type="COLLISIONBOX" x="192.333" y="318.455" width="32" height="39.091">
    <properties>
     <property name="collisionAlign" value="CENTER"/>
     <property name="collisionType" value="STATIC"/>
     <property name="collisionValign" value="DOWN"/>
    </properties>
   </object>
-  <object id="8" type="COLLISIONBOX" x="129" y="330.788" width="32" height="27.0909">
+  <object id="8" type="COLLISIONBOX" x="129" y="318.788" width="32" height="39.091">
    <properties>
     <property name="collisionAlign" value="CENTER"/>
     <property name="collisionType" value="STATIC"/>
     <property name="collisionValign" value="DOWN"/>
    </properties>
   </object>
-  <object id="9" type="COLLISIONBOX" x="64.3333" y="330.455" width="32" height="27.0909">
-   <properties>
-    <property name="collisionAlign" value="CENTER"/>
-    <property name="collisionType" value="STATIC"/>
-    <property name="collisionValign" value="DOWN"/>
-   </properties>
-  </object>
-  <object id="10" type="COLLISIONBOX" x="64.3333" y="427.455" width="32" height="27.0909">
-   <properties>
-    <property name="collisionAlign" value="CENTER"/>
-    <property name="collisionType" value="STATIC"/>
-    <property name="collisionValign" value="DOWN"/>
-   </properties>
-  </object>
-  <object id="11" type="COLLISIONBOX" x="128.333" y="426.455" width="32" height="27.0909">
-   <properties>
-    <property name="collisionAlign" value="CENTER"/>
-    <property name="collisionType" value="STATIC"/>
-    <property name="collisionValign" value="DOWN"/>
-   </properties>
-  </object>
-  <object id="12" type="COLLISIONBOX" x="192" y="427.788" width="32" height="27.0909">
-   <properties>
-    <property name="collisionAlign" value="CENTER"/>
-    <property name="collisionType" value="STATIC"/>
-    <property name="collisionValign" value="DOWN"/>
-   </properties>
-  </object>
-  <object id="13" type="COLLISIONBOX" x="256.333" y="427.455" width="32" height="27.0909">
+  <object id="9" type="COLLISIONBOX" x="64.3333" y="318.455" width="32" height="39.091">
    <properties>
     <property name="collisionAlign" value="CENTER"/>
     <property name="collisionType" value="STATIC"/>
@@ -789,28 +698,28 @@
     <property name="collisionValign" value="DOWN"/>
    </properties>
   </object>
-  <object id="16" type="COLLISIONBOX" x="192.727" y="511.909" width="32" height="3.76135">
+  <object id="16" type="COLLISIONBOX" x="192.727" y="506.909" width="32" height="8.761">
    <properties>
     <property name="collisionAlign" value="CENTER"/>
     <property name="collisionType" value="STATIC"/>
     <property name="collisionValign" value="DOWN"/>
    </properties>
   </object>
-  <object id="17" type="COLLISIONBOX" x="287.727" y="512.347" width="32" height="3.76135">
+  <object id="17" type="COLLISIONBOX" x="287.727" y="507.347" width="32" height="8.761">
    <properties>
     <property name="collisionAlign" value="CENTER"/>
     <property name="collisionType" value="STATIC"/>
     <property name="collisionValign" value="DOWN"/>
    </properties>
   </object>
-  <object id="18" type="COLLISIONBOX" x="95.8182" y="511.938" width="32" height="3.76135">
+  <object id="18" type="COLLISIONBOX" x="95.8182" y="506.938" width="32" height="8.761">
    <properties>
     <property name="collisionAlign" value="CENTER"/>
     <property name="collisionType" value="STATIC"/>
     <property name="collisionValign" value="DOWN"/>
    </properties>
   </object>
-  <object id="19" type="COLLISIONBOX" x="0.0625" y="383.994" width="32" height="3.76135">
+  <object id="19" type="COLLISIONBOX" x="0.0625" y="378.994" width="32" height="8.761">
    <properties>
     <property name="collisionAlign" value="CENTER"/>
     <property name="collisionType" value="STATIC"/>
@@ -824,28 +733,21 @@
     <property name="collisionValign" value="DOWN"/>
    </properties>
   </object>
-  <object id="21" type="COLLISIONBOX" x="203.091" y="159.938" width="9.09091" height="5.94317">
+  <object id="22" type="COLLISIONBOX" x="716.068" y="255.869" width="8" height="8">
    <properties>
     <property name="collisionAlign" value="CENTER"/>
     <property name="collisionType" value="STATIC"/>
     <property name="collisionValign" value="DOWN"/>
    </properties>
   </object>
-  <object id="22" type="COLLISIONBOX" x="716.068" y="255.869" width="8" height="5.94317">
+  <object id="23" type="COLLISIONBOX" x="811.08" y="576.028" width="9.09091" height="14">
    <properties>
     <property name="collisionAlign" value="CENTER"/>
     <property name="collisionType" value="STATIC"/>
     <property name="collisionValign" value="DOWN"/>
    </properties>
   </object>
-  <object id="23" type="COLLISIONBOX" x="811.08" y="576.028" width="9.09091" height="5.94317">
-   <properties>
-    <property name="collisionAlign" value="CENTER"/>
-    <property name="collisionType" value="STATIC"/>
-    <property name="collisionValign" value="DOWN"/>
-   </properties>
-  </object>
-  <object id="24" type="COLLISIONBOX" x="387" y="576.278" width="27" height="12.3068">
+  <object id="24" type="COLLISIONBOX" x="384" y="576" width="32" height="17">
    <properties>
     <property name="collisionAlign" value="CENTER"/>
     <property name="collisionType" value="STATIC"/>
@@ -873,6 +775,118 @@
     <property name="collisionValign" value="DOWN"/>
    </properties>
   </object>
+  <object id="84" type="COLLISIONBOX" x="256" y="414" width="32" height="39.091">
+   <properties>
+    <property name="collisionAlign" value="CENTER"/>
+    <property name="collisionType" value="STATIC"/>
+    <property name="collisionValign" value="DOWN"/>
+   </properties>
+  </object>
+  <object id="85" type="COLLISIONBOX" x="192" y="414" width="32" height="39.091">
+   <properties>
+    <property name="collisionAlign" value="CENTER"/>
+    <property name="collisionType" value="STATIC"/>
+    <property name="collisionValign" value="DOWN"/>
+   </properties>
+  </object>
+  <object id="86" type="COLLISIONBOX" x="128" y="414" width="32" height="39.091">
+   <properties>
+    <property name="collisionAlign" value="CENTER"/>
+    <property name="collisionType" value="STATIC"/>
+    <property name="collisionValign" value="DOWN"/>
+   </properties>
+  </object>
+  <object id="87" type="COLLISIONBOX" x="64" y="414" width="32" height="39.091">
+   <properties>
+    <property name="collisionAlign" value="CENTER"/>
+    <property name="collisionType" value="STATIC"/>
+    <property name="collisionValign" value="DOWN"/>
+   </properties>
+  </object>
+  <object id="88" type="COLLISIONBOX" x="480" y="288" width="8" height="192">
+   <properties>
+    <property name="collisionAlign" value="CENTER"/>
+    <property name="collisionType" value="STATIC"/>
+    <property name="collisionValign" value="DOWN"/>
+   </properties>
+  </object>
+  <object id="89" type="COLLISIONBOX" x="792" y="384" width="111" height="49">
+   <properties>
+    <property name="collisionAlign" value="CENTER"/>
+    <property name="collisionType" value="STATIC"/>
+    <property name="collisionValign" value="DOWN"/>
+   </properties>
+  </object>
+  <object id="90" type="COLLISIONBOX" x="896" y="384" width="8" height="113">
+   <properties>
+    <property name="collisionAlign" value="CENTER"/>
+    <property name="collisionType" value="STATIC"/>
+    <property name="collisionValign" value="DOWN"/>
+   </properties>
+  </object>
+  <object id="91" type="COLLISIONBOX" x="896" y="448" width="71" height="49">
+   <properties>
+    <property name="collisionAlign" value="CENTER"/>
+    <property name="collisionType" value="STATIC"/>
+    <property name="collisionValign" value="DOWN"/>
+   </properties>
+  </object>
+  <object id="92" type="COLLISIONBOX" x="960" y="480" width="8" height="32">
+   <properties>
+    <property name="collisionAlign" value="CENTER"/>
+    <property name="collisionType" value="STATIC"/>
+    <property name="collisionValign" value="DOWN"/>
+   </properties>
+  </object>
+  <object id="93" type="COLLISIONBOX" x="480" y="288" width="352" height="8">
+   <properties>
+    <property name="collisionAlign" value="CENTER"/>
+    <property name="collisionType" value="STATIC"/>
+    <property name="collisionValign" value="DOWN"/>
+   </properties>
+  </object>
+  <object id="94" type="COLLISIONBOX" x="960" y="64" width="584" height="8">
+   <properties>
+    <property name="collisionAlign" value="CENTER"/>
+    <property name="collisionType" value="STATIC"/>
+    <property name="collisionValign" value="DOWN"/>
+   </properties>
+  </object>
+  <object id="95" type="COLLISIONBOX" x="1312" y="256" width="224" height="49">
+   <properties>
+    <property name="collisionAlign" value="CENTER"/>
+    <property name="collisionType" value="STATIC"/>
+    <property name="collisionValign" value="DOWN"/>
+   </properties>
+  </object>
+  <object id="96" type="COLLISIONBOX" x="203" y="160" width="9" height="8">
+   <properties>
+    <property name="collisionAlign" value="CENTER"/>
+    <property name="collisionType" value="STATIC"/>
+    <property name="collisionValign" value="DOWN"/>
+   </properties>
+  </object>
+  <object id="97" type="COLLISIONBOX" x="288" y="32" width="32" height="14">
+   <properties>
+    <property name="collisionAlign" value="CENTER"/>
+    <property name="collisionType" value="STATIC"/>
+    <property name="collisionValign" value="DOWN"/>
+   </properties>
+  </object>
+  <object id="98" type="COLLISIONBOX" x="768" y="0" width="32" height="14">
+   <properties>
+    <property name="collisionAlign" value="CENTER"/>
+    <property name="collisionType" value="STATIC"/>
+    <property name="collisionValign" value="DOWN"/>
+   </properties>
+  </object>
+  <object id="99" type="COLLISIONBOX" x="864" y="0" width="32" height="14">
+   <properties>
+    <property name="collisionAlign" value="CENTER"/>
+    <property name="collisionType" value="STATIC"/>
+    <property name="collisionValign" value="DOWN"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup id="12" name="spawns">
   <object id="83" name="enter" type="SPAWNPOINT" x="64" y="96" width="32" height="32">
@@ -881,6 +895,7 @@
     <property name="collisionType" value="DYNAMIC"/>
     <property name="collisionValign" value="DOWN"/>
     <property name="spawnDirection" value="DOWN"/>
+    <property name="spawnInfo" value="PLAYER"/>
     <property name="spawnPivot" value="DIMENSION_CENTER"/>
    </properties>
   </object>
