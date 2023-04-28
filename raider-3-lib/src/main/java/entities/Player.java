@@ -106,8 +106,8 @@ public class Player extends Creature implements IUpdateable{
 	@Override
 	protected IEntityAnimationController<?> createAnimationController() {
 		
-		for(Spritesheet x : Resources.spritesheets().getAll())
-			System.out.println(x.getName());
+//		for(Spritesheet x : Resources.spritesheets().getAll())
+//			System.out.println(x.getName());
 		
 		Spritesheet idle = Resources.spritesheets().get("raider-idle-right");
 		Spritesheet walk = Resources.spritesheets().get("raider-walk-right");

@@ -200,37 +200,7 @@
 0,1398,1399,1400,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1414,1415,1416,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2684355808,2684355808,2684355808,2684355808
 </data>
  </layer>
- <objectgroup id="17" name="triggers">
-  <object id="110" name="chest1" type="TRIGGER" x="272" y="16" width="64" height="64">
-   <properties>
-    <property name="collisionAlign" value="CENTER"/>
-    <property name="collisionType" value="DYNAMIC"/>
-    <property name="collisionValign" value="DOWN"/>
-    <property name="triggerActivation" value="COLLISION"/>
-    <property name="triggerOneTime" type="bool" value="true"/>
-    <property name="triggerTarget" value="0"/>
-    <property name="triggermessage" value="Sword Obtained!"/>
-   </properties>
-  </object>
-  <object id="111" name="chest2" type="TRIGGER" x="752" y="0" width="64" height="48">
-   <properties>
-    <property name="collisionAlign" value="CENTER"/>
-    <property name="collisionType" value="DYNAMIC"/>
-    <property name="collisionValign" value="DOWN"/>
-    <property name="triggerActivation" value="COLLISION"/>
-    <property name="triggerOneTime" type="bool" value="true"/>
-   </properties>
-  </object>
-  <object id="112" name="chest3" type="TRIGGER" x="848" y="0" width="64" height="48">
-   <properties>
-    <property name="collisionAlign" value="CENTER"/>
-    <property name="collisionType" value="DYNAMIC"/>
-    <property name="collisionValign" value="DOWN"/>
-    <property name="triggerActivation" value="COLLISION"/>
-    <property name="triggerOneTime" type="bool" value="true"/>
-   </properties>
-  </object>
- </objectgroup>
+ <objectgroup id="17" name="triggers"/>
  <objectgroup id="11" name="walls">
   <object id="1" type="COLLISIONBOX" x="832" y="0" width="7" height="295.667">
    <properties>
