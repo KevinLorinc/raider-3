@@ -51,7 +51,7 @@ public class Player extends Creature implements IUpdateable{
 	private PlayerState state = PlayerState.CONTROLLABLE;//for testing purposes might need to be changed to Controllable once we get litidata in
 	
 	private boolean equipped;
-	private boolean swordObtained;
+	private HashMap<String,Boolean> inventory;
 	
 	private SpinAttack spinAttack;
 	private MeleeAttack meleeAttack;
@@ -63,7 +63,6 @@ public class Player extends Creature implements IUpdateable{
 		super("raider");
 		
 		equipped = false;
-		swordObtained = false;
 		
 		spinAttack = new SpinAttack(this);
 		meleeAttack = new MeleeAttack(this);
@@ -72,6 +71,9 @@ public class Player extends Creature implements IUpdateable{
 	      return this.getState() == PlayerState.CONTROLLABLE;
 	    });
 
+		inventory = new HashMap<String,Boolean>();
+		inventory.put("sword", false);
+		//add new things we want to put in the inventory here
 	}
 	
 	/**
@@ -99,7 +101,7 @@ public class Player extends Creature implements IUpdateable{
 	}
 	
 	/**
-	 * updates teh animation controller to make the players animations work
+	 * updates the animation controller to make the players animations work
 	 */
 	@Override
 	protected IEntityAnimationController<?> createAnimationController() {

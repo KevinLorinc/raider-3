@@ -12,20 +12,38 @@ import de.gurkenlabs.litiengine.graphics.animation.Animation;
 import de.gurkenlabs.litiengine.resources.Resources;
 import entities.Player;
 
+/**
+ * A class for the spin attack ability
+ * @author Kevin Lorinc
+ */
 @AbilityInfo(name = "SpinAttack", cooldown = 700, range = 0, impact = 15, impactAngle = 360, value = 5, duration = 400, multiTarget = true)
 public class SpinAttack extends Ability{
-
+	/**
+	 * creates a new ability attributed to a specific executor
+	 * @param executor the entity executing the ability
+	 */
 	public SpinAttack(Creature executor) {
 		super(executor);
 		
 		this.addEffect(new SpinAttackEffect(this));
 	}
 	
+	/**
+	 * The attack that goes along with the spin attack ability
+	 * @author Kevin Lorinc
+	 */
 	private static class SpinAttackEffect extends Effect{
+		/**
+		 * creates the effect tied to a specific spin attack
+		 * @param ability the ability to tie the effect to
+		 */
 		protected SpinAttackEffect (Ability ability) {
-			super(ability, EffectTarget.EXECUTINGENTITY);
+			super(ability, EffectTarget.EXECUTINGENTITY);//will have to update this to get the correct "range" and execute the effect on all the enemies within range
 		}
 		
+		/**
+		 * changes the way that the ability is applied
+		 */
 		@Override
 		protected void apply(ICombatEntity entity) {
 			super.apply(entity);
