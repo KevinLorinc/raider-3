@@ -47,7 +47,7 @@ public class MinionController extends MovementController<Minion>{
 	    
 	    //might have to add code here if we want the navigator to stop if the enemy is hit
 	    
-	    if(this.getEntity().getHitPoints().getRelativeCurrentValue() >= 0) {
+	    if(this.getEntity().getHitPoints().getRelativeCurrentValue() <= 0) {
 	    	removed = true;
 	        Game.loop().perform(1000, () -> {
 	          Game.world().environment().remove(this.getEntity());
@@ -64,6 +64,7 @@ public class MinionController extends MovementController<Minion>{
 	    }
 	    
 	    double dist = this.getEntity().getTarget().getCenter().distance(this.getEntity().getCenter());
+	    
 	    if(dist > 10 && !this.navi.isNavigating()) { //will have to change this to account for hit box and what we want the range of minion to be
 	    	this.navi.navigate(this.getEntity().getTarget().getCenter());
 	    } else  if (this.navi.isNavigating()){
