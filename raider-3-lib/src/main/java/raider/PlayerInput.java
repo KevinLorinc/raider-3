@@ -1,6 +1,7 @@
 package raider;
 
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
 
 import de.gurkenlabs.litiengine.Direction;
 import de.gurkenlabs.litiengine.graphics.Spritesheet;
@@ -52,7 +53,7 @@ public class PlayerInput {
 			Player.instance().animations().play("raider-idle-swordSpin-left");
 	  });
 	  
-	  Input.keyboard().onKeyPressed(KeyEvent.VK_F, e -> {//normal attack
+	  Input.mouse().onPressed(e -> {//normal attack
 		  if (Player.instance().getState() == PlayerState.LOCKED || Player.instance().isDead() || !Player.instance().getEquipped()) {
 		    return;
 		  }
@@ -77,7 +78,7 @@ public class PlayerInput {
 		  });
 	  
 	  //used to equip a weapon
-	  Input.keyboard().onKeyPressed(KeyEvent.VK_Q, e -> {
+	  Input.keyboard().onKeyReleased(KeyEvent.VK_Q, e -> {
 		  if (Player.instance().getState() == PlayerState.LOCKED || Player.instance().isDead()) {
 		    return;
 		  }
