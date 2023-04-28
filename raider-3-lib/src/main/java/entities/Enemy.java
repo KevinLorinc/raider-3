@@ -12,6 +12,8 @@ import de.gurkenlabs.litiengine.util.geom.GeometricUtilities;
  * @author Kevin Lorinc
  */
 public abstract class Enemy extends Creature {
+	private boolean engaged;
+	
 	/**
 	 * creates a new enemy with a specified spawn point
 	 * @param spawn the spawn point
@@ -59,6 +61,10 @@ public abstract class Enemy extends Creature {
 	  }
 	  return Direction.UNDEFINED;
 
+	}
+	
+	public boolean isEngaged() {
+		return engaged;
 	}
 	
 	/**

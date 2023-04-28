@@ -4,8 +4,6 @@ import de.gurkenlabs.litiengine.Game;
 import de.gurkenlabs.litiengine.IUpdateable;
 import de.gurkenlabs.litiengine.gui.screens.GameScreen;
 
-//Not sure whether the initialize componenets and render function are implicitly called when I add this screen but ig we'll see
-
 /**
  * creates a class for ingame screen and initializes that screen. Allows for better screen management
  * @author Kevin Lorinc

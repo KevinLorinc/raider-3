@@ -40,8 +40,8 @@ public class PlayerInput {
 	      }
 	  });
 	  
-	  Input.keyboard().onKeyPressed(KeyEvent.VK_SPACE, e -> {
-		  if (Player.instance().getState() == PlayerState.LOCKED || Player.instance().isDead()) {
+	  Input.keyboard().onKeyPressed(KeyEvent.VK_SPACE, e -> {//spin attack
+		  if (Player.instance().getState() == PlayerState.LOCKED || Player.instance().isDead() || !Player.instance().getEquipped()) {
 		    return;
 		  }
 		  
@@ -52,8 +52,8 @@ public class PlayerInput {
 			Player.instance().animations().play("raider-idle-swordSpin-left");
 	  });
 	  
-	  Input.keyboard().onKeyPressed(KeyEvent.VK_F, e -> {
-		  if (Player.instance().getState() == PlayerState.LOCKED || Player.instance().isDead()) {
+	  Input.keyboard().onKeyPressed(KeyEvent.VK_F, e -> {//normal attack
+		  if (Player.instance().getState() == PlayerState.LOCKED || Player.instance().isDead() || !Player.instance().getEquipped()) {
 		    return;
 		  }
 		  

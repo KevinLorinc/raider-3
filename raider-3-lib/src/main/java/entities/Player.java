@@ -84,6 +84,9 @@ public class Player extends Creature implements IUpdateable{
 		return instance;
 	}
 	
+	/**
+	 * updates the movement controller to make the player move in a new way
+	 */
 	@Override
 	protected IMovementController createMovementController() {
 		KeyboardEntityController<Player> movementController = new KeyboardEntityController<>(this);
@@ -95,6 +98,9 @@ public class Player extends Creature implements IUpdateable{
 		return movementController;
 	}
 	
+	/**
+	 * updates teh animation controller to make the players animations work
+	 */
 	@Override
 	protected IEntityAnimationController<?> createAnimationController() {
 		
@@ -110,9 +116,6 @@ public class Player extends Creature implements IUpdateable{
 		Spritesheet idleSwordL = Resources.spritesheets().get("raider-idle-sword-left");
 		Spritesheet walkSwordL = Resources.spritesheets().get("raider-walk-sword-left");
 		
-		//Spritesheet idleSwordLeft = Resources.spritesheets().get("raider-idleSword-left");
-		//Spritesheet walkSwordLeft = Resources.spritesheets().get("raider-walkSword-left");
-		
 		Spritesheet swordSpinR = Resources.spritesheets().get("raider-idle-swordSpin-right");
 		Spritesheet swordMeleeSideR = Resources.spritesheets().get("raider-idle-swordMeleeSide-right");
 		Spritesheet swordMeleeDownR = Resources.spritesheets().get("raider-idle-swordMeleeDown-right");
@@ -122,11 +125,6 @@ public class Player extends Creature implements IUpdateable{
 		Spritesheet swordMeleeSideL = Resources.spritesheets().get("raider-idle-swordMeleeSide-left");
 		Spritesheet swordMeleeDownL = Resources.spritesheets().get("raider-idle-swordMeleeDown-left");
 		Spritesheet swordMeleeUpL = Resources.spritesheets().get("raider-idle-swordMeleeUp-left");
-		
-		
-		//Spritesheet idleAttackLeft = Resources.spritesheets().get("raider-idleSwordAttack-left");
-		//Spritesheet walkAttackLeft1 = Resources.spritesheets().get("raider-walkSwordAttack1-left");
-		//Spritesheet walkAttackLeft2 = Resources.spritesheets().get("raider-walkSwordAttack2-left");
 		
 		IEntityAnimationController<?> animationController;
 		
@@ -138,17 +136,12 @@ public class Player extends Creature implements IUpdateable{
 		animationController.add(new Animation(walkSwordL,true));
 		animationController.add(new Animation(idleSwordL, true));
 		animationController.add(new Animation(swordSpinL,false));
-		//animationController.add(new Animation(idleSwordLeft, true));
-		//animationController.add(new Animation(walkSwordLeft ,true));
 		animationController.add(new Animation(swordMeleeSideR, false));
 		animationController.add(new Animation(swordMeleeDownR,false));
 		animationController.add(new Animation(swordMeleeUpR,false));
 		animationController.add(new Animation(swordMeleeSideL, false));
 		animationController.add(new Animation(swordMeleeDownL,false));
 		animationController.add(new Animation(swordMeleeUpL,false));
-		//animationController.add(new Animation(walkAttackLeft1, false));
-		//animationController.add(new Animation(walkAttackLeft2,false));
-		//animationController.add(new Animation(idleAttackLeft, false));
 			
 	    animationController.addRule(x -> (this.calcFacingDirection() == Direction.LEFT) && this.isIdle() && !equipped, x -> "raider-idle-left");
 	    animationController.addRule(x -> (this.calcFacingDirection() == Direction.LEFT) && !this.isIdle() && !equipped, x -> "raider-walk-left");
@@ -258,7 +251,6 @@ public class Player extends Creature implements IUpdateable{
 	 */
 	@Override
 	public void update() {
-		//System.out.println(this.calcAttackDirection());
 	}
 }
 /*
