@@ -39,7 +39,7 @@ public class MeleeAttack extends Ability{
 		 * @param ability the ability the effect is tied with
 		 */
 		protected MeleeAttackEffect (Ability ability) {
-			super(ability, EffectTarget.EXECUTINGENTITY);//will have to change this to find enemies within "range" and then add those as the effect target. might be multiple
+			super(ability, EffectTarget.ENEMY);//will have to change this to find enemies within "range" and then add those as the effect target. might be multiple
 		}
 		
 		/**

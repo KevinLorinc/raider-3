@@ -13,7 +13,7 @@ import raider.RaidersLogic.GameState;
  * @author Kevin Lorinc
  */
 public class MinionController extends MovementController<Minion>{
-	private static final int NAVIGATE_DELAY = 500;
+	private static final int NAVIGATE_DELAY = 1000;
 	private EntityNavigator navi;
 	private long lastNavigate;
 	

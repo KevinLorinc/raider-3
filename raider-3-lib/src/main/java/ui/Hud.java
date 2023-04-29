@@ -7,6 +7,7 @@ import java.awt.geom.RoundRectangle2D;
 import de.gurkenlabs.litiengine.Game;
 import de.gurkenlabs.litiengine.gui.GuiComponent;
 import entities.Enemy;
+import entities.Minion;
 import entities.Player;
 import entities.Player.PlayerState;
 
@@ -43,12 +44,12 @@ public class Hud extends GuiComponent{
 	 * @param g the graphic to render to
 	 */
 	private void renderEnemyHP(Graphics2D g) {
-		for (Enemy enemy : Game.world().environment().getByTag(Enemy.class)) {
-		      if (enemy.isEngaged() && !enemy.isDead()) {
+		for (Enemy enemy : Game.world().environment().getByTag(Enemy.class,"enemy")) {
+		      if (!enemy.isDead()) {//will have to add isEngaged here to make things not have to update as often and in blocks
 		        final double width = 16;
 		        final double height = 2;
-		        double x = enemy.getX() - (width - enemy.getWidth()) / 2.0;
-		        double y = enemy.getY() - height * 2;
+		        double x = enemy.getX() - (width - enemy.getWidth()) / 2.0 - 2;//play around to move enemy health bar
+		        double y = enemy.getY() + 32 + height;
 		        RoundRectangle2D rect = new RoundRectangle2D.Double(x, y, width, height, 1.5, 1.5);
 
 		        final double currentWidth = width * (enemy.getHitPoints().get()/ (double) enemy.getHitPoints().getMax());
@@ -73,7 +74,7 @@ public class Hud extends GuiComponent{
 			
 			final double width = 100;
 	        final double height = 8;
-	        double x = Game.world().camera().getViewport().getMinX() + 5;
+	        double x = Game.world().camera().getViewport().getMinX() + 535;//moved so i can see stats
 	        double y = Game.world().camera().getViewport().getMinY() + 5;
 	        RoundRectangle2D rect = new RoundRectangle2D.Double(x, y, width, height, 1.5, 1.5);
 	        

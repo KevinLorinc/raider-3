@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 
 import de.gurkenlabs.litiengine.Game;
+import de.gurkenlabs.litiengine.IUpdateable;
 import de.gurkenlabs.litiengine.entities.CollisionBox;
 import de.gurkenlabs.litiengine.entities.Spawnpoint;
 import de.gurkenlabs.litiengine.entities.behavior.AStarGrid;
@@ -19,7 +20,7 @@ import entities.Player;
  * a class that handles the logic for the Raiders game
  * @author Kevin Lorinc
  */
-public final class RaidersLogic{
+public final class RaidersLogic {
 	/**
 	 * creates various constants for the state in a game
 	 * @author Kevin Lorinc
@@ -43,10 +44,10 @@ public final class RaidersLogic{
 	private RaidersLogic() {};
 	
 	static {
-		spawnEvents.put("tutorial.tmx", new LinkedList<EnemySpawnEvent>());
+		spawnEvents.put("tutorial", new LinkedList<EnemySpawnEvent>());
 		for(int i =0;i<10;i++) {
 			String spawnPoint = "enemy" + (i+1);
-			spawnEvents.get("tutorial.tmx").add(new EnemySpawnEvent(spawnPoint));
+			spawnEvents.get("tutorial").add(new EnemySpawnEvent(spawnPoint));
 		}
 		
 		//Here we will also add spawns for the boss map
@@ -72,6 +73,7 @@ public final class RaidersLogic{
 		        Game.world().camera().setFocus(e.getCenter());
 		        Spawnpoint spawn = e.getSpawnpoint("enter");
 		        if (spawn != null) {
+		          setState(GameState.INGAME);
 		          spawn.spawn(Player.instance());
 		        }
 		        //i have no clue what this does tbh
@@ -116,11 +118,11 @@ public final class RaidersLogic{
 	/**
 	 * when a new environment is loaded, spawn events are handled. added to game loop in the init method
 	 */
-	private static void update() {
-	    if (Game.world().environment() == null || !Game.screens().current().getName().equals("GAME")) {
+	public static void update() {
+	    if (Game.world().environment() == null || !Game.screens().current().getName().equals("INGAME-SCREEN")) {
 	      return;
 	    }
-
+	    
 	    handleEnemySpawns();
 	}
 	
@@ -140,7 +142,6 @@ public final class RaidersLogic{
 	      if (event.finished) {
 	        continue;
 	      }
-
 	    spawnEnemy(event);//finish
 	  }
 	}

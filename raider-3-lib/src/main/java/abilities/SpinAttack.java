@@ -38,7 +38,7 @@ public class SpinAttack extends Ability{
 		 * @param ability the ability to tie the effect to
 		 */
 		protected SpinAttackEffect (Ability ability) {
-			super(ability, EffectTarget.EXECUTINGENTITY);//will have to update this to get the correct "range" and execute the effect on all the enemies within range
+			super(ability, EffectTarget.ENEMY);//will have to update this to get the correct "range" and execute the effect on all the enemies within range
 		}
 		
 		/**
