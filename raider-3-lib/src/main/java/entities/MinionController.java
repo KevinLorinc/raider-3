@@ -1,5 +1,6 @@
 package entities;
 
+import de.gurkenlabs.litiengine.Direction;
 import de.gurkenlabs.litiengine.Game;
 import de.gurkenlabs.litiengine.entities.behavior.AStarGrid;
 import de.gurkenlabs.litiengine.entities.behavior.AStarPathFinder;
@@ -16,6 +17,7 @@ public class MinionController extends MovementController<Minion>{
 	private static final int NAVIGATE_DELAY = 1000;
 	private EntityNavigator navi;
 	private long lastNavigate;
+	private Minion thisMinion;
 	
 	private boolean removed;
 	
@@ -26,7 +28,9 @@ public class MinionController extends MovementController<Minion>{
 	public MinionController(Minion movingEntity) {
 		super(movingEntity);
 		AStarGrid grid = RaidersLogic.getCurrentGrid();
-
+		
+		thisMinion = movingEntity;
+		
 	    this.navi = new EntityNavigator(movingEntity, new AStarPathFinder(grid));
 	}
 	
@@ -65,8 +69,10 @@ public class MinionController extends MovementController<Minion>{
 	    
 	    double dist = this.getEntity().getTarget().getCenter().distance(this.getEntity().getCenter());
 	    
-	    if(dist > 10 && !this.navi.isNavigating()) { //will have to change this to account for hit box and what we want the range of minion to be
+	    
+	    if(dist < 200 && !this.navi.isNavigating()) { //will have to change this to account for hit box and what we want the range of minion to be
 	    	this.navi.navigate(this.getEntity().getTarget().getCenter());
+	    	
 	    } else  if (this.navi.isNavigating()){
 	    	this.navi.stop();
 	    }/* else if (this.getEntity().getStabAbility().canCast()) {
