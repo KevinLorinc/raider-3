@@ -2,8 +2,11 @@ package ui;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.geom.Arc2D;
+import java.awt.geom.Rectangle2D;
 import java.awt.geom.RoundRectangle2D;
 
+import de.gurkenlabs.litiengine.Direction;
 import de.gurkenlabs.litiengine.Game;
 import de.gurkenlabs.litiengine.gui.GuiComponent;
 import entities.Enemy;
@@ -18,12 +21,14 @@ import entities.Player.PlayerState;
  *
  */
 public class Hud extends GuiComponent{
+	//private static Direction dir;
 	
 	/**
 	 * creates an instance of the Hud class
 	 */
 	protected Hud() {
 		super(0, 0, Game.window().getResolution().getWidth(), Game.window().getResolution().getHeight());
+		//dir = Direction.UP;
 		//add amination controllers here
 	}
 
@@ -36,6 +41,7 @@ public class Hud extends GuiComponent{
 		
 		this.renderHP(g);
 		this.renderEnemyHP(g);
+		//this.testHit(g);
 	}
 	
 	
@@ -88,4 +94,20 @@ public class Hud extends GuiComponent{
 			Game.graphics().renderShape(g, actualRect);
 		}
 	}
+	/*
+	public static void setDirection(Direction direc) {
+		dir = direc;
+	}
+	
+	private void testHit(Graphics2D g) {
+		if(dir == Direction.UP) {
+			Game.graphics().renderShape(g,new Arc2D.Double(Player.instance().getX()+2,Player.instance().getY(),25,25,50,80,Arc2D.PIE));
+		}else if(dir == Direction.RIGHT) {
+			Game.graphics().renderShape(g,new Arc2D.Double(Player.instance().getX() + 8,Player.instance().getY()+8,25,25,-45,90,Arc2D.PIE));
+		} else if(dir == Direction.LEFT) {
+			Game.graphics().renderShape(g,new Arc2D.Double(Player.instance().getX() - 4,Player.instance().getY()+8,25,25,135,90,Arc2D.PIE));
+		} else if(dir == Direction.DOWN) {
+			Game.graphics().renderShape(g,new Arc2D.Double(Player.instance().getX()+2,Player.instance().getY()+16,25,25,230,80,Arc2D.PIE));
+		}
+	}*/
 }

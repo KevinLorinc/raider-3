@@ -1,5 +1,11 @@
 package abilities;
 
+import java.awt.Rectangle;
+import java.awt.Shape;
+import java.awt.geom.Arc2D;
+import java.util.List;
+
+import de.gurkenlabs.litiengine.Direction;
 import de.gurkenlabs.litiengine.Game;
 import de.gurkenlabs.litiengine.abilities.Ability;
 import de.gurkenlabs.litiengine.abilities.AbilityInfo;
@@ -29,6 +35,14 @@ public class SpinAttack extends Ability{
 	}
 	
 	/**
+	 * lets us determine what we define as the impact area
+	 */
+	@Override
+	public Shape calculateImpactArea() {//change arc area to change range of attack
+		return new Arc2D.Double(Player.instance().getX()+2,Player.instance().getY()+16,30,30,0,360,Arc2D.PIE);
+	}
+	
+	/**
 	 * The attack that goes along with the spin attack ability
 	 * @author Kevin Lorinc
 	 */
@@ -45,17 +59,14 @@ public class SpinAttack extends Ability{
 		 * changes the way that the ability is applied
 		 */
 		@Override
-		protected void apply(ICombatEntity entity) {
-			super.apply(entity);
+		public void apply(final Shape impactArea) {
+			super.apply(new Rectangle(20,20,20,20));
 			
 			final int damage = this.getAbility().getAttributes().value().get();
-			entity.hit(damage,this.getAbility());
-			
-			//Spritesheet idleAttack = Resources.spritesheets().get("raider-idleSwordAttack-right");
-			//Player.instance().animations().add(new Animation(idleAttack ,true));
-			//Game.loop().perform(400, () -> Player.instance().animations().add(new Animation(idleAttack ,true)));
-			
-			//once we add sprite sheets for the attack that code will go here. Reference Pumkin game hit class
+			final List<ICombatEntity> affected = this.lookForAffectedEntities(impactArea);
+		    for (final ICombatEntity affectedEntity : affected) {
+		      affectedEntity.hit(damage);
+		    }
 		}
 	}
 
