@@ -56,26 +56,12 @@ public class Minion extends Enemy implements IUpdateable{
      */
     @Override
     protected IEntityAnimationController<?> createAnimationController() {
-    	/* For testing purpose manually creating animation controller
-      IEntityAnimationController<?> controller = new MinionAnimationController(this);
-      return controller;
-      */
     	Spritesheet idle = Resources.spritesheets().get("minion-idle-right");
-    	//Spritesheet walk = Resources.spritesheets().get("minion-walk-right");
     	
     	IEntityAnimationController<?> animationController;
-    	animationController = new CreatureAnimationController<Minion>(this,new Animation(idle,false));
-    	/*animationController.add(new Animation(walk,true));
+    	animationController = new MinionAnimationController(this,new Animation(idle,true));
     	
-    	animationController.addRule(x -> (this.getFacingDirection() == Direction.RIGHT) && !this.isIdle(), x -> "minion-walk-right");
-    	animationController.addRule(x -> (this.getFacingDirection() == Direction.LEFT) && !this.isIdle(), x -> "minion-walk-left");
-    	
-    	CreatureShadowImageEffect effect = new CreatureShadowImageEffect(this, new Color(24, 30, 28, 100));
-	    effect.setOffsetY(1);
-	    animationController.add(effect);
-	    */
 	    return animationController;
-    	
     }
 	
 	/**
@@ -96,8 +82,9 @@ public class Minion extends Enemy implements IUpdateable{
 	
 	public void update() {
 		double dist = Player.instance().getCenter().distance(this.getCenter());
-		if(dist<200)
-			if(Player.instance().getX()<this.getX())this.setFacingDirection(Direction.LEFT);
+		if(dist<150) {
+			if(Player.instance().getX()<this.getX()) this.setFacingDirection(Direction.LEFT);
 			else this.setFacingDirection(Direction.RIGHT);
+		}
 	}
 }

@@ -21,6 +21,7 @@ import de.gurkenlabs.litiengine.resources.Resources;
 import entities.Player;
 import entities.Player.PlayerState;
 import ui.Hud;
+import entities.Minion;
 
 /**
  * creates the melee attack ability that is used by player
@@ -81,7 +82,15 @@ public class MeleeAttack extends Ability{
 			final int damage = this.getAbility().getAttributes().value().get();
 			final List<ICombatEntity> affected = this.lookForAffectedEntities(impactArea);
 		    for (final ICombatEntity affectedEntity : affected) {
+		    //playing hit animation, damaging, and very temporarily stunning enemy
 		      affectedEntity.hit(damage);
+		      //making generic so can be applied to other enemy types
+		      if(affectedEntity instanceof Minion) {
+		    	  Minion hit = (Minion)affectedEntity;
+		    	  if(hit.getFacingDirection() == Direction.LEFT) hit.animations().play("minion-damaged-left");
+		    	  else hit.animations().play("minion-damaged-right");
+		      }
+		      
 		    }
 		}
 	}

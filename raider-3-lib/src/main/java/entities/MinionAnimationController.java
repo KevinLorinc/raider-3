@@ -3,12 +3,10 @@ package entities;
 import java.awt.Color;
 
 import de.gurkenlabs.litiengine.Direction;
-import de.gurkenlabs.litiengine.entities.behavior.EntityNavigator;
 import de.gurkenlabs.litiengine.graphics.CreatureShadowImageEffect;
 import de.gurkenlabs.litiengine.graphics.Spritesheet;
 import de.gurkenlabs.litiengine.graphics.animation.Animation;
 import de.gurkenlabs.litiengine.graphics.animation.CreatureAnimationController;
-import de.gurkenlabs.litiengine.graphics.animation.IEntityAnimationController;
 import de.gurkenlabs.litiengine.resources.Resources;
 
 public class MinionAnimationController extends CreatureAnimationController<Minion>{
@@ -16,10 +14,15 @@ public class MinionAnimationController extends CreatureAnimationController<Minio
 		super(minion,defaultAnim);
 		
 		//Spritesheet idle = Resources.spritesheets().get("minion-idle-right");
-    	Spritesheet walk = Resources.spritesheets().get("minion-walk-right");
+    	Spritesheet walkR = Resources.spritesheets().get("minion-walk-right");
+    	Spritesheet walkL = Resources.spritesheets().get("minion-walk-left");
+    	Spritesheet damagedR = Resources.spritesheets().get("minion-damaged-right");
+    	Spritesheet damagedL = Resources.spritesheets().get("minion-damaged-left");
     	
-    	
-    	this.add(new Animation(walk,true));
+    	this.add(new Animation(walkR,false));
+    	this.add(new Animation(walkL,false));
+    	this.add(new Animation(damagedR,false));
+    	this.add(new Animation(damagedL,false));
     	
     	this.addRule(x -> (minion.getFacingDirection() == Direction.RIGHT) && !minion.isIdle(), x -> "minion-walk-right");
     	this.addRule(x -> (minion.getFacingDirection() == Direction.LEFT) && !minion.isIdle(), x -> "minion-walk-left");

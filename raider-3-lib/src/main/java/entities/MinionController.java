@@ -70,9 +70,9 @@ public class MinionController extends MovementController<Minion>{
 	    double dist = this.getEntity().getTarget().getCenter().distance(this.getEntity().getCenter());
 	    
 	    
-	    if(dist < 200 && !this.navi.isNavigating()) { //will have to change this to account for hit box and what we want the range of minion to be
+	    if(dist < 150 && !this.navi.isNavigating()) { //will have to change this to account for hit box and what we want the range of minion to be
 	    	this.navi.navigate(this.getEntity().getTarget().getCenter());
-	    	
+	    	System.out.println(thisMinion.getFacingDirection());
 	    } else  if (this.navi.isNavigating()){
 	    	this.navi.stop();
 	    }/* else if (this.getEntity().getStabAbility().canCast()) {
