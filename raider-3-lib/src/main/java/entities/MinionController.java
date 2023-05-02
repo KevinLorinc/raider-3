@@ -72,11 +72,12 @@ public class MinionController extends MovementController<Minion>{
 	    
 	    if(dist < 150 && !this.navi.isNavigating()) { //will have to change this to account for hit box and what we want the range of minion to be
 	    	this.navi.navigate(this.getEntity().getTarget().getCenter());
-	    	System.out.println(thisMinion.getFacingDirection());
+	    	//System.out.println(thisMinion.getFacingDirection());
 	    } else  if (this.navi.isNavigating()){
 	    	this.navi.stop();
-	    }/* else if (this.getEntity().getStabAbility().canCast()) {
-	    	this.getEntity().getStabAbility().cast();
-	    }*///this will be used to cast the ability when the enemy is within a certain range of the player
+	    	if (this.getEntity().getMinionAttack().canCast()) {
+		    	this.getEntity().getMinionAttack().cast();
+	    	}
+	    }///this will be used to cast the ability when the enemy is within a certain range of the player
 	}
 }

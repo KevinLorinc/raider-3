@@ -2,6 +2,7 @@ package entities;
 
 import java.awt.Color;
 
+import abilities.MinionAttack;
 import de.gurkenlabs.litiengine.Direction;
 import de.gurkenlabs.litiengine.Game;
 import de.gurkenlabs.litiengine.IUpdateable;
@@ -30,6 +31,8 @@ import de.gurkenlabs.litiengine.resources.Resources;
 @CombatInfo(hitpoints = 10, team = 2)
 public class Minion extends Enemy implements IUpdateable{
 	private final Spawnpoint spawn;
+	
+	private final MinionAttack minionAttack = new MinionAttack(this);
 	
 	/**
 	 * creates a new minion with a given spawn point
@@ -87,4 +90,13 @@ public class Minion extends Enemy implements IUpdateable{
 			else this.setFacingDirection(Direction.RIGHT);
 		}
 	}
+	
+	/**
+	 * gets the minons attack ability
+	 * @return the attack ability
+	 */
+	public MinionAttack getMinionAttack() {
+	    return minionAttack;
+	  }
+
 }
