@@ -6,6 +6,7 @@ import de.gurkenlabs.litiengine.entities.behavior.AStarGrid;
 import de.gurkenlabs.litiengine.entities.behavior.AStarPathFinder;
 import de.gurkenlabs.litiengine.entities.behavior.EntityNavigator;
 import de.gurkenlabs.litiengine.physics.MovementController;
+import entities.Minion.MinionState;
 import raider.RaidersLogic;
 import raider.RaidersLogic.GameState;
 
@@ -75,10 +76,19 @@ public class MinionController extends MovementController<Minion>{
 	    	//System.out.println(thisMinion.getFacingDirection());
 	    } else  if (this.navi.isNavigating()){
 	    	this.navi.stop();
-	    	if (this.getEntity().getMinionAttack().canCast()) {
-		    	this.getEntity().getMinionAttack().cast();
-		    	thisMinion.animations().play("minion-attack-right");
+	    	if(thisMinion.getMinionState() == MinionState.HIT) {
+	    		//pause for some time
+	    		thisMinion.setMinionState(MinionState.ROAMING);
 	    	}
+	    	else if (this.getEntity().getMinionAttack().canCast() && dist < 20) {
+	    		//pause for some time
+		    	this.getEntity().getMinionAttack().cast();
+		    	if(thisMinion.getFacingDirection() == Direction.RIGHT)
+		    		thisMinion.animations().play("minion-attack-right");
+		    	else
+		    		thisMinion.animations().play("minion-attack-left");
+	    	}
+	    	
 	    }///this will be used to cast the ability when the enemy is within a certain range of the player
 	}
 }

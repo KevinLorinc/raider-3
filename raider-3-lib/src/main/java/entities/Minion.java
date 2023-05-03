@@ -31,19 +31,26 @@ import de.gurkenlabs.litiengine.resources.Resources;
 @CombatInfo(hitpoints = 10, team = 2)
 public class Minion extends Enemy implements IUpdateable{
 	private final Spawnpoint spawn;
-	
+	private MinionState state;
 	private final MinionAttack minionAttack = new MinionAttack(this);
 	
 	/**
 	 * creates a new minion with a given spawn point
 	 * @param spawn the spawn point
 	 */
+	
+	public enum MinionState {
+		ROAMING,
+		HIT
+	}
+	
 	public Minion(Spawnpoint spawn) {
 	    super(spawn);
 	
 	    this.spawn = spawn;
 	    this.addTag("minion");
 	    this.addTag("enemy");
+	    state = MinionState.ROAMING;
 	}
 	
 	/**
@@ -92,11 +99,27 @@ public class Minion extends Enemy implements IUpdateable{
 	}
 	
 	/**
-	 * gets the minons attack ability
+	 * gets the minions attack ability
 	 * @return the attack ability
 	 */
 	public MinionAttack getMinionAttack() {
 	    return minionAttack;
 	  }
+	
+	/**
+	 * gets the minions state
+	 * @return the minion's state
+	 */
+	public MinionState getMinionState() {
+		return state;
+	}
+	
+	/**
+	 * sets minion's state
+	 * @param the minion state to be set
+	 */
+	public void setMinionState(MinionState newState) {
+		state = newState;
+	}
 
 }

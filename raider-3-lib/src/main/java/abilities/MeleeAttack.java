@@ -22,6 +22,7 @@ import entities.Player;
 import entities.Player.PlayerState;
 import ui.Hud;
 import entities.Minion;
+import entities.Minion.MinionState;
 
 /**
  * creates the melee attack ability that is used by player
@@ -87,6 +88,7 @@ public class MeleeAttack extends Ability{
 		      //making generic so can be applied to other enemy types
 		      if(affectedEntity instanceof Minion) {
 		    	  Minion hit = (Minion)affectedEntity;
+		    	  hit.setMinionState(MinionState.HIT);
 		    	  if(hit.getFacingDirection() == Direction.LEFT) hit.animations().play("minion-damaged-left");
 		    	  else hit.animations().play("minion-damaged-right");
 		      }
