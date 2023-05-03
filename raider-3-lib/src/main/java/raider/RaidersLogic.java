@@ -32,7 +32,7 @@ public final class RaidersLogic {
 		INVENTORY
 	}
 	
-	private static GameState state;
+	private static GameState state = GameState.MENU;
 	
 	private static final HashMap<String, LinkedList<EnemySpawnEvent>> spawnEvents = new HashMap<String, LinkedList<EnemySpawnEvent>>();
 	private static final HashMap<String, AStarGrid> grids = new HashMap<String, AStarGrid>();
@@ -97,6 +97,14 @@ public final class RaidersLogic {
 		});
 	    
 	    Game.loop().attach(RaidersLogic::update);
+	}
+	
+	/**
+	 * what happens when you press play in the menu
+	 */
+	public static void onPlay() {
+		setState(GameState.INGAME);
+		Game.world().loadEnvironment("tutorial.tmx");
 	}
 	
 	/**

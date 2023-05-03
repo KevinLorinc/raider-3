@@ -53,7 +53,7 @@ public class MeleeAttack extends Ability{
 		} else if(attackDirection == Direction.LEFT) {
 			return new Arc2D.Double(Player.instance().getX() - 4,Player.instance().getY(),25,25,135,90,Arc2D.PIE);
 		} else if(attackDirection == Direction.DOWN) {
-			return new Arc2D.Double(Player.instance().getX()+2,Player.instance().getY()+16,25,25,230,90,Arc2D.PIE);
+			return new Arc2D.Double(Player.instance().getX()+2,Player.instance().getY()+16,15,15,230,90,Arc2D.PIE);
 		}
 		
 		return null;
