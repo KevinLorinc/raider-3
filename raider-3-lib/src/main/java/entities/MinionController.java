@@ -77,6 +77,7 @@ public class MinionController extends MovementController<Minion>{
 	    	this.navi.stop();
 	    	if (this.getEntity().getMinionAttack().canCast()) {
 		    	this.getEntity().getMinionAttack().cast();
+		    	this.getEntity().animations().play("minion-attack-right");
 	    	}
 	    }///this will be used to cast the ability when the enemy is within a certain range of the player
 	}
