@@ -11,6 +11,7 @@ import de.gurkenlabs.litiengine.resources.Resources;
 import raider.RaidersLogic.GameState;
 import entities.Player;
 import entities.Player.PlayerState;
+import ui.Hud;
 
 /**
  * a class that manages player input. Will eventually control all input such as when attacks are to be cast
@@ -82,6 +83,9 @@ public class PlayerInput {
 		  if (Player.instance().getState() == PlayerState.LOCKED || Player.instance().isDead()) {
 		    return;
 		  }
+		  
+		  if(Hud.slot<3) Hud.slot++;
+		  else Hud.slot=0;
 		  
 		  Player.instance().setEquipped(!Player.instance().getEquipped());
 	  });
