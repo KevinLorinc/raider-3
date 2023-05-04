@@ -1,8 +1,13 @@
 package ui;
 
+import java.awt.event.KeyEvent;
+
 import de.gurkenlabs.litiengine.Game;
 import de.gurkenlabs.litiengine.IUpdateable;
 import de.gurkenlabs.litiengine.gui.screens.GameScreen;
+import de.gurkenlabs.litiengine.input.Input;
+import entities.Player;
+import entities.Player.PlayerState;
 
 /**
  * creates a class for ingame screen and initializes that screen. Allows for better screen management
@@ -38,7 +43,16 @@ public class InGameScreen extends GameScreen implements IUpdateable{
 	  protected void initializeComponents() {
 		  this.hud = new Hud();
 		  
-		  //this is where we will deal with ingame menu's and death menu's
+		  Input.keyboard().onKeyReleased(KeyEvent.VK_Q, e -> {
+			  if (Player.instance().getState() == PlayerState.LOCKED || Player.instance().isDead()) {
+			    return;
+			  }
+			  
+			  if(hud.getSlot()<3) hud.setSlot(hud.getSlot() + 1);
+			  else hud.setSlot(0);
+			  
+			  Player.instance().setEquipped(!Player.instance().getEquipped());//ig we can leave this here for now
+		  });
 		  
 		  this.getComponents().add(this.hud);
 	  }
@@ -47,5 +61,5 @@ public class InGameScreen extends GameScreen implements IUpdateable{
 	  
 	  //can use this for audio later on. I need it for this class to compile for now
 	  @Override
-	  public void update() {};
+	  public void update(){};
 }

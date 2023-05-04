@@ -77,18 +77,6 @@ public class PlayerInput {
 		  }
 		  
 		  });
-	  
-	  //used to equip a weapon
-	  Input.keyboard().onKeyReleased(KeyEvent.VK_Q, e -> {
-		  if (Player.instance().getState() == PlayerState.LOCKED || Player.instance().isDead()) {
-		    return;
-		  }
-		  
-		  if(Hud.slot<3) Hud.slot++;
-		  else Hud.slot=0;
-		  
-		  Player.instance().setEquipped(!Player.instance().getEquipped());
-	  });
   	}
 }
 

@@ -6,13 +6,24 @@ import de.gurkenlabs.litiengine.entities.ICollisionEntity;
 import de.gurkenlabs.litiengine.entities.Spawnpoint;
 import de.gurkenlabs.litiengine.environment.Environment;
 import de.gurkenlabs.litiengine.util.geom.GeometricUtilities;
+import entities.Enemy.EnemyState;
 
 /**
  * a parent class for all enemies in the game that changes some elements of creature that are common to all enemies
  * @author Kevin Lorinc
  */
 public abstract class Enemy extends Creature {
+	/**
+	 * creates an enum to help handle whether a creature should move or not
+	 * @author Kevin Lorinc
+	 */
+	public enum EnemyState {
+		ROAMING,
+		HIT
+	}
+	
 	private boolean engaged;
+	private EnemyState state;
 	
 	/**
 	 * creates a new enemy with a specified spawn point
@@ -20,6 +31,7 @@ public abstract class Enemy extends Creature {
 	 */
 	public Enemy(Spawnpoint spawn) {
 		super(spawn.getName());
+		state = EnemyState.ROAMING;
 	}
 	
 	/*
@@ -60,7 +72,22 @@ public abstract class Enemy extends Creature {
 	    return Direction.LEFT;
 	  }
 	  return Direction.UNDEFINED;
-
+	}
+	
+	/**
+	 * gets the enemys state
+	 * @return the enemy's state
+	 */
+	public EnemyState getEnemyState() {
+		return state;
+	}
+	
+	/**
+	 * sets enemy's state
+	 * @param the enemy state to be set
+	 */
+	public void setEnemyState(EnemyState newState) {
+		state = newState;
 	}
 	
 	public boolean isEngaged() {

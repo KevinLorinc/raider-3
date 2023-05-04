@@ -21,14 +21,14 @@ import entities.Player.PlayerState;
  * @author Kevin Lorinc
  *
  */
-public class Hud extends GuiComponent implements IUpdateable{
+public class Hud extends GuiComponent{
 	//private static Direction dir;
 	
 	/**
 	 * creates an instance of the Hud class
 	 */
 	
-	public static int slot;
+	private int slot = 0;
 	
 	protected Hud() {
 		super(0, 0, Game.window().getResolution().getWidth(), Game.window().getResolution().getHeight());
@@ -41,7 +41,6 @@ public class Hud extends GuiComponent implements IUpdateable{
 	 */
 	@Override
 	public void render(Graphics2D g) {
-		slot = 0;
 		
 		super.render(g);
 		
@@ -88,7 +87,7 @@ public class Hud extends GuiComponent implements IUpdateable{
 			final double width = 100;
 	        final double height = 8;
 	        double x = Game.world().camera().getViewport().getMinX() + 268;//moved so i can see stats
-	        double y = Game.world().camera().getViewport().getMaxY() - 40;
+	        double y = Game.world().camera().getViewport().getMaxY() - 30;
 	        RoundRectangle2D rect = new RoundRectangle2D.Double(x, y, width, height, 1.5, 1.5);
 	        
 	        final double currentWidth = width * (Player.instance().getHitPoints().get() / (double) Player.instance().getHitPoints().getMax());
@@ -103,24 +102,26 @@ public class Hud extends GuiComponent implements IUpdateable{
 	}
 	
 	private void renderInventory(Graphics2D g) {
-		final double width = 40;
-		final double height = 40;
+		final double width = 30;
+		final double height = 30;
 		double x = Game.world().camera().getViewport().getMinX() + 20;
-		double y = Game.world().camera().getViewport().getMaxY() - 60;
+		double y = Game.world().camera().getViewport().getMaxY() - 40;
 		
-		RoundRectangle2D highlight = new RoundRectangle2D.Double(x-5+slot*50, y-5,width+10, height+10, 1.5, 1.5);
+		RoundRectangle2D highlight = new RoundRectangle2D.Double(x-2.5+slot*40, y-2.5,width+5, height+5, 1.5, 1.5);
 		Game.graphics().renderShape(g, highlight);
 		
 		for (int i =0;i<4;i++) {
-			RoundRectangle2D rect = new RoundRectangle2D.Double(x + (i*50), y, width, height, 1.5, 1.5);
+			RoundRectangle2D rect = new RoundRectangle2D.Double(x + (i*40), y, width, height, 1.5, 1.5);
 			g.setColor(Color.LIGHT_GRAY);
 			Game.graphics().renderShape(g, rect);
 		}
-		
 	}
 	
-//	public void update() {
-//		this.renderInventory();
-//	}
+	public void setSlot(int newSlot) {
+		slot = newSlot;
+	} 
 	
+	public int getSlot() {
+		return slot;
+	}
 }

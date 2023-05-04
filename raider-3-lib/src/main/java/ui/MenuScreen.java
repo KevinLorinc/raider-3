@@ -110,6 +110,9 @@ public class MenuScreen extends GameScreen implements IUpdateable{
 		    this.getComponents().add(this.mainMenu);
 	  }
 	  
+	  /**
+	   * code for when the start button is clicked
+	   */
 	  private void startGame() {
 		    this.mainMenu.setEnabled(false);
 		    Game.window().getRenderComponent().fadeOut(1500);
