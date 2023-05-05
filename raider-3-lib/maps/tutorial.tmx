@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.0" orientation="orthogonal" renderorder="right-down" width="60" height="20" tilewidth="32" tileheight="32" infinite="0" nextlayerid="18" nextobjectid="29">
+<map version="1.10" tiledversion="1.10.0" orientation="orthogonal" renderorder="right-down" width="60" height="20" tilewidth="32" tileheight="32" infinite="0" nextlayerid="17" nextobjectid="28">
  <tileset firstgid="1" source="grass.tsx"/>
  <tileset firstgid="65" source="props.tsx"/>
  <tileset firstgid="321" source="walls.tsx"/>
@@ -200,18 +200,6 @@
 0,1398,1399,1400,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1414,1415,1416,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2684355808,2684355808,2684355808,2684355808
 </data>
  </layer>
- <objectgroup id="12" name="spawns">
-  <object id="83" name="enter" type="SPAWNPOINT" x="64" y="96" width="32" height="32">
-   <properties>
-    <property name="collisionAlign" value="CENTER"/>
-    <property name="collisionType" value="DYNAMIC"/>
-    <property name="collisionValign" value="DOWN"/>
-    <property name="spawnDirection" value="DOWN"/>
-    <property name="spawnInfo" value="PLAYER"/>
-    <property name="spawnPivot" value="DIMENSION_CENTER"/>
-   </properties>
-  </object>
- </objectgroup>
  <objectgroup id="11" name="walls">
   <object id="1" type="COLLISIONBOX" x="832" y="0" width="7" height="295.667">
    <properties>
@@ -989,12 +977,82 @@
     <property name="spawnPivot" value="DIMENSION_CENTER"/>
    </properties>
   </object>
-  <object id="28" name="enemy0" type="SPAWNPOINT" x="96.6667" y="162" width="32" height="32">
+  <object id="110" type="PROP" x="128" y="32" width="142" height="128">
+   <properties>
+    <property name="addShadow" type="bool" value="false"/>
+    <property name="collision" type="bool" value="true"/>
+    <property name="collisionAlign" value="CENTER"/>
+    <property name="collisionType" value="DYNAMIC"/>
+    <property name="collisionValign" value="DOWN"/>
+    <property name="collisionboxHeight" value="0.0"/>
+    <property name="collisionboxWidth" value="0.0"/>
+    <property name="flipHorizontally" type="bool" value="false"/>
+    <property name="flipVertically" type="bool" value="false"/>
+    <property name="indestructible" type="bool" value="false"/>
+    <property name="material" value="UNDEFINED"/>
+    <property name="renderType" value="UI"/>
+    <property name="rotationSprite" value="NONE"/>
+    <property name="scaling" type="bool" value="false"/>
+    <property name="spritesheetName" value="largeTree"/>
+   </properties>
+  </object>
+  <object id="111" type="PROP" x="0" y="480" width="142" height="128">
+   <properties>
+    <property name="addShadow" type="bool" value="true"/>
+    <property name="collision" type="bool" value="true"/>
+    <property name="collisionAlign" value="CENTER"/>
+    <property name="collisionType" value="DYNAMIC"/>
+    <property name="collisionValign" value="DOWN"/>
+    <property name="collisionboxHeight" value="0.0"/>
+    <property name="collisionboxWidth" value="0.0"/>
+    <property name="indestructible" type="bool" value="false"/>
+    <property name="material" value="UNDEFINED"/>
+    <property name="renderType" value="UI"/>
+    <property name="rotationSprite" value="NONE"/>
+    <property name="spritesheetName" value="largeTree"/>
+   </properties>
+  </object>
+  <object id="112" type="PROP" x="668" y="128" width="142" height="128">
+   <properties>
+    <property name="addShadow" type="bool" value="true"/>
+    <property name="collision" type="bool" value="true"/>
+    <property name="collisionAlign" value="CENTER"/>
+    <property name="collisionType" value="DYNAMIC"/>
+    <property name="collisionValign" value="DOWN"/>
+    <property name="collisionboxHeight" value="0.0"/>
+    <property name="collisionboxWidth" value="0.0"/>
+    <property name="indestructible" type="bool" value="false"/>
+    <property name="material" value="UNDEFINED"/>
+    <property name="renderType" value="UI"/>
+    <property name="rotationSprite" value="NONE"/>
+    <property name="spritesheetName" value="smallTree"/>
+   </properties>
+  </object>
+  <object id="113" type="PROP" x="750" y="448" width="142" height="128">
+   <properties>
+    <property name="addShadow" type="bool" value="true"/>
+    <property name="collision" type="bool" value="true"/>
+    <property name="collisionAlign" value="CENTER"/>
+    <property name="collisionType" value="DYNAMIC"/>
+    <property name="collisionValign" value="DOWN"/>
+    <property name="collisionboxHeight" value="0.0"/>
+    <property name="collisionboxWidth" value="0.0"/>
+    <property name="indestructible" type="bool" value="false"/>
+    <property name="material" value="UNDEFINED"/>
+    <property name="renderType" value="UI"/>
+    <property name="rotationSprite" value="NONE"/>
+    <property name="spritesheetName" value="mediumTree"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup id="12" name="spawns">
+  <object id="83" name="enter" type="SPAWNPOINT" x="64" y="96" width="32" height="32">
    <properties>
     <property name="collisionAlign" value="CENTER"/>
     <property name="collisionType" value="DYNAMIC"/>
     <property name="collisionValign" value="DOWN"/>
     <property name="spawnDirection" value="DOWN"/>
+    <property name="spawnInfo" value="PLAYER"/>
     <property name="spawnPivot" value="DIMENSION_CENTER"/>
    </properties>
   </object>
