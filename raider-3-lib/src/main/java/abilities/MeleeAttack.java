@@ -15,6 +15,7 @@ import de.gurkenlabs.litiengine.abilities.effects.Effect;
 import de.gurkenlabs.litiengine.abilities.effects.EffectTarget;
 import de.gurkenlabs.litiengine.entities.Creature;
 import de.gurkenlabs.litiengine.entities.ICombatEntity;
+import de.gurkenlabs.litiengine.entities.Prop;
 import de.gurkenlabs.litiengine.graphics.Spritesheet;
 import de.gurkenlabs.litiengine.graphics.animation.Animation;
 import de.gurkenlabs.litiengine.resources.Resources;
@@ -85,14 +86,16 @@ public class MeleeAttack extends Ability{
 			final List<ICombatEntity> affected = this.lookForAffectedEntities(impactArea);
 		    for (final ICombatEntity affectedEntity : affected) {
 		    //playing hit animation, damaging, and very temporarily stunning enemy
-		      Enemy hit = (Enemy)affectedEntity;
+		    	if(affectedEntity instanceof Enemy == false) continue;
+		      
+		    	Enemy hit = (Enemy)affectedEntity;
 		      hit.hit(damage);
 	    	  hit.setEnemyState(EnemyState.HIT);
-	    	  if(hit.getFacingDirection() == Direction.LEFT) hit.animations().play("minion-damaged-left");
-	    	  else hit.animations().play("minion-damaged-right");
-		      
+	    	  if(hit instanceof Minion) 
+	    		  if(hit.getFacingDirection() == Direction.LEFT) hit.animations().play("minion-damaged-left");
+	    		  else hit.animations().play("minion-damaged-right");
+	    	  
 		    }
 		}
 	}
-
 }
