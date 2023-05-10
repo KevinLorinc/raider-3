@@ -9,6 +9,7 @@ import java.awt.geom.RoundRectangle2D;
 import de.gurkenlabs.litiengine.Direction;
 import de.gurkenlabs.litiengine.Game;
 import de.gurkenlabs.litiengine.IUpdateable;
+import de.gurkenlabs.litiengine.entities.Creature;
 import de.gurkenlabs.litiengine.gui.GuiComponent;
 import entities.Enemy;
 import entities.Minion;
@@ -46,7 +47,6 @@ public class Hud extends GuiComponent{
 		
 		this.renderHP(g);
 		this.renderEnemyHP(g);
-		//this.testHit(g);
 		this.renderInventory(g);
 	}
 	
