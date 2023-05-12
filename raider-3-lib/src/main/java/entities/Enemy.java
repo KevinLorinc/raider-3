@@ -1,10 +1,12 @@
 package entities;
 
 import de.gurkenlabs.litiengine.Direction;
+import de.gurkenlabs.litiengine.attributes.Attribute;
 import de.gurkenlabs.litiengine.entities.Creature;
 import de.gurkenlabs.litiengine.entities.ICollisionEntity;
 import de.gurkenlabs.litiengine.entities.Spawnpoint;
 import de.gurkenlabs.litiengine.environment.Environment;
+import de.gurkenlabs.litiengine.physics.Force;
 import de.gurkenlabs.litiengine.util.geom.GeometricUtilities;
 import entities.Enemy.EnemyState;
 
@@ -32,6 +34,12 @@ public abstract class Enemy extends Creature {
 	public Enemy(Spawnpoint spawn) {
 		super(spawn.getName());
 		state = EnemyState.ROAMING;
+		
+		/*this.onHit(e -> {
+			setEnemyState(EnemyState.HIT);
+			Attribute<Integer> knockback = e.getAbility().getAttributes().impact();
+			//this.setX(this.getX() + knockback.get());
+		});*/
 	}
 	
 	/*

@@ -25,6 +25,7 @@ import ui.Hud;
 import entities.Enemy;
 import entities.Enemy.EnemyState;
 import entities.Minion;
+import entities.MinionController;
 
 /**
  * creates the melee attack ability that is used by player
@@ -85,16 +86,12 @@ public class MeleeAttack extends Ability{
 			final int damage = this.getAbility().getAttributes().value().get();
 			final List<ICombatEntity> affected = this.lookForAffectedEntities(impactArea);
 		    for (final ICombatEntity affectedEntity : affected) {
-		    //playing hit animation, damaging, and very temporarily stunning enemy
-		    	if(affectedEntity instanceof Enemy == false) continue;
+		      if(affectedEntity instanceof Enemy == false) continue;
 		      
-		    	Enemy hit = (Enemy)affectedEntity;
+		      Enemy hit = (Enemy)affectedEntity;
 		      hit.hit(damage);
+		      ((MinionController)(hit.movement())).setApplyPoint(Player.instance().getCollisionBoxCenter());
 	    	  hit.setEnemyState(EnemyState.HIT);
-	    	  if(hit instanceof Minion) 
-	    		  if(hit.getFacingDirection() == Direction.LEFT) hit.animations().play("minion-damaged-left");
-	    		  else hit.animations().play("minion-damaged-right");
-	    	  
 		    }
 		}
 	}

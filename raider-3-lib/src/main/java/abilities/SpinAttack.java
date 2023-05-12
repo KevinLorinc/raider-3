@@ -11,12 +11,18 @@ import de.gurkenlabs.litiengine.abilities.Ability;
 import de.gurkenlabs.litiengine.abilities.AbilityInfo;
 import de.gurkenlabs.litiengine.abilities.effects.Effect;
 import de.gurkenlabs.litiengine.abilities.effects.EffectTarget;
+import de.gurkenlabs.litiengine.abilities.effects.ForceEffect;
 import de.gurkenlabs.litiengine.entities.Creature;
 import de.gurkenlabs.litiengine.entities.ICombatEntity;
+import de.gurkenlabs.litiengine.entities.IMobileEntity;
 import de.gurkenlabs.litiengine.graphics.Spritesheet;
 import de.gurkenlabs.litiengine.graphics.animation.Animation;
+import de.gurkenlabs.litiengine.physics.Force;
 import de.gurkenlabs.litiengine.resources.Resources;
+import entities.Enemy;
+import entities.Minion;
 import entities.Player;
+import entities.Enemy.EnemyState;
 
 /**
  * A class for the spin attack ability
@@ -60,14 +66,19 @@ public class SpinAttack extends Ability{
 		 */
 		@Override
 		public void apply(final Shape impactArea) {
-			super.apply(new Rectangle(20,20,20,20));
-			
-			final int damage = this.getAbility().getAttributes().value().get();
-			final List<ICombatEntity> affected = this.lookForAffectedEntities(impactArea);
-		    for (final ICombatEntity affectedEntity : affected) {
-		      affectedEntity.hit(damage);
+			if(Game.world().environment() !=null){
+				super.apply(new Rectangle(20,20,20,20));
+				
+				final int damage = this.getAbility().getAttributes().value().get();
+				final List<ICombatEntity> affected = this.lookForAffectedEntities(impactArea);
+				for (final ICombatEntity affectedEntity : affected) {
+			    //playing hit animation, damaging, and very temporarily stunning enemy
+			     if(affectedEntity instanceof Enemy == false) continue;
+			      Enemy hit = (Enemy)affectedEntity;
+			      hit.hit(damage);
+			        
+			    }
 		    }
-		}
+	    }
 	}
-
 }
