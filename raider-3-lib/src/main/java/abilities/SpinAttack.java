@@ -21,6 +21,7 @@ import de.gurkenlabs.litiengine.physics.Force;
 import de.gurkenlabs.litiengine.resources.Resources;
 import entities.Enemy;
 import entities.Minion;
+import entities.MinionController;
 import entities.Player;
 import entities.Enemy.EnemyState;
 
@@ -76,7 +77,9 @@ public class SpinAttack extends Ability{
 			     if(affectedEntity instanceof Enemy == false) continue;
 			      Enemy hit = (Enemy)affectedEntity;
 			      hit.hit(damage);
-			        
+			      ((MinionController)(hit.movement())).setApplyPoint(Player.instance().getCollisionBoxCenter());
+			      ((MinionController)(hit.movement())).setApplyTime(Game.time().now());
+			      hit.setEnemyState(EnemyState.HIT);
 			    }
 		    }
 	    }

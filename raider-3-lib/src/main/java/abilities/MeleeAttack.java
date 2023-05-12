@@ -91,6 +91,7 @@ public class MeleeAttack extends Ability{
 		      Enemy hit = (Enemy)affectedEntity;
 		      hit.hit(damage);
 		      ((MinionController)(hit.movement())).setApplyPoint(Player.instance().getCollisionBoxCenter());
+		      ((MinionController)(hit.movement())).setApplyTime(Game.time().now());
 	    	  hit.setEnemyState(EnemyState.HIT);
 		    }
 		}

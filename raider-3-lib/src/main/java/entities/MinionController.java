@@ -29,6 +29,7 @@ public class MinionController extends MovementController<Minion>{
 	private Minion thisMinion;
 
 	private Point2D applyPoint;
+	private long applyTime;
 	private boolean removed;
 	
 	/**
@@ -50,7 +51,7 @@ public class MinionController extends MovementController<Minion>{
 	@Override
 	public void update(){
 		this.handleMovement();
-		this.handleForces();
+	    this.handleForces();
 
 	    if (RaidersLogic.getState() != GameState.INGAME) {
 	      return;
@@ -86,7 +87,7 @@ public class MinionController extends MovementController<Minion>{
 	    	if(thisMinion.getEnemyState() == EnemyState.HIT) {
 	    		if(thisMinion.getFacingDirection() == Direction.LEFT) thisMinion.animations().play("minion-damaged-left");
 	    		else thisMinion.animations().play("minion-damaged-right");
-	    		this.apply(new Force(thisMinion.getLocation(),50,10));
+	    		this.apply(new Force(thisMinion.getLocation(),20,5));//50 1
 	    		System.out.println(this.getActiveForces());
 	    		thisMinion.setEnemyState(EnemyState.ROAMING);
 	    	}
@@ -105,7 +106,11 @@ public class MinionController extends MovementController<Minion>{
 		applyPoint = point;
 	}
 	
-	private void handleForces() {
+	public void setApplyTime(long time) {
+		applyTime = time;
+	}
+	
+	private void handleForces(){
 		// clean up forces
 	    this.getActiveForces().forEach(x -> {
 	      if (x.hasEnded()) {
@@ -117,8 +122,6 @@ public class MinionController extends MovementController<Minion>{
 	      return;
 	    }
 
-	    // disable turn-on-move for force handling
-	    boolean turn = this.getEntity().turnOnMove();
 	    this.getEntity().setTurnOnMove(false);
 	    try {
 	      double deltaX = 0;
@@ -131,11 +134,9 @@ public class MinionController extends MovementController<Minion>{
 
 	        final Point2D collisionBoxCenter = this.getEntity().getCollisionBoxCenter();
 	        final double angle = GeometricUtilities.calcRotationAngleInDegrees(collisionBoxCenter, applyPoint) + 180;
-	        //System.out.println(angle + " loc: " + collisionBoxCenter + " force loc: " + force.getLocation());
-	        final double strength = Game.loop().getDeltaTime() * 0.001f * force.getStrength() * Game.loop().getTimeScale();
+	        final double strength = Game.loop().getDeltaTime() * 0.005f * force.getStrength() * Game.loop().getTimeScale();
 	        deltaX += GeometricUtilities.getDeltaX(angle, strength);
 	        deltaY += GeometricUtilities.getDeltaY(angle, strength);
-	        //System.out.println("x,y: " + deltaX + "," + deltaY);
 	      }
 
 	      final Point2D target = new Point2D.Double(this.getEntity().getX() + deltaX, this.getEntity().getY() + deltaY);
@@ -147,8 +148,13 @@ public class MinionController extends MovementController<Minion>{
 	          }
 	        }
 	      }
+	      for (final Force force : this.getActiveForces()) {
+	          if (Game.time().since(applyTime) >= 340) {
+	            force.end();
+	          }
+	        }
 	    } finally {
-	      this.getEntity().setTurnOnMove(turn);
+	      this.getEntity().setTurnOnMove(true);
 	    }
 	  }
 }
