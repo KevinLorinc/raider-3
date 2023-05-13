@@ -3,9 +3,15 @@ package ui;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.geom.Arc2D;
 import java.awt.geom.Rectangle2D;
 import java.awt.geom.RoundRectangle2D;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.*;
 
 import de.gurkenlabs.litiengine.Direction;
 import de.gurkenlabs.litiengine.Game;
@@ -13,9 +19,11 @@ import de.gurkenlabs.litiengine.IUpdateable;
 import de.gurkenlabs.litiengine.entities.Creature;
 import de.gurkenlabs.litiengine.gui.GuiComponent;
 import entities.Enemy;
+import entities.Enemy.EnemyState;
 import entities.Minion;
 import entities.Player;
 import entities.Player.PlayerState;
+import raider.RaidersMath;
 
 /**
  * a class that creates the Hud for the game. This will have arrows, probably inventory, and health related things in it.
@@ -42,12 +50,16 @@ public class Hud extends GuiComponent{
 	 * renders all the components of the hud
 	 */
 	@Override
-	public void render(Graphics2D g) {
+	public void render(Graphics2D g){
 		
 		super.render(g);
 		
 		this.renderHP(g);
-		this.renderEnemyHP(g);
+		try {
+			this.renderEnemyHP(g);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		this.renderInventory(g);
 	}
 	
@@ -55,24 +67,35 @@ public class Hud extends GuiComponent{
 	/**
 	 * renders the enemies hp which is situated right above them when they are in combat
 	 * @param g the graphic to render to
+	 * @throws IOException 
 	 */
-	private void renderEnemyHP(Graphics2D g) {
+	private void renderEnemyHP(Graphics2D g) throws IOException {
 		for (Enemy enemy : Game.world().environment().getByTag(Enemy.class,"enemy")) {
 		    if(enemy.hasTag("boss") && !enemy.isDead()) {
 		    	final double width = 200;
 		        final double height = 16;
 		        double x = Game.world().camera().getViewport().getMinX() + 234;//moved so i can see stats
-		        double y = Game.world().camera().getViewport().getMinY() + 8;
+		        double y = Game.world().camera().getViewport().getMinY() + 20;
 		        RoundRectangle2D rect = new RoundRectangle2D.Double(x, y, width, height, 1.5, 1.5);
 		        
 		        final double currentWidth = width * (enemy.getHitPoints().get() / (double) enemy.getHitPoints().getMax());
 		        RoundRectangle2D actualRect = new RoundRectangle2D.Double(x, y, currentWidth, height, 1.5, 1.5);
 
+		        if(enemy.getEnemyState() != EnemyState.ORB && enemy.getEnemyState() != EnemyState.NOTSPAWNED) {
 		        g.setColor(Color.BLACK);
 		        Game.graphics().renderShape(g, rect);
 
 		        g.setColor(new Color(228, 59, 68));
 				Game.graphics().renderShape(g, actualRect);
+				
+				
+					int swidth = Game.window().getWidth();
+					int sheight = Game.window().getHeight();
+					double renderScale = RaidersMath.getRenderScale(swidth,sheight);
+					BufferedImage border1 = ImageIO.read(new File("images/reaperBossHealth.png"));
+					Image border = border1.getScaledInstance((int)(border1.getWidth() * renderScale), (int)(border1.getHeight() * renderScale), Image.SCALE_DEFAULT);
+					Game.graphics().renderImage(g, border, x-25,y-9);
+				}
 		    }
 			else if (!enemy.isDead()) {
 		        final double width = 16;

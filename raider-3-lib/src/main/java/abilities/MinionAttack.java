@@ -64,6 +64,8 @@ public class MinionAttack extends Ability{
 			final List<ICombatEntity> affected = this.lookForAffectedEntities(impactArea);
 		    for (final ICombatEntity affectedEntity : affected) {
 		      affectedEntity.hit(damage);
+		      if(affectedEntity.isDead())
+		    	  ((Player)affectedEntity).onDead();
 		    }
 		}
 	}
