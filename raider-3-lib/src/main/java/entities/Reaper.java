@@ -44,6 +44,9 @@ public class Reaper extends Enemy implements IUpdateable{
 	    this.addTag("reaper");
 	    this.addTag("enemy");
 	    this.addTag("boss");
+	    
+	    this.setEnemyState(EnemyState.NOTSPAWNED);
+	    System.out.println(this.getEnemyState()+"1");
 	}
 	
 	/**
@@ -59,11 +62,19 @@ public class Reaper extends Enemy implements IUpdateable{
      */
     @Override
     protected IEntityAnimationController<?> createAnimationController() {
-    	Spritesheet idle = Resources.spritesheets().get("reaper-idle-right");
+    	Spritesheet emptyOrb = Resources.spritesheets().get("orb-empty");
+    	Spritesheet idleOrb = Resources.spritesheets().get("orb-idle");
+    	Spritesheet reaper = Resources.spritesheets().get("reaper-idle-right");
+    	
+    	System.out.println(this.getEnemyState()+"2");
     	
     	IEntityAnimationController<?> animationController;
-    	animationController = new ReaperAnimationController(this,new Animation(idle,true));
-    	
+		//if(this.getEnemyState()==EnemyState.NOTSPAWNED)
+    	//animationController = new ReaperAnimationController(this,new Animation(emptyOrb,true));
+		//else if(this.getEnemyState()==EnemyState.ORB)
+	    //animationController = new ReaperAnimationController(this,new Animation(emptyOrb,true));
+		animationController = new ReaperAnimationController(this,new Animation(reaper,true));
+		
 	    return animationController;
     }
 	

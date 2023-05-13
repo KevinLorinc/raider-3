@@ -8,6 +8,7 @@ import de.gurkenlabs.litiengine.graphics.Spritesheet;
 import de.gurkenlabs.litiengine.graphics.animation.Animation;
 import de.gurkenlabs.litiengine.graphics.animation.CreatureAnimationController;
 import de.gurkenlabs.litiengine.resources.Resources;
+import entities.Enemy.EnemyState;
 
 public class ReaperAnimationController extends CreatureAnimationController<Reaper>{
 	public ReaperAnimationController(Reaper reaper,Animation defaultAnim) {
@@ -25,19 +26,28 @@ public class ReaperAnimationController extends CreatureAnimationController<Reape
     	Spritesheet phaseR = Resources.spritesheets().get("reaper-phase-right");
     	Spritesheet phaseL = Resources.spritesheets().get("reaper-phase-left");
     	Spritesheet spawn = Resources.spritesheets().get("reaper-spawn");
+    	Spritesheet orbIdle = Resources.spritesheets().get("orb-idle");
+    	Spritesheet orbSpawn = Resources.spritesheets().get("orb-spawn");
+    	Spritesheet emptyOrb = Resources.spritesheets().get("orb-empty");
     	
     	this.add(new Animation(attackR,false));
     	this.add(new Animation(attackL,false));
     	this.add(new Animation(death,false));
     	this.add(new Animation(frenzyR,false));
     	this.add(new Animation(frenzyL,false));
-    	this.add(new Animation(laughR,false));
-    	this.add(new Animation(laughL,false));
-    	this.add(new Animation(idleR,false));
-    	this.add(new Animation(idleL,false));
+    	this.add(new Animation(laughR,true));
+    	this.add(new Animation(laughL,true));
+    	this.add(new Animation(idleR,true));
+    	this.add(new Animation(idleL,true));
     	this.add(new Animation(phaseR,false));
     	this.add(new Animation(phaseL,false));
     	this.add(new Animation(spawn,false));
+    	this.add(new Animation(orbIdle,true));
+    	this.add(new Animation(orbSpawn,false));
+    	this.add(new Animation(emptyOrb,false));
+    	
+    	this.addRule(x -> (reaper.getEnemyState()==EnemyState.NOTSPAWNED) , x -> "orb-empty");
+    	this.addRule(x -> (reaper.getEnemyState()==EnemyState.ORB) , x -> "orb-idle");
     	
     	this.addRule(x -> (reaper.getFacingDirection() == Direction.RIGHT) && !reaper.isIdle(), x -> "reaper-idle-right");
     	this.addRule(x -> (reaper.getFacingDirection() == Direction.LEFT) && !reaper.isIdle(), x -> "reaper-idle-left");

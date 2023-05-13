@@ -42,7 +42,14 @@ public class ReaperController extends MovementController<Reaper>{
 	@Override
 	public void update(){
 		super.update();
-
+		
+		if(Player.instance().getY()-thisReaper.getY()<100 && thisReaper.getEnemyState()==EnemyState.NOTSPAWNED) {
+			thisReaper.animations().play("orb-spawn");
+			thisReaper.setEnemyState(EnemyState.ORB);
+		}
+		
+		System.out.println(thisReaper.getEnemyState());
+		
 	    if (RaidersLogic.getState() != GameState.INGAME) {
 	      return;
 	    }

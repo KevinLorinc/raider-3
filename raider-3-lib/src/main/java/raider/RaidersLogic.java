@@ -192,7 +192,8 @@ public final class RaidersLogic {
 	    	spawn.spawn(new Minion(spawn));
 	    }
 	    if(Game.world().environment().getMap().getName().equals("boss1")) {
-	    	spawn.spawn(new Reaper(spawn));
+	    	Reaper boss = new Reaper(spawn);
+	    	spawn.spawn(boss);
 	    }
 	}
 	

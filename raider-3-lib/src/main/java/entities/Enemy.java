@@ -20,6 +20,8 @@ public abstract class Enemy extends Creature {
 	 * @author Kevin Lorinc
 	 */
 	public enum EnemyState {
+		NOTSPAWNED,
+		ORB,
 		ROAMING,
 		HIT
 	}

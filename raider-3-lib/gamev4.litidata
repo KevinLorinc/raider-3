@@ -1,60 +1,73 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <litidata version="1.0">
  <maps>
-  <map version="1.1" tiledversion="1.10.0" orientation="orthogonal" renderorder="right-down" width="20" height="12" tilewidth="32" tileheight="32" infinite="0" nextlayerid="4" nextobjectid="1" name="boss1">
+  <map version="1.1" tiledversion="1.10.0" orientation="orthogonal" renderorder="right-down" width="20" height="11" tilewidth="32" tileheight="32" infinite="0" nextlayerid="6" nextobjectid="1" name="boss1">
    <tileset firstgid="1" source="stoneFloor.tsx"/>
    <tileset firstgid="65" source="props.tsx"/>
    <tileset firstgid="321" source="walls.tsx"/>
-   <layer id="1" name="Tile Layer 1" width="20" height="12">
+   <tileset firstgid="577" source="shadows.tsx"/>
+   <layer id="1" name="floor" width="20" height="11">
     <data encoding="csv">
-482,482,482,482,482,482,482,482,482,482,482,482,482,482,482,482,482,482,482,482,
 10,10,10,10,10,10,10,10,10,14,15,16,10,10,10,10,10,10,10,10,
 10,10,10,10,10,10,10,10,10,14,15,16,10,10,10,10,10,10,10,10,
 10,10,10,10,10,10,10,10,10,14,15,16,10,10,10,10,10,10,10,10,
 10,10,10,10,10,10,10,10,10,22,23,24,10,10,10,10,10,10,10,10,
-7,7,7,7,7,7,7,7,8,6,7,8,6,7,7,7,7,7,7,8,
-15,15,15,15,15,15,15,15,16,14,15,16,14,15,15,15,15,15,15,16,
-23,23,23,23,23,23,23,23,24,22,23,24,22,23,23,23,23,23,23,24,
+7,7,7,7,7,7,7,7,8,6,7,8,6,7,7,7,7,7,7,7,
+15,15,15,15,15,15,15,15,16,14,15,16,14,15,15,15,15,15,15,15,
+23,23,23,23,23,23,23,23,24,22,23,24,22,23,23,23,23,23,23,23,
 10,10,10,10,10,10,10,10,10,6,7,8,10,10,10,10,10,10,10,10,
 10,10,10,10,10,10,10,10,10,14,15,16,10,10,10,10,10,10,10,10,
 10,10,10,10,10,10,10,10,10,14,15,16,10,10,10,10,10,10,10,10,
 10,10,10,10,10,10,10,10,10,14,15,16,10,10,10,10,10,10,10,10
 </data>
    </layer>
-   <layer id="2" name="Prop Layer" width="20" height="12">
+   <layer id="2" name="props" width="20" height="11">
     <data encoding="csv">
-346,0,0,0,0,0,152,0,0,0,0,0,0,0,0,152,0,0,0,347,
-362,0,0,0,0,0,168,0,0,0,0,0,0,0,0,168,0,0,0,347,
-378,0,152,0,0,0,0,0,156,0,0,0,156,0,0,0,0,0,0,363,
-346,0,168,0,0,0,0,0,172,0,0,0,172,0,0,0,0,0,152,379,
-362,0,0,0,0,0,0,0,188,0,0,0,188,0,0,0,0,0,168,347,
-346,0,0,0,0,0,0,0,0,204,205,206,0,0,0,0,0,0,0,363,
-362,0,0,0,0,0,0,0,156,220,221,222,156,0,0,0,0,0,0,379,
-346,0,0,0,0,0,0,0,172,236,237,238,172,0,0,0,0,0,0,347,
-362,0,0,0,0,0,0,0,188,0,0,0,188,0,0,152,0,0,0,363,
-346,0,0,0,0,152,0,0,0,0,0,0,0,0,0,168,0,0,152,379,
-362,0,0,0,0,168,0,0,0,0,0,0,0,0,0,0,0,0,168,347,
-378,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,363
+483,434,435,436,437,434,435,436,437,434,435,436,437,434,435,434,435,436,482,483,
+0,0,152,0,0,0,0,0,156,0,0,0,156,0,0,152,0,0,0,0,
+0,0,168,0,0,0,0,0,172,0,0,0,172,0,0,168,0,0,0,0,
+0,0,0,0,0,0,0,0,188,0,0,0,188,0,0,0,0,0,0,0,
+0,0,0,0,152,0,0,0,0,204,205,206,0,0,0,0,0,152,0,0,
+0,0,0,0,168,0,0,0,156,220,221,222,156,0,0,0,0,168,0,0,
+0,0,0,0,0,0,0,0,172,236,237,238,172,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,188,0,0,0,188,0,0,152,0,0,0,0,
+0,0,0,0,0,152,0,0,0,0,0,0,0,0,0,168,0,0,0,0,
+0,0,0,0,0,168,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
    </layer>
-   <layer id="3" name="highlights" width="20" height="12">
+   <layer id="5" name="dark" width="20" height="11" opacity="0.22">
     <data encoding="csv">
-0,0,0,0,121,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,137,0,169,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,121,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,137,0,0,0,
-0,0,0,0,0,0,0,0,0,121,0,0,0,0,0,0,0,0,169,0,
+733,733,733,733,733,733,733,733,733,733,733,733,733,733,733,733,733,733,733,733,
+733,733,733,733,733,733,733,733,733,733,733,733,733,733,733,733,733,733,733,733,
+733,733,733,733,733,733,733,733,733,733,733,733,733,733,733,733,733,733,733,733,
+733,733,733,733,733,733,733,733,733,733,733,733,733,733,733,733,733,733,733,733,
+733,733,733,733,733,733,733,733,733,733,733,733,733,733,733,733,733,733,733,733,
+733,733,733,733,733,733,733,733,733,733,733,733,733,733,733,733,733,733,733,733,
+733,733,733,733,733,733,733,733,733,733,733,733,733,733,733,733,733,733,733,733,
+733,733,733,733,733,733,733,733,733,733,733,733,733,733,733,733,733,733,733,733,
+733,733,733,733,733,733,733,733,733,733,733,733,733,733,733,733,733,733,733,733,
+733,733,733,733,733,733,733,733,733,733,733,733,733,733,733,733,733,733,733,733,
+733,733,733,733,733,733,733,733,733,733,733,733,733,733,733,733,733,733,733,733
+</data>
+   </layer>
+   <layer id="3" name="highlights" width="20" height="11">
+    <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,121,0,0,0,0,0,0,0,0,0,0,121,0,0,0,
+0,0,169,0,0,137,0,0,0,0,0,0,0,0,0,0,137,0,0,0,
+0,0,0,0,0,0,0,0,0,121,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,137,0,121,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,121,0,137,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,137,0,0,0,0,0,0,0,0,0,0,
 0,121,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,137,0,0,0,0,0,0,0,0,0,0,0,0,0,169,0,0,0,0,
-0,0,0,0,0,169,0,0,0,0,0,0,0,0,0,0,121,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,137,0,0,0
+0,0,0,0,0,169,0,0,0,0,0,0,0,0,0,0,0,0,121,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,137,0
 </data>
    </layer>
-   <objectgroup id="0" name="default" visible="1">
-    <object id="1" name="orbSpawn" type="SPAWNPOINT" x="320" y="192" width="32" height="32">
+   <objectgroup id="4" name="default" visible="1">
+    <object id="1" name="orbSpawn" type="SPAWNPOINT" x="320" y="160" width="32" height="32">
      <properties>
       <property name="collisionAlign" value="CENTER"/>
       <property name="collisionType" value="DYNAMIC"/>
@@ -63,7 +76,7 @@
       <property name="spawnPivot" value="DIMENSION_CENTER"/>
      </properties>
     </object>
-    <object id="2" name="enter" type="SPAWNPOINT" x="320" y="352" width="32" height="32">
+    <object id="2" name="enter" type="SPAWNPOINT" x="320" y="288" width="32" height="32">
      <properties>
       <property name="collisionAlign" value="CENTER"/>
       <property name="collisionType" value="DYNAMIC"/>
@@ -1410,6 +1423,9 @@
    <image>iVBORw0KGgoAAAANSUhEUgAAAQAAAAAgCAYAAAD9qabkAAADsklEQVR4Xu2VXW7cMAyEhb4vCvQhB+hRcq6eoJdOw425pceUZO/yx4g5AJGs5OgbcrROa6VSqVQqlUqlUqlUKpVKpY3+vr199AqfLX0/YeaV/4VEIf+6vX/cfvxRK+IS4KWrCxinyv8EwqajBqCF//P2e1W07+lD8xB9AbOFmZ8pf+8MNA/h+ePQowIgZQ1A41Lgn1ur8nwJ9DxEXkASZl75r/P38tHzEJq/ZiIiAJLGjhoAsrXwuTxeAsjvefCcAUnzUfn7Z4D8ngcP9kM9ExkBRA6A2UcugPcLYMa3ngEJPVT+29lTeXrI4m8M9Ey4wNuWr7G5rD3IC8AemE+in1wk2rN8AZzxAvY8eLBJyNfYXNYensnfi5/R/11nCSCTL2cwuwBeL4C9fMv+SZX/sfw9+Gn5nyWArAGMLoBWXi8AjR/Zf+W/nb9W3yp/HH64gZY8gEV0Fn4RepfA+gKQJH/EprLkV/5fumr+qwugGcgIIHQAIDkPKvQRxR7NwNJD5b/W1fK/i4efHUDaAIRwFnwJuLy4rIwLiD2PZk/l4YFU+efk/9BZAsgagPwCjMqbn3UBK/9r5/94+2UHgD4iBrA3fK8LkM0n4dwrf708PGTzVwb2BGBtIHsAxa/8L8uXYSNMK3MDLXkA7YuPnFFZ8o/07snf68Fr/tl85IzKkn+kdw9+uoHiF7/4SXyGpxloyQNoc762Z/lfKJNf+c/52p7V/Emp/Bm8Z8AE3uZ8blQ+Y9b8Ijx/D9/Kw+wLGMVHLnrANQs2acbv9W/FJ+H5e/hWHlLzn8FHBl6GL9I88O+yUfmMF1+eP+Nbecjk47laST6u4XnPSPOg9Yn9e/Dl+TO+lYdUvgbfa+Bl+CL0oLG1Z6w8aGcj//Mx1UMm34Nd+ev8psw/m2/BvosPHoUvn7E2wOdjg7J5qsH+S+JzB+dv+PJv8LyjepZvwSbxuZV/9/wNX/4NnndUz/It2A9pcGlA2zc1sIgbQz4VrlvyJRc5beFTKXsmYv6ofyplz0TyXFnM1/Yt+axR/7huyZdc5LSg+cuK5t+FA9DgsOcmOQyxvBqSWDeRPLfDceVLAWeTgQefzqz8r5v/XXIA7T+Y5QtfC9m9NS9pLG3NWzIHd/aJ8ichB/14SmNpa94KzR+FUPzsqR6nt26lWY+jPS/NPHkJufjZW8jCz95iXnTfqFQ+XoAoaSxtLVrRHuQlzFAWH+9dNJ+UwURl9X4XgvFztLL5pCwPmdwMdgYTdQYPpJd9/AO26/Q8+Wdn3wAAAABJRU5ErkJggg==</image>
    <keyframes>60,60,60,60,60,60,60,120</keyframes>
   </sprite>
+  <sprite width="32" height="32" imageformat="PNG" name="orb-empty">
+   <image>iVBORw0KGgoAAAANSUhEUgAAAGAAAAAgCAYAAADtwH1UAAAANklEQVR4Xu3SoREAIAwEwXSZof9CiI8hChC78sybjwAAAAAAACZW5u7tlpfb/MADAAAAAAA4K60GBhPRIvepAAAAAElFTkSuQmCC</image>
+  </sprite>
   <sprite width="50" height="50" imageformat="PNG" name="orb-idle">
    <image>iVBORw0KGgoAAAANSUhEUgAAAMgAAAAyCAYAAAAZUZThAAABiElEQVR4Xu3TQUoDURRE0QZ1mP0vx6Up3SSDXP6L4MSq7z1QCOE/qKLxOCRJkiRJkiRJkiRJkiRJkiRJkiRJkn7l4/3t6wx/b7XDnh02UO2ex8fY5aPstmOnLfy9xi7/JO39yW8SYod/kB02UPum5u5P2j/EiRua97B/4w52b9xw4YDKEXfc0biJvdv6P7B/7Zbq8sAtbbvYuan7CnfUbWLpmuIvcE/TLnZu6f0K99TsYuGa4j/gnqZd7NzUfYU7qvawdN2ABe5o3MPujRtO7F+5g+UrR9xxQ+sednfDH2F5hu/TsX/jDnZn+D4VezN8H4mlV+FNKvZm+D4RO6/Cm0TsPIV3cVh4Cu/SsO8U3qVh3ym8S8O+U3gXh4Wn8C4N+07hXRr2ncK7NOw7hXdxWHgK79Kw7xTepWHfKbxLw75TeBeHhT9vt6e/LUPckWWXHReOYfg+FXszfJ+KvRm+T8XeDN9HY/nKEYc70rB/647LFiMOd6TZZYckSZIkSZIkSZIkSZIk/SffNjMaceuMZqkAAAAASUVORK5CYII=</image>
    <keyframes>140,140,140,140</keyframes>
@@ -1554,7 +1570,7 @@
    <image source="../../../../Downloads/Pixel Art Top Down - Basic (1)/Texture/TX Props.png" width="512" height="512"/>
   </tileset>
   <tileset firstgid="0" name="shadows" tilewidth="32" tileheight="32" tilecount="256" columns="16">
-   <image source="../../../../../Downloads/Pixel Art Top Down - Basic (1)/Texture/TX Shadow.png" width="512" height="512"/>
+   <image source="../../../../Downloads/Pixel Art Top Down - Basic (1)/Texture/TX Shadow.png" width="512" height="512"/>
   </tileset>
   <tileset firstgid="0" name="stoneFloor" tilewidth="32" tileheight="32" tilecount="64" columns="8">
    <image source="../../../../Downloads/Pixel Art Top Down - Basic (1)/Texture/TX Tileset Stone Ground.png" width="256" height="256"/>
