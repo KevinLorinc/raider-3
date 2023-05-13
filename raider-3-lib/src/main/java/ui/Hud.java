@@ -82,10 +82,10 @@ public class Hud extends GuiComponent{
 		        RoundRectangle2D actualRect = new RoundRectangle2D.Double(x, y, currentWidth, height, 1.5, 1.5);
 
 		        if(enemy.getEnemyState() != EnemyState.ORB && enemy.getEnemyState() != EnemyState.NOTSPAWNED) {
-		        g.setColor(Color.BLACK);
+		        g.setColor(Color.LIGHT_GRAY);
 		        Game.graphics().renderShape(g, rect);
 
-		        g.setColor(new Color(228, 59, 68));
+		        g.setColor(new Color(0,29,61));
 				Game.graphics().renderShape(g, actualRect);
 				
 				
