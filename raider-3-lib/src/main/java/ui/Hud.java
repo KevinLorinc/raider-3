@@ -2,6 +2,7 @@ package ui;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.geom.Arc2D;
 import java.awt.geom.Rectangle2D;
 import java.awt.geom.RoundRectangle2D;
@@ -57,7 +58,23 @@ public class Hud extends GuiComponent{
 	 */
 	private void renderEnemyHP(Graphics2D g) {
 		for (Enemy enemy : Game.world().environment().getByTag(Enemy.class,"enemy")) {
-		      if (!enemy.isDead()) {//will have to add isEngaged here to make things not have to update as often and in blocks
+		    if(enemy.hasTag("boss") && !enemy.isDead()) {
+		    	final double width = 200;
+		        final double height = 16;
+		        double x = Game.world().camera().getViewport().getMinX() + 234;//moved so i can see stats
+		        double y = Game.world().camera().getViewport().getMinY() + 8;
+		        RoundRectangle2D rect = new RoundRectangle2D.Double(x, y, width, height, 1.5, 1.5);
+		        
+		        final double currentWidth = width * (enemy.getHitPoints().get() / (double) enemy.getHitPoints().getMax());
+		        RoundRectangle2D actualRect = new RoundRectangle2D.Double(x, y, currentWidth, height, 1.5, 1.5);
+
+		        g.setColor(Color.BLACK);
+		        Game.graphics().renderShape(g, rect);
+
+		        g.setColor(new Color(228, 59, 68));
+				Game.graphics().renderShape(g, actualRect);
+		    }
+			else if (!enemy.isDead()) {
 		        final double width = 16;
 		        final double height = 2;
 		        double x = enemy.getX() - (width - enemy.getWidth()) / 2.0 - 2;//play around to move enemy health bar
@@ -66,13 +83,13 @@ public class Hud extends GuiComponent{
 
 		        final double currentWidth = width * (enemy.getHitPoints().get()/ (double) enemy.getHitPoints().getMax());
 		        RoundRectangle2D actualRect = new RoundRectangle2D.Double(x, y, currentWidth, height, 1.5, 1.5);
-
+		        
 		        g.setColor(Color.BLACK);
 		        Game.graphics().renderShape(g, rect);
 
 		        g.setColor(new Color(228, 59, 68));
 		        Game.graphics().renderShape(g, actualRect);
-		      }
+		   }
 		}
 		
 	}
@@ -87,7 +104,7 @@ public class Hud extends GuiComponent{
 			final double width = 100;
 	        final double height = 8;
 	        double x = Game.world().camera().getViewport().getMinX() + 268;//moved so i can see stats
-	        double y = Game.world().camera().getViewport().getMaxY() - 30;
+	        double y = Game.world().camera().getViewport().getMaxY() - 15;
 	        RoundRectangle2D rect = new RoundRectangle2D.Double(x, y, width, height, 1.5, 1.5);
 	        
 	        final double currentWidth = width * (Player.instance().getHitPoints().get() / (double) Player.instance().getHitPoints().getMax());

@@ -51,8 +51,6 @@ public class ReaperController extends MovementController<Reaper>{
 	      return;
 	    }
 	    
-	    //might have to add code here if we want the navigator to stop if the enemy is hit
-	    
 	    if(this.getEntity().getHitPoints().getRelativeCurrentValue() <= 0) {
 	    	removed = true;
 	        Game.loop().perform(1000, () -> {
@@ -68,33 +66,5 @@ public class ReaperController extends MovementController<Reaper>{
 	    if (Game.time().since(this.lastNavigate) < NAVIGATE_DELAY) {
 	        return;
 	    }
-	    
-	    double dist = this.getEntity().getTarget().getCenter().distance(this.getEntity().getCenter());
-	    
-	    /*
-	    if(dist < 150 && !this.navi.isNavigating()) { //will have to change this to account for hit box and what we want the range of minion to be
-	    	this.navi.navigate(this.getEntity().getTarget().getCenter());
-	    	//System.out.println(thisMinion.getFacingDirection());
-	    } else  if (this.navi.isNavigating()){
-	    	this.navi.stop();
-	    	if(thisMinion.getEnemyState() == EnemyState.HIT) {
-	    		//pause for some time
-	    		//this.setVelocity(0);
-	    		thisMinion.setEnemyState(EnemyState.ROAMING);
-	    	}
-	    	else if (this.getEntity().getMinionAttack().canCast() && dist < 20) {
-	    		//pause for some time
-	    		//this.getEntity().setVelocity(0);
-		    	this.getEntity().getMinionAttack().cast();
-		    	if(thisMinion.getFacingDirection() == Direction.RIGHT)
-		    		thisMinion.animations().play("minion-attack-right");
-		    	else
-		    		thisMinion.animations().play("minion-attack-left");
-		    	//this.setVelocity(70);
-	    	}
-	    	
-	    }///this will be used to cast the ability when the enemy is within a certain range of the player
-	    */
-	    
 	}
 }
