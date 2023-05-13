@@ -88,7 +88,6 @@ public class MinionController extends MovementController<Minion>{
 	    		if(thisMinion.getFacingDirection() == Direction.LEFT) thisMinion.animations().play("minion-damaged-left");
 	    		else thisMinion.animations().play("minion-damaged-right");
 	    		this.apply(new Force(thisMinion.getLocation(),20,5));//50 1
-	    		System.out.println(this.getActiveForces());
 	    		thisMinion.setEnemyState(EnemyState.ROAMING);
 	    	}
 	    	else if (this.getEntity().getMinionAttack().canCast() && dist < 20) {

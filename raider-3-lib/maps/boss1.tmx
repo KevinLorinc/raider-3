@@ -51,4 +51,24 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,137,0,0,0
 </data>
  </layer>
+ <objectgroup id="0" name="default" visible="1">
+    <object id="1" name="orbSpawn" type="SPAWNPOINT" x="320" y="192" width="32" height="32">
+     <properties>
+      <property name="collisionAlign" value="CENTER"/>
+      <property name="collisionType" value="DYNAMIC"/>
+      <property name="collisionValign" value="DOWN"/>
+      <property name="spawnDirection" value="DOWN"/>
+      <property name="spawnPivot" value="DIMENSION_CENTER"/>
+     </properties>
+    </object>
+    <object id="2" name="enter" type="SPAWNPOINT" x="320" y="352" width="32" height="32">
+     <properties>
+      <property name="collisionAlign" value="CENTER"/>
+      <property name="collisionType" value="DYNAMIC"/>
+      <property name="collisionValign" value="DOWN"/>
+      <property name="spawnDirection" value="DOWN"/>
+      <property name="spawnPivot" value="DIMENSION_CENTER"/>
+     </properties>
+    </object>
+  </objectgroup>
 </map>

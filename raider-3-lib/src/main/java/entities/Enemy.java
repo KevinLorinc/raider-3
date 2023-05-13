@@ -34,12 +34,6 @@ public abstract class Enemy extends Creature {
 	public Enemy(Spawnpoint spawn) {
 		super(spawn.getName());
 		state = EnemyState.ROAMING;
-		
-		/*this.onHit(e -> {
-			setEnemyState(EnemyState.HIT);
-			Attribute<Integer> knockback = e.getAbility().getAttributes().impact();
-			//this.setX(this.getX() + knockback.get());
-		});*/
 	}
 	
 	/*
