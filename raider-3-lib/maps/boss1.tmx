@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.0" orientation="orthogonal" renderorder="right-down" width="20" height="11" tilewidth="32" tileheight="32" infinite="0" nextlayerid="8" nextobjectid="1">
+<map version="1.1" tiledversion="1.10.0" orientation="orthogonal" renderorder="right-down" width="20" height="11" tilewidth="32" tileheight="32" infinite="0" nextlayerid="8" nextobjectid="1" name="boss1">
  <tileset firstgid="1" source="stoneFloor.tsx"/>
  <tileset firstgid="65" source="props.tsx"/>
  <tileset firstgid="321" source="walls.tsx"/>
@@ -34,8 +34,8 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup id="4" name="default">
-  <object id="1" name="orbSpawn" type="SPAWNPOINT" x="320" y="160" width="32" height="32">
+ <objectgroup id="4" name="default" visible="1">
+  <object id="1" name="orbSpawn" type="SPAWNPOINT" x="352" y="160" width="32" height="32">
    <properties>
     <property name="collisionAlign" value="CENTER"/>
     <property name="collisionType" value="DYNAMIC"/>
@@ -44,7 +44,7 @@
     <property name="spawnPivot" value="DIMENSION_CENTER"/>
    </properties>
   </object>
-  <object id="2" name="enter" type="SPAWNPOINT" x="0" y="160" width="32" height="32">
+  <object id="2" name="enter" type="SPAWNPOINT" x="32" y="160" width="32" height="32">
    <properties>
     <property name="collisionAlign" value="CENTER"/>
     <property name="collisionType" value="DYNAMIC"/>

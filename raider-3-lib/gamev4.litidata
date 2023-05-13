@@ -37,7 +37,7 @@
 </data>
    </layer>
    <objectgroup id="4" name="default" visible="1">
-    <object id="1" name="orbSpawn" type="SPAWNPOINT" x="320" y="160" width="32" height="32">
+    <object id="1" name="orbSpawn" type="SPAWNPOINT" x="337" y="164" width="32" height="32">
      <properties>
       <property name="collisionAlign" value="CENTER"/>
       <property name="collisionType" value="DYNAMIC"/>
@@ -46,7 +46,7 @@
       <property name="spawnPivot" value="DIMENSION_CENTER"/>
      </properties>
     </object>
-    <object id="2" name="enter" type="SPAWNPOINT" x="0" y="160" width="32" height="32">
+    <object id="2" name="enter" type="SPAWNPOINT" x="32" y="160" width="32" height="32">
      <properties>
       <property name="collisionAlign" value="CENTER"/>
       <property name="collisionType" value="DYNAMIC"/>
