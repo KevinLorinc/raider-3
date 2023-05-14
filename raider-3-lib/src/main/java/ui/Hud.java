@@ -1,11 +1,10 @@
 package ui;
 
 import java.awt.Color;
+import java.awt.Font;
+import java.awt.FontFormatException;
 import java.awt.Graphics2D;
 import java.awt.Image;
-import java.awt.Toolkit;
-import java.awt.geom.Arc2D;
-import java.awt.geom.Rectangle2D;
 import java.awt.geom.RoundRectangle2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -13,16 +12,13 @@ import java.io.IOException;
 
 import javax.imageio.*;
 
-import de.gurkenlabs.litiengine.Direction;
 import de.gurkenlabs.litiengine.Game;
-import de.gurkenlabs.litiengine.IUpdateable;
-import de.gurkenlabs.litiengine.entities.Creature;
 import de.gurkenlabs.litiengine.gui.GuiComponent;
 import entities.Enemy;
 import entities.Enemy.EnemyState;
-import entities.Minion;
 import entities.Player;
 import entities.Player.PlayerState;
+import raider.RaidersLogic;
 import raider.RaidersMath;
 
 /**
@@ -61,6 +57,7 @@ public class Hud extends GuiComponent{
 			e.printStackTrace();
 		}
 		this.renderInventory(g);
+		this.renderInstructions(g);
 	}
 	
 	
@@ -154,6 +151,20 @@ public class Hud extends GuiComponent{
 			RoundRectangle2D rect = new RoundRectangle2D.Double(x + (i*40), y, width, height, 1.5, 1.5);
 			g.setColor(Color.LIGHT_GRAY);
 			Game.graphics().renderShape(g, rect);
+		}
+	}
+	
+	private void renderInstructions(Graphics2D g) {
+		if(RaidersLogic.isInTransitionsArea()) {
+			try {
+				Font gameFont = Font.createFont(Font.TRUETYPE_FONT, new File("misc/gameFont.ttf"));
+				g.setFont(gameFont.deriveFont(Font.TRUETYPE_FONT,15));
+			} catch (FontFormatException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			Game.graphics().renderText(g, "Press 'E' to Enter", Player.instance().getX()-5, Player.instance().getY()+40);
 		}
 	}
 	

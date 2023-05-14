@@ -1,7 +1,11 @@
 package ui;
 
 import java.awt.Color;
+import java.awt.Font;
+import java.awt.FontFormatException;
 import java.awt.event.KeyEvent;
+import java.io.File;
+import java.io.IOException;
 
 import de.gurkenlabs.litiengine.Game;
 import de.gurkenlabs.litiengine.IUpdateable;
@@ -9,7 +13,6 @@ import de.gurkenlabs.litiengine.gui.ImageComponent;
 import de.gurkenlabs.litiengine.gui.Menu;
 import de.gurkenlabs.litiengine.gui.screens.GameScreen;
 import de.gurkenlabs.litiengine.input.Input;
-import de.gurkenlabs.litiengine.resources.Resources;
 import raider.RaidersLogic;
 
 /**
@@ -42,7 +45,15 @@ public class MenuScreen extends GameScreen implements IUpdateable{
 	    
 	    this.mainMenu.setForwardMouseEvents(false);
 	    this.mainMenu.getCellComponents().forEach(comp -> {
-	      //comp.setFont(HillBillyFonts.MENU);
+	    try {
+	    	System.out.println(Font.createFont(Font.TRUETYPE_FONT, new File("misc/gameFont.ttf")));
+			comp.setFont(Font.createFont(Font.TRUETYPE_FONT, new File("misc/gameFont.ttf")));
+			comp.setFontSize(50);
+		} catch (FontFormatException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	      //comp.setSpriteSheet(Resources.spritesheets().get("button-background"));
 	      comp.setTextAntialiasing(true);
 	      //comp.getAppearance().setForeColor(CARVING_COLOR);

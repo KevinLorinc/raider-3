@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.LinkedList;
 
 import de.gurkenlabs.litiengine.Game;
-import de.gurkenlabs.litiengine.IUpdateable;
 import de.gurkenlabs.litiengine.entities.CollisionBox;
 import de.gurkenlabs.litiengine.entities.MapArea;
 import de.gurkenlabs.litiengine.entities.Spawnpoint;
@@ -111,8 +110,15 @@ public final class RaidersLogic {
 	public static void onPlay() {
 		setState(GameState.INGAME);
 		Game.world().loadEnvironment("tutorial.tmx");
-		transitionArea = new MapArea(1850,192,48,128);
+		transitionArea = new MapArea(1820,192,78,128);
 	    Game.world().environment().add(transitionArea);
+	}
+	
+	public static boolean isInTransitionsArea() {
+		if(transitionArea.getX() <= Player.instance().getX() && transitionArea.getY() <= Player.instance().getY()) {
+			return true;
+	    }
+		return false;
 	}
 	
 	/**
@@ -140,20 +146,15 @@ public final class RaidersLogic {
 	    }
 	    
 	    handleEnemySpawns();
-	    
-	    if(transitionArea.getX() <= Player.instance().getX() && transitionArea.getY() <= Player.instance().getY()) {
-	    	transition("boss1");
-	    }
 	}
 	
 	public static void transition(String newEnvironment) {
-		Game.window().getRenderComponent().fadeOut(1500);
-		
-		Game.loop().perform(1500, () -> {
+		//Game.loop().perform(3000, () -> {
+			  Game.window().getRenderComponent().fadeOut(1500);
 		      Game.window().getRenderComponent().fadeIn(1500);
 		      Game.world().unloadEnvironment();
 		      Game.world().loadEnvironment(newEnvironment);
-		});
+		//});
 	}
 	
 	/**

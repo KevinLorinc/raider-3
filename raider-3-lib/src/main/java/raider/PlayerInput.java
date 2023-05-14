@@ -1,17 +1,12 @@
 package raider;
 
 import java.awt.event.KeyEvent;
-import java.awt.event.MouseEvent;
 
 import de.gurkenlabs.litiengine.Direction;
-import de.gurkenlabs.litiengine.graphics.Spritesheet;
-import de.gurkenlabs.litiengine.graphics.animation.Animation;
 import de.gurkenlabs.litiengine.input.Input;
-import de.gurkenlabs.litiengine.resources.Resources;
 import raider.RaidersLogic.GameState;
 import entities.Player;
 import entities.Player.PlayerState;
-import ui.Hud;
 
 /**
  * a class that manages player input. Will eventually control all input such as when attacks are to be cast
@@ -77,6 +72,16 @@ public class PlayerInput {
 		  }
 		  
 		  });
+	  
+	  Input.keyboard().onKeyPressed(KeyEvent.VK_E, e -> {//spin attack
+		  if (Player.instance().getState() == PlayerState.LOCKED || Player.instance().isDead()) {
+		    return;
+		  }
+		  
+		  if(RaidersLogic.isInTransitionsArea()) {
+			  RaidersLogic.transition("boss1");
+		  }
+	  });
   	}
 }
 
