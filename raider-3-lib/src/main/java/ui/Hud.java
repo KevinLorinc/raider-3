@@ -172,11 +172,11 @@ public class Hud extends GuiComponent{
 				Font gameFont = Font.createFont(Font.TRUETYPE_FONT, new File("misc/gameFont.ttf"));
 				g.setFont(gameFont.deriveFont(Font.TRUETYPE_FONT,20));
 				
-				Game.graphics().renderImage(g, wasd, Game.world().camera().getViewport().getX()+ 192,Game.world().camera().getViewport().getY() + 320);
-				Game.graphics().renderText(g, "move", Game.world().camera().getViewport().getX()+ 172,Game.world().camera().getViewport().getY() + 333);
+				Game.graphics().renderImage(g, wasd, Game.world().camera().getViewport().getMinX()+ 192,Game.world().camera().getViewport().getMaxY() - 40);
+				Game.graphics().renderText(g, "move", Game.world().camera().getViewport().getMinX()+ 172,Game.world().camera().getViewport().getMaxY() - 30);
 				
-				Game.graphics().renderImage(g, q, Game.world().camera().getViewport().getX()+ 197,Game.world().camera().getViewport().getY() + 344);
-				Game.graphics().renderText(g, "swap", Game.world().camera().getViewport().getX()+ 172,Game.world().camera().getViewport().getY() + 350);
+				Game.graphics().renderImage(g, q, Game.world().camera().getViewport().getMinX()+ 197,Game.world().camera().getViewport().getMaxY() - 20);
+				Game.graphics().renderText(g, "swap", Game.world().camera().getViewport().getMinX()+ 172,Game.world().camera().getViewport().getMaxY() - 13);
 				
 				g.setFont(gameFont.deriveFont(Font.TRUETYPE_FONT,15));
 				if(Player.instance().getEquipped()) {
