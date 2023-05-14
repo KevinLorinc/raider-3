@@ -135,12 +135,12 @@ public class MenuScreen extends GameScreen implements IUpdateable{
 				int width = Game.window().getWidth();
 				int height = Game.window().getHeight();
 				//double renderScale = RaidersMath.getRenderScale(width,height);
-				BufferedImage title = new BufferedImage((int)(width*.92), (int)(height*.75), BufferedImage.TYPE_INT_ARGB);
+				BufferedImage title = new BufferedImage((int)(width*.8), (int)(height*.75), BufferedImage.TYPE_INT_ARGB);
 				AffineTransform at = new AffineTransform();
-				at.scale((width*.92)/w, (height*.75)/h);
+				at.scale((width*.8)/w, (height*.75)/h);
 				AffineTransformOp scaleOp = new AffineTransformOp(at, AffineTransformOp.TYPE_NEAREST_NEIGHBOR);
 				title = scaleOp.filter(title1, title);
-			    this.getComponents().add(new ImageComponent(100,50,title));
+			    this.getComponents().add(new ImageComponent(190,50,title));
 			} catch (IOException e) {
 				e.printStackTrace();
 			}    
