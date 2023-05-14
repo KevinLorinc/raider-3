@@ -6,9 +6,13 @@ import java.awt.FontFormatException;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
+import java.awt.geom.AffineTransform;
+import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+
+import javax.imageio.ImageIO;
 
 import de.gurkenlabs.litiengine.Game;
 import de.gurkenlabs.litiengine.IUpdateable;
@@ -26,9 +30,6 @@ import raider.RaidersLogic;
  */
 public class MenuScreen extends GameScreen implements IUpdateable{
 	  public static final String NAME = "MENU-SCREEN";
-	  
-	  private static final BufferedImage title1 = Resources.images().get("images/raiderLogo.png");
-      private static final Image title = title1.getScaledInstance((int)(title1.getWidth()), (int)(title1.getHeight()), Image.SCALE_DEFAULT);
 	  
 	  private Menu mainMenu;
 	  
@@ -124,6 +125,21 @@ public class MenuScreen extends GameScreen implements IUpdateable{
 		    });
 
 		    this.getComponents().add(this.mainMenu);
+		    
+		    
+			try {
+				BufferedImage title1 = ImageIO.read(new File("images/raiderLogo.png"));
+				int w = title1.getWidth();
+				int h = title1.getHeight();
+				BufferedImage title = new BufferedImage(w*8, h*8, BufferedImage.TYPE_INT_ARGB);
+				AffineTransform at = new AffineTransform();
+				at.scale(8.0, 8.0);
+				AffineTransformOp scaleOp = new AffineTransformOp(at, AffineTransformOp.TYPE_NEAREST_NEIGHBOR);
+				title = scaleOp.filter(title1, title);
+			    this.getComponents().add(new ImageComponent(100,50,title));
+			} catch (IOException e) {
+				e.printStackTrace();
+			}    
 	  }
 	  
 	  /**
