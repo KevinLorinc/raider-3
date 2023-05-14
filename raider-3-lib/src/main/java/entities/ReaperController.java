@@ -34,6 +34,7 @@ public class ReaperController extends MovementController<Reaper>{
 		AStarGrid grid = RaidersLogic.getCurrentGrid();
 		
 		thisReaper = movingEntity;
+		actionTime = 0;
 		
 	    this.navi = new EntityNavigator(movingEntity, new AStarPathFinder(grid));
 	}
@@ -45,23 +46,28 @@ public class ReaperController extends MovementController<Reaper>{
 	public void update(){
 		super.update();
 		
-		if(thisReaper.getX()-Player.instance().getX()<150 && thisReaper.getEnemyState()==EnemyState.NOTSPAWNED){
-			thisReaper.animations().play("orb-spawn");
-			thisReaper.setEnemyState(EnemyState.ORB);
+		if(actionTime == 0) {
+			if(thisReaper.getX()-Player.instance().getX()<150 && thisReaper.getEnemyState()==EnemyState.NOTSPAWNED){
+				thisReaper.animations().play("orb-spawn");
+				thisReaper.setEnemyState(EnemyState.ORB);
+			}
 		}
 		
-		if(thisReaper.getEnemyState()==EnemyState.HIT && !thisReaper.getIsSpawned()) {
-			thisReaper.animations().play("reaper-spawn");
-			thisReaper.setIsSpawned(true);
+		else if(Game.time().since(actionTime) <= 3000) {
+			if(thisReaper.getEnemyState()==EnemyState.HIT && !thisReaper.getIsSpawned()) {
+				thisReaper.animations().play("reaper-spawn");
+				thisReaper.setIsSpawned(true);
+			}
+			
+		//	if(thisReaper.getEnemyState()==EnemyState.ORB)
+		//		return;
+			
+			else{
+				thisReaper.setEnemyState(EnemyState.IDLE);
+		    }
 		}
 		
-		if(thisReaper.getEnemyState()==EnemyState.ORB)
-			return;
-		
-	   if(thisReaper.getEnemyState()==EnemyState.HIT && Game.time().since(actionTime) <= 2000) {
-			thisReaper.setEnemyState(EnemyState.IDLE);
-	    }
-	    else if(Game.time().since(actionTime) > 2000){
+	    else{
 	    	if (RaidersLogic.getState() != GameState.INGAME) 
 	  	      return;
 
@@ -88,7 +94,7 @@ public class ReaperController extends MovementController<Reaper>{
 	  	    double dist = this.getEntity().getTarget().getCenter().distance(this.getEntity().getCenter());
 	  	    
 	  	    
-	  	    if(dist < 150 && !this.navi.isNavigating()) {
+	  	    if(dist < 400 && !this.navi.isNavigating()) {
 	  	    	this.navi.navigate(this.getEntity().getTarget().getCenter());
 	  	    } else  if (this.navi.isNavigating()){
 	  	    	this.navi.stop();

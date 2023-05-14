@@ -3,7 +3,10 @@ package ui;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontFormatException;
+import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.event.KeyEvent;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
@@ -13,6 +16,7 @@ import de.gurkenlabs.litiengine.gui.ImageComponent;
 import de.gurkenlabs.litiengine.gui.Menu;
 import de.gurkenlabs.litiengine.gui.screens.GameScreen;
 import de.gurkenlabs.litiengine.input.Input;
+import de.gurkenlabs.litiengine.resources.Resources;
 import raider.RaidersLogic;
 
 /**
@@ -22,6 +26,9 @@ import raider.RaidersLogic;
  */
 public class MenuScreen extends GameScreen implements IUpdateable{
 	  public static final String NAME = "MENU-SCREEN";
+	  
+	  private static final BufferedImage title1 = Resources.images().get("images/raiderLogo.png");
+      private static final Image title = title1.getScaledInstance((int)(title1.getWidth()), (int)(title1.getHeight()), Image.SCALE_DEFAULT);
 	  
 	  private Menu mainMenu;
 	  
@@ -41,7 +48,8 @@ public class MenuScreen extends GameScreen implements IUpdateable{
 	    Game.loop().attach(this);
 	    
 	    Game.window().getRenderComponent().setBackground(Color.BLACK);
-	    //Game.graphics().setBaseRenderScale(6f * Game.window().getResolutionScale());
+	    //Game.window().getRenderComponent().
+	    
 	    
 	    this.mainMenu.setForwardMouseEvents(false);
 	    this.mainMenu.getCellComponents().forEach(comp -> {
@@ -54,10 +62,7 @@ public class MenuScreen extends GameScreen implements IUpdateable{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	      //comp.setSpriteSheet(Resources.spritesheets().get("button-background"));
 	      comp.setTextAntialiasing(true);
-	      //comp.getAppearance().setForeColor(CARVING_COLOR);
-	      //comp.getAppearanceHovered().setForeColor(CARVING_COLOR.darker());
 	      comp.setForwardMouseEvents(false);
 	    });
 

@@ -50,7 +50,7 @@ public class ReaperAnimationController extends CreatureAnimationController<Reape
     	this.addRule(x -> (reaper.getEnemyState()==EnemyState.ORB) , x -> "orb-idle");
     	//this.addRule(x -> (reaper.getEnemyState()==EnemyState.HIT) && reaper.getIfSpawned()==false, x -> "reaper-spawn");
     	
-    	this.addRule(x -> (reaper.getFacingDirection() == Direction.RIGHT) && !reaper.isIdle(), x -> "reaper-idle-right");
+    	this.addRule(x -> (reaper.getFacingDirection() == Direction.RIGHT) && !reaper.isIdle(), x -> "reaper-idle-right");//needs to change
     	this.addRule(x -> (reaper.getFacingDirection() == Direction.LEFT) && !reaper.isIdle(), x -> "reaper-idle-left");
     	
     	

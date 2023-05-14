@@ -31,7 +31,7 @@ import entities.Enemy.EnemyState;
  * A class for the spin attack ability
  * @author Kevin Lorinc
  */
-@AbilityInfo(name = "SpinAttack", cooldown = 700, range = 0, impact = 15, impactAngle = 360, value = 50, duration = 400, multiTarget = true)
+@AbilityInfo(name = "SpinAttack", cooldown = 700, range = 0, impact = 15, impactAngle = 360, value = 5, duration = 400, multiTarget = true)
 public class SpinAttack extends Ability{
 	/**
 	 * creates a new ability attributed to a specific executor

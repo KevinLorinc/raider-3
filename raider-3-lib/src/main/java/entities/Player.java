@@ -157,7 +157,6 @@ public class Player extends Creature implements IUpdateable{
 	    animationController.addRule(x -> (this.calcFacingDirection() == Direction.LEFT) && !this.isIdle() && equipped, x -> "raider-walk-sword-left");
 	    animationController.addRule(x -> (this.calcFacingDirection() == Direction.RIGHT) && this.isIdle() && equipped, x -> "raider-idle-sword-right");
 	    animationController.addRule(x -> (this.calcFacingDirection() == Direction.RIGHT) && !this.isIdle() && equipped, x -> "raider-walk-sword-right");
-	    //animationController.addRule(x -> this.isDead(), x -> "raider-death"); make it say dead after
 	
 	    CreatureShadowImageEffect effect = new CreatureShadowImageEffect(this, new Color(24, 30, 28, 100));
 	    effect.setOffsetY(1);

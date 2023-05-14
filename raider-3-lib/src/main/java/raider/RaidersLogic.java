@@ -3,7 +3,9 @@ package raider;
 import java.util.HashMap;
 import java.util.LinkedList;
 
+import de.gurkenlabs.litiengine.Align;
 import de.gurkenlabs.litiengine.Game;
+import de.gurkenlabs.litiengine.Valign;
 import de.gurkenlabs.litiengine.entities.CollisionBox;
 import de.gurkenlabs.litiengine.entities.MapArea;
 import de.gurkenlabs.litiengine.entities.Spawnpoint;
@@ -40,6 +42,8 @@ public final class RaidersLogic {
 	
 	private static MapArea transitionArea;
 	
+	private static final LinkedList<MapArea> chestArea = new LinkedList<MapArea>();
+	
 	
 	/**
 	 * empty constructor
@@ -56,6 +60,11 @@ public final class RaidersLogic {
 		//Here we will also add spawns for the boss map
 		spawnEvents.put("boss1", new LinkedList<EnemySpawnEvent>());
 		spawnEvents.get("boss1").add(new EnemySpawnEvent("orbSpawn"));
+		
+		//adding trigger areas for chests
+		chestArea.add(new MapArea(270,15,40,30));
+		chestArea.add(new MapArea(785,530,40,30));
+		chestArea.add(new MapArea(850,-10,40,30));
 	}
 	
 	/**
@@ -114,12 +123,30 @@ public final class RaidersLogic {
 	    Game.world().environment().add(transitionArea);
 	}
 	
+	/**
+	 * checks if raider is in transition area
+	 * @return a boolean indicating if its in transition area
+	 */
 	public static boolean isInTransitionsArea() {
 		if(transitionArea.getX() <= Player.instance().getX() && transitionArea.getY() <= Player.instance().getY()) {
 			return true;
 	    }
 		return false;
 	}
+	
+	/**
+	 * checks if raider is in chest area
+	 * @return a int indicating if its in chest area and which chest it is
+	 */
+	public static int isInChestArea() {
+		for(int i = 0; i<chestArea.size();i++) {
+			if((chestArea.get(i).getX() <= Player.instance().getX()) && ((chestArea.get(i).getX()+ 40) >= Player.instance().getX())
+				&& (chestArea.get(i).getY() <= Player.instance().getY()) && ((chestArea.get(i).getY()+ 30) >= Player.instance().getY())) return i+1;
+		}
+		return -1;
+	}
+	
+	
 	
 	/**
 	 * gets the state of the game
@@ -154,7 +181,7 @@ public final class RaidersLogic {
 		Game.loop().perform(1000, () -> {
 			  Game.world().unloadEnvironment();
 			  Game.world().loadEnvironment(newEnvironment);
-		      Game.window().getRenderComponent().fadeIn(1500);
+			  Game.window().getRenderComponent().fadeIn(1500);
 		});
 	}
 	

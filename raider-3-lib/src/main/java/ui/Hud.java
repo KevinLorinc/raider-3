@@ -190,6 +190,11 @@ public class Hud extends GuiComponent{
 					g.setFont(gameFont.deriveFont(Font.TRUETYPE_FONT,15));
 					Game.graphics().renderText(g, "Press 'E' to Enter", Player.instance().getX()-5, Player.instance().getY()+40);
 				}
+				
+				if(RaidersLogic.isInChestArea() != -1) {
+					g.setFont(gameFont.deriveFont(Font.TRUETYPE_FONT,15));
+					Game.graphics().renderText(g, "Press 'E' to Open", Player.instance().getX()-5, Player.instance().getY()+40);
+				}
 			} catch (FontFormatException e) {
 				e.printStackTrace();
 			} catch (IOException e) {

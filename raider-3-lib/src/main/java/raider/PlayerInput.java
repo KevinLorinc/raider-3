@@ -81,6 +81,18 @@ public class PlayerInput {
 		  if(RaidersLogic.isInTransitionsArea()) {
 			  RaidersLogic.transition("boss1");
 		  }
+		  
+		  if(RaidersLogic.isInChestArea() == 1) {
+			  //add icon
+		  }
+		  
+		  if(RaidersLogic.isInChestArea() == 2) {
+			  //add icon
+		  }
+		  
+		  if(RaidersLogic.isInChestArea() == 3) {
+			  Player.instance().getHitPoints().setToMax();
+		  }
 	  });
   	}
 }
