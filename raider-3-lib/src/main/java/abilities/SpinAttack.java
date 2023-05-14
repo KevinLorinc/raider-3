@@ -23,6 +23,8 @@ import entities.Enemy;
 import entities.Minion;
 import entities.MinionController;
 import entities.Player;
+import entities.Reaper;
+import entities.ReaperController;
 import entities.Enemy.EnemyState;
 
 /**
@@ -82,6 +84,11 @@ public class SpinAttack extends Ability{
 				      ((MinionController)(hit.movement())).setApplyTime(Game.time().now());
 			      }
 			      
+			      if(hit instanceof Reaper) {
+				     if(((Reaper)hit).getEnemyState() == EnemyState.ORB) {
+			    	    ((ReaperController)(hit.movement())).setActionTime(Game.time().now());
+			    	 }
+				  }	
 			      hit.setEnemyState(EnemyState.HIT);
 			      
 			    }
