@@ -37,6 +37,8 @@ public class Hud extends GuiComponent{
 	private static final Image wasd = wasd1.getScaledInstance((int)(wasd1.getWidth()*.1), (int)(wasd1.getHeight()*.1 ), Image.SCALE_DEFAULT);
 	private static final BufferedImage q1 = Resources.images().get("images/qIcon.png");
 	private static final Image q = q1.getScaledInstance((int)(q1.getWidth()*.04), (int)(q1.getHeight()*.04), Image.SCALE_DEFAULT);
+	private static final BufferedImage fist1 = Resources.images().get("images/fistIcon.png");
+	private static final Image fist = fist1.getScaledInstance((int)(fist1.getWidth()*2.5), (int)(fist1.getHeight()*2.5), Image.SCALE_DEFAULT);
 	
 	/**
 	 * creates an instance of the Hud class
@@ -165,6 +167,7 @@ public class Hud extends GuiComponent{
 			RoundRectangle2D rect = new RoundRectangle2D.Double(x + (i*40), y, width, height, 1.5, 1.5);
 			g.setColor(Color.LIGHT_GRAY);
 			Game.graphics().renderShape(g, rect);
+			Game.graphics().renderImage(g, fist, x+1, y-3);
 		}
 	}
 	

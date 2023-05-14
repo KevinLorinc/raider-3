@@ -257,11 +257,23 @@ public class Player extends Creature implements IUpdateable{
 	}
 	
 	/**
-	 * 
+	 * if equipped
 	 * @return whether player has sword equipped or not
 	 */
 	public boolean getEquipped() {
 		return equipped;
+	}
+	
+	/**
+	 * gets the inventory
+	 * @return inventory
+	 */
+	public HashMap<String,Boolean> getInventory(){
+		return inventory;
+	}
+	
+	public void updateInventory(String item,boolean hasItem) {
+		
 	}
 	
 	/**
@@ -281,7 +293,6 @@ public class Player extends Creature implements IUpdateable{
 			toReturn = Direction.RIGHT;
 		}
 		return toReturn;
-		
 	}
 	
 	/**

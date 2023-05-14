@@ -22,6 +22,7 @@ import de.gurkenlabs.litiengine.gui.screens.GameScreen;
 import de.gurkenlabs.litiengine.input.Input;
 import de.gurkenlabs.litiengine.resources.Resources;
 import raider.RaidersLogic;
+import raider.RaidersMath;
 
 /**
  * creates a class for menu screen and initializes that screen. Allows for better screen management
@@ -131,9 +132,12 @@ public class MenuScreen extends GameScreen implements IUpdateable{
 				BufferedImage title1 = ImageIO.read(new File("images/raiderLogo.png"));
 				int w = title1.getWidth();
 				int h = title1.getHeight();
-				BufferedImage title = new BufferedImage(w*8, h*8, BufferedImage.TYPE_INT_ARGB);
+				int width = Game.window().getWidth();
+				int height = Game.window().getHeight();
+				double renderScale = RaidersMath.getRenderScale(width,height);
+				BufferedImage title = new BufferedImage((int)(w*Math.pow(renderScale, 2.08)), (int)(h*Math.pow(renderScale, 2.08)), BufferedImage.TYPE_INT_ARGB);
 				AffineTransform at = new AffineTransform();
-				at.scale(8.0, 8.0);
+				at.scale(Math.pow(renderScale, 2.08), Math.pow(renderScale, 2.08));
 				AffineTransformOp scaleOp = new AffineTransformOp(at, AffineTransformOp.TYPE_NEAREST_NEIGHBOR);
 				title = scaleOp.filter(title1, title);
 			    this.getComponents().add(new ImageComponent(100,50,title));

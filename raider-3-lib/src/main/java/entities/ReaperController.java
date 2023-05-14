@@ -53,7 +53,7 @@ public class ReaperController extends MovementController<Reaper>{
 			}
 		}
 		
-		else if(Game.time().since(actionTime) <= 3000) {//2500
+		else if(Game.time().since(actionTime) <= 3000) {
 			if(thisReaper.getEnemyState()==EnemyState.HIT && !thisReaper.getIsSpawned()) {
 				thisReaper.animations().play("reaper-spawn");
 				Game.loop().perform(2000, () -> {
