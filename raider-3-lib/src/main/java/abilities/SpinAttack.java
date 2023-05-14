@@ -81,7 +81,9 @@ public class SpinAttack extends Ability{
 			    	  ((MinionController)(hit.movement())).setApplyPoint(Player.instance().getCollisionBoxCenter());
 				      ((MinionController)(hit.movement())).setApplyTime(Game.time().now());
 			      }
+			      
 			      hit.setEnemyState(EnemyState.HIT);
+			      
 			    }
 		    }
 	    }

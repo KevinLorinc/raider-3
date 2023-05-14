@@ -48,9 +48,12 @@ public class ReaperAnimationController extends CreatureAnimationController<Reape
     	
     	this.addRule(x -> (reaper.getEnemyState()==EnemyState.NOTSPAWNED) , x -> "orb-empty");
     	this.addRule(x -> (reaper.getEnemyState()==EnemyState.ORB) , x -> "orb-idle");
+    	//this.addRule(x -> (reaper.getEnemyState()==EnemyState.HIT) && reaper.getIfSpawned()==false, x -> "reaper-spawn");
     	
     	this.addRule(x -> (reaper.getFacingDirection() == Direction.RIGHT) && !reaper.isIdle(), x -> "reaper-idle-right");
     	this.addRule(x -> (reaper.getFacingDirection() == Direction.LEFT) && !reaper.isIdle(), x -> "reaper-idle-left");
+    	
+    	this.addRule(x -> reaper.isDead(), x -> "reaper-death");
     	
     	CreatureShadowImageEffect effect = new CreatureShadowImageEffect(reaper, new Color(24, 30, 28, 100));
 	    effect.setOffsetY(1);

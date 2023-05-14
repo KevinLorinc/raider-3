@@ -3,6 +3,7 @@ package entities;
 import java.awt.Color;
 
 import abilities.MinionAttack;
+import abilities.ReaperAttack;
 import de.gurkenlabs.litiengine.Direction;
 import de.gurkenlabs.litiengine.Game;
 import de.gurkenlabs.litiengine.IUpdateable;
@@ -31,7 +32,8 @@ import de.gurkenlabs.litiengine.resources.Resources;
 @CombatInfo(hitpoints = 100, team = 2)
 public class Reaper extends Enemy implements IUpdateable{
 	private final Spawnpoint spawn;
-	//private final ReaperAttack reaperAttack = new ReaperAttack(this);
+	private final ReaperAttack reaperAttack = new ReaperAttack(this);
+	private boolean isSpawned;
 	
 	/**
 	 * creates a new minion with a given spawn point
@@ -44,6 +46,8 @@ public class Reaper extends Enemy implements IUpdateable{
 	    this.addTag("reaper");
 	    this.addTag("enemy");
 	    this.addTag("boss");
+	    
+	    isSpawned=true;
 	    
 	    this.setEnemyState(EnemyState.NOTSPAWNED);
 	    System.out.println(this.getEnemyState()+"1");
@@ -85,6 +89,14 @@ public class Reaper extends Enemy implements IUpdateable{
 	public Spawnpoint getSpawn() {
 	    return spawn;
 	}
+	
+	public boolean getIfSpawned() {
+		return isSpawned;
+	}
+	
+	public void setIfSpawned(boolean state) {
+		isSpawned=state;
+	}
 
 	/**
 	 * checks if this enemy is in range of players
@@ -95,18 +107,15 @@ public class Reaper extends Enemy implements IUpdateable{
 	}
 	
 	public void update() {
-		double dist = Player.instance().getCenter().distance(this.getCenter());
-		if(dist<150) {
 			if(Player.instance().getX()<this.getX()) this.setFacingDirection(Direction.LEFT);
 			else this.setFacingDirection(Direction.RIGHT);
-		}
 	}
 	
 	/**
-	 * gets the minions attack ability
+	 * gets the reaper's attack ability
 	 * @return the attack ability
 	 */
-	//public ReaperAttack getMinionAttack() {
-	//    return reaperAttack;
-	//  }
+	public ReaperAttack getReaperAttack() {
+	    return reaperAttack;
+	  }
 }

@@ -23,7 +23,8 @@ public abstract class Enemy extends Creature {
 		NOTSPAWNED,
 		ORB,
 		ROAMING,
-		HIT
+		HIT,
+		IDLE
 	}
 	
 	private boolean engaged;

@@ -96,14 +96,14 @@ public class MeleeAttack extends Ability{
 		      ((MinionController)(hit.movement())).setApplyTime(Game.time().now());
 		      }
 		      
-		      if(hit instanceof Reaper) {
-		    	  Reaper reaper = (Reaper)hit;
-		    	  if (reaper.getEnemyState()==EnemyState.ORB) {
-		    		  reaper.animations().play("reaper-spawn");
-		    		  reaper.setEnemyState(EnemyState.ROAMING);
-		    	  }
-		      }
-		      
+//		      if(hit instanceof Reaper) {
+//		    	  Reaper reaper = (Reaper)hit;
+//		    	  if (reaper.getEnemyState()==EnemyState.ORB) {
+//		    		  reaper.animations().play("reaper-spawn");
+//		    		  reaper.setEnemyState(EnemyState.ROAMING);
+//		    	  }
+//		      }
+//		      
 	    	  hit.setEnemyState(EnemyState.HIT);
 		    }
 		}

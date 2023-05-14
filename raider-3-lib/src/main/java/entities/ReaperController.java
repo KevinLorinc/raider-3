@@ -5,6 +5,7 @@ import de.gurkenlabs.litiengine.Game;
 import de.gurkenlabs.litiengine.entities.behavior.AStarGrid;
 import de.gurkenlabs.litiengine.entities.behavior.AStarPathFinder;
 import de.gurkenlabs.litiengine.entities.behavior.EntityNavigator;
+import de.gurkenlabs.litiengine.physics.Force;
 import de.gurkenlabs.litiengine.physics.MovementController;
 import entities.Enemy.EnemyState;
 import raider.RaidersLogic;
@@ -20,6 +21,7 @@ public class ReaperController extends MovementController<Reaper>{
 	private EntityNavigator navi;
 	private long lastNavigate;
 	private Reaper thisReaper;
+	private long action;
 	
 	private boolean removed;
 	
@@ -32,6 +34,7 @@ public class ReaperController extends MovementController<Reaper>{
 		AStarGrid grid = RaidersLogic.getCurrentGrid();
 		
 		thisReaper = movingEntity;
+		action = 0;
 		
 	    this.navi = new EntityNavigator(movingEntity, new AStarPathFinder(grid));
 	}
@@ -43,18 +46,30 @@ public class ReaperController extends MovementController<Reaper>{
 	public void update(){
 		super.update();
 		
-		if(thisReaper.getX()-Player.instance().getX()<150 && thisReaper.getEnemyState()==EnemyState.NOTSPAWNED) {
+		if(thisReaper.getX()-Player.instance().getX()<150 && thisReaper.getEnemyState()==EnemyState.NOTSPAWNED){
 			thisReaper.animations().play("orb-spawn");
 			thisReaper.setEnemyState(EnemyState.ORB);
 		}
 		
-	    if (RaidersLogic.getState() != GameState.INGAME) {
+		if(thisReaper.getEnemyState()==EnemyState.HIT && thisReaper.getIfSpawned()==false) {
+			thisReaper.animations().play("reaper-spawn");
+			action = Game.time().now();
+			thisReaper.setIfSpawned(true);
+		}
+		
+		if(thisReaper.getEnemyState()==EnemyState.ORB)
+			return;
+		
+		if(Game.time().since(action)<3000)
+			return;
+		else if(thisReaper.getEnemyState()==EnemyState.HIT)
+			thisReaper.setEnemyState(EnemyState.IDLE);
+		
+	    if (RaidersLogic.getState() != GameState.INGAME) 
 	      return;
-	    }
 
-	    if (this.getEntity().getTarget() == null || this.removed) {
+	    if (this.getEntity().getTarget() == null || this.removed) 
 	      return;
-	    }
 	    
 	    if(this.getEntity().getHitPoints().getRelativeCurrentValue() <= 0) {
 	    	removed = true;
@@ -70,6 +85,23 @@ public class ReaperController extends MovementController<Reaper>{
 	    
 	    if (Game.time().since(this.lastNavigate) < NAVIGATE_DELAY) {
 	        return;
+	    }
+	    
+	    double dist = this.getEntity().getTarget().getCenter().distance(this.getEntity().getCenter());
+	    
+	    
+	    if(dist < 150 && !this.navi.isNavigating()) {
+	    	this.navi.navigate(this.getEntity().getTarget().getCenter());
+	    } else  if (this.navi.isNavigating()){
+	    	this.navi.stop();
+	    	if (this.getEntity().getReaperAttack().canCast() && dist < 20) {
+		    	this.getEntity().getReaperAttack().cast();
+		    	if(thisReaper.getFacingDirection() == Direction.RIGHT)
+		    		thisReaper.animations().play("reaper-attack-right");
+		    	else
+		    		thisReaper.animations().play("reaper-attack-left");
+	    	}
+	    	
 	    }
 	}
 }
