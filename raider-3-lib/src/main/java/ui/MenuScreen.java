@@ -84,7 +84,7 @@ public class MenuScreen extends GameScreen implements IUpdateable{
 		    final double centerY = Game.window().getResolution().getHeight() * 1 / 2;
 		    final double buttonWidth = 450;
 
-		    this.mainMenu = new Menu(centerX - buttonWidth / 2, centerY * 1.3, buttonWidth, centerY / 2, "Play", "Instructions","Exit");
+		    this.mainMenu = new Menu(centerX - buttonWidth / 2, centerY * 1.3, buttonWidth, centerY / 2, "Play", "Exit");
 
 		    Input.keyboard().onKeyReleased(event -> {
 		      if (this.isSuspended()) {
@@ -112,7 +112,7 @@ public class MenuScreen extends GameScreen implements IUpdateable{
 		      if (event.getKeyCode() == KeyEvent.VK_ENTER || event.getKeyCode() == KeyEvent.VK_SPACE) {
 		        switch (this.mainMenu.getCurrentSelection()) {
 		          case 0 -> this.startGame();
-		          case 2 -> System.exit(0);
+		          case 1 -> System.exit(0);
 		        }
 
 		      }

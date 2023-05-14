@@ -14,6 +14,7 @@ import javax.imageio.*;
 
 import de.gurkenlabs.litiengine.Game;
 import de.gurkenlabs.litiengine.gui.GuiComponent;
+import de.gurkenlabs.litiengine.resources.Resources;
 import entities.Enemy;
 import entities.Enemy.EnemyState;
 import entities.Player;
@@ -28,7 +29,14 @@ import raider.RaidersMath;
  *
  */
 public class Hud extends GuiComponent{
-	//private static Direction dir;
+	private static final BufferedImage leftClick1 = Resources.images().get("images/leftClickIcon.png");
+	private static final Image leftClick = leftClick1.getScaledInstance((int)(leftClick1.getWidth() * .15), (int)(leftClick1.getHeight() * .15), Image.SCALE_DEFAULT);
+	private static final BufferedImage space1 = Resources.images().get("images/spaceBarIcon.png");
+	private static final Image space= space1.getScaledInstance((int)(space1.getWidth() * .15), (int)(space1.getHeight() * .15), Image.SCALE_DEFAULT);
+	private static final BufferedImage wasd1 = Resources.images().get("images/wasdIcon.png");
+	private static final Image wasd = wasd1.getScaledInstance((int)(wasd1.getWidth()*.1), (int)(wasd1.getHeight()*.1 ), Image.SCALE_DEFAULT);
+	private static final BufferedImage q1 = Resources.images().get("images/qIcon.png");
+	private static final Image q = q1.getScaledInstance((int)(q1.getWidth()*.04), (int)(q1.getHeight()*.04), Image.SCALE_DEFAULT);
 	
 	/**
 	 * creates an instance of the Hud class
@@ -57,7 +65,11 @@ public class Hud extends GuiComponent{
 			e.printStackTrace();
 		}
 		this.renderInventory(g);
-		this.renderInstructions(g);
+		try {
+			this.renderControls(g);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	
@@ -154,18 +166,39 @@ public class Hud extends GuiComponent{
 		}
 	}
 	
-	private void renderInstructions(Graphics2D g) {
-		if(RaidersLogic.isInTransitionsArea()) {
+	private void renderControls(Graphics2D g) throws IOException {
+		if(Player.instance().getState() == PlayerState.CONTROLLABLE) {
 			try {
 				Font gameFont = Font.createFont(Font.TRUETYPE_FONT, new File("misc/gameFont.ttf"));
+				g.setFont(gameFont.deriveFont(Font.TRUETYPE_FONT,20));
+				
+				Game.graphics().renderImage(g, wasd, Game.world().camera().getViewport().getX()+ 192,Game.world().camera().getViewport().getY() + 320);
+				Game.graphics().renderText(g, "move", Game.world().camera().getViewport().getX()+ 172,Game.world().camera().getViewport().getY() + 333);
+				
+				Game.graphics().renderImage(g, q, Game.world().camera().getViewport().getX()+ 197,Game.world().camera().getViewport().getY() + 344);
+				Game.graphics().renderText(g, "swap", Game.world().camera().getViewport().getX()+ 172,Game.world().camera().getViewport().getY() + 350);
+				
 				g.setFont(gameFont.deriveFont(Font.TRUETYPE_FONT,15));
+				if(Player.instance().getEquipped()) {
+					Game.graphics().renderImage(g, leftClick, Player.instance().getX()+ 48,Player.instance().getY() + 8);
+					Game.graphics().renderText(g, "attack", Player.instance().getX()+ 30,Player.instance().getY() + 16);
+					
+					Game.graphics().renderImage(g, space, Player.instance().getX()+ 48,Player.instance().getY() + 18);
+					Game.graphics().renderText(g, "spin", Player.instance().getX()+ 30,Player.instance().getY() + 25);
+				}
+				
+				if(RaidersLogic.isInTransitionsArea()) {
+					Game.graphics().renderText(g, "Press 'E' to Enter", Player.instance().getX()-5, Player.instance().getY()+40);
+				}
 			} catch (FontFormatException e) {
 				e.printStackTrace();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			Game.graphics().renderText(g, "Press 'E' to Enter", Player.instance().getX()-5, Player.instance().getY()+40);
+			
 		}
+		
+		
 	}
 	
 	public void setSlot(int newSlot) {
