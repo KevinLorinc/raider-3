@@ -149,12 +149,13 @@ public final class RaidersLogic {
 	}
 	
 	public static void transition(String newEnvironment) {
-		//Game.loop().perform(3000, () -> {
-			  Game.window().getRenderComponent().fadeOut(1500);
+		Game.window().getRenderComponent().fadeOut(1000);
+				
+		Game.loop().perform(1000, () -> {
+			  Game.world().unloadEnvironment();
+			  Game.world().loadEnvironment(newEnvironment);
 		      Game.window().getRenderComponent().fadeIn(1500);
-		      Game.world().unloadEnvironment();
-		      Game.world().loadEnvironment(newEnvironment);
-		//});
+		});
 	}
 	
 	/**

@@ -46,8 +46,6 @@ public class Hud extends GuiComponent{
 	
 	protected Hud() {
 		super(0, 0, Game.window().getResolution().getWidth(), Game.window().getResolution().getHeight());
-		//dir = Direction.UP;
-		//add amination controllers here
 	}
 
 	/**
@@ -150,6 +148,10 @@ public class Hud extends GuiComponent{
 		}
 	}
 	
+	/**
+	 * adds the inventory slots
+	 * @param g the graphic to add it to
+	 */
 	private void renderInventory(Graphics2D g) {
 		final double width = 30;
 		final double height = 30;
@@ -172,22 +174,20 @@ public class Hud extends GuiComponent{
 				Font gameFont = Font.createFont(Font.TRUETYPE_FONT, new File("misc/gameFont.ttf"));
 				g.setFont(gameFont.deriveFont(Font.TRUETYPE_FONT,20));
 				
-				Game.graphics().renderImage(g, wasd, Game.world().camera().getViewport().getMinX()+ 192,Game.world().camera().getViewport().getMaxY() - 40);
-				Game.graphics().renderText(g, "move", Game.world().camera().getViewport().getMinX()+ 172,Game.world().camera().getViewport().getMaxY() - 30);
+				Game.graphics().renderImage(g, wasd, Game.world().camera().getViewport().getMinX()+ 194,Game.world().camera().getViewport().getMaxY() - 40);
+				Game.graphics().renderText(g, "move", Game.world().camera().getViewport().getMinX()+ 174,Game.world().camera().getViewport().getMaxY() - 30);
 				
-				Game.graphics().renderImage(g, q, Game.world().camera().getViewport().getMinX()+ 197,Game.world().camera().getViewport().getMaxY() - 20);
-				Game.graphics().renderText(g, "swap", Game.world().camera().getViewport().getMinX()+ 172,Game.world().camera().getViewport().getMaxY() - 13);
+				Game.graphics().renderImage(g, q, Game.world().camera().getViewport().getMinX()+ 199,Game.world().camera().getViewport().getMaxY() - 20);
+				Game.graphics().renderText(g, "swap", Game.world().camera().getViewport().getMinX()+ 174,Game.world().camera().getViewport().getMaxY() - 13);
 				
-				g.setFont(gameFont.deriveFont(Font.TRUETYPE_FONT,15));
-				if(Player.instance().getEquipped()) {
-					Game.graphics().renderImage(g, leftClick, Player.instance().getX()+ 48,Player.instance().getY() + 8);
-					Game.graphics().renderText(g, "attack", Player.instance().getX()+ 30,Player.instance().getY() + 16);
-					
-					Game.graphics().renderImage(g, space, Player.instance().getX()+ 48,Player.instance().getY() + 18);
-					Game.graphics().renderText(g, "spin", Player.instance().getX()+ 30,Player.instance().getY() + 25);
-				}
+				Game.graphics().renderImage(g, leftClick, Game.world().camera().getViewport().getMinX()+ 245,Game.world().camera().getViewport().getMaxY() - 38);
+				Game.graphics().renderText(g, "attack", Game.world().camera().getViewport().getMinX()+ 220,Game.world().camera().getViewport().getMaxY() - 30);
+				
+				Game.graphics().renderImage(g, space, Game.world().camera().getViewport().getMinX()+ 245,Game.world().camera().getViewport().getMaxY() - 20);
+				Game.graphics().renderText(g, "spin", Game.world().camera().getViewport().getMinX()+ 223,Game.world().camera().getViewport().getMaxY() - 13);
 				
 				if(RaidersLogic.isInTransitionsArea()) {
+					g.setFont(gameFont.deriveFont(Font.TRUETYPE_FONT,15));
 					Game.graphics().renderText(g, "Press 'E' to Enter", Player.instance().getX()-5, Player.instance().getY()+40);
 				}
 			} catch (FontFormatException e) {
