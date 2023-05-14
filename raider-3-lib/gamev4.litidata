@@ -367,14 +367,14 @@
    </layer>
   </map>
   <map version="1.1" tiledversion="1.10.0" orientation="orthogonal" renderorder="right-down" width="60" height="20" tilewidth="32" tileheight="32" infinite="0" nextlayerid="17" nextobjectid="28" name="tutorial">
-   <tileset firstgid="1" source="../git/raider-1/raider-lib/bin/TileSets/grass.tsx"/>
-   <tileset firstgid="65" source="../git/raider-1/raider-lib/bin/TileSets/props.tsx"/>
-   <tileset firstgid="321" source="../git/raider-1/raider-lib/bin/TileSets/walls.tsx"/>
-   <tileset firstgid="577" source="../git/raider-1/raider-lib/bin/TileSets/plants.tsx"/>
-   <tileset firstgid="833" source="../git/raider-1/raider-lib/bin/TileSets/structures.tsx"/>
-   <tileset firstgid="1089" source="../git/raider-1/raider-lib/bin/TileSets/shadows.tsx"/>
-   <tileset firstgid="1345" source="../git/raider-1/raider-lib/bin/TileSets/plantShadows.tsx"/>
-   <tileset firstgid="1601" source="../git/raider-1/raider-lib/bin/TileSets/stoneFloor.tsx"/>
+   <tileset firstgid="1" source="grass.tsx"/>
+   <tileset firstgid="65" source="props.tsx"/>
+   <tileset firstgid="321" source="walls.tsx"/>
+   <tileset firstgid="577" source="plants.tsx"/>
+   <tileset firstgid="833" source="structures.tsx"/>
+   <tileset firstgid="1089" source="shadows.tsx"/>
+   <tileset firstgid="1345" source="plantShadows.tsx"/>
+   <tileset firstgid="1601" source="stoneFloor.tsx"/>
    <layer id="1" name="FloorLayer" width="60" height="20">
     <data encoding="csv">
 9,1,1,1,1,1,1,1,9,9,30,9,1,1,1,1,1,1,32,1,1,1,9,9,9,9,9,9,9,9,9,29,9,9,29,29,9,9,9,9,29,9,9,9,9,9,9,6,9,9,9,9,9,9,1609,1610,1610,1610,1610,1610,
@@ -416,7 +416,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1245,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,186,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1245,1245,0,0,0,0,0,0,0,0,0,0,0,0,1245,0,0,0,0,0,0,1245,0,1245,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1245,1245,0,0,0,0,0,0,0,0,0,0,0,0,1245,0,0,0,0,0,0,1245,0,1245,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1245,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1245,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1245,0,1245,1245,0,0,0,1245,0,0,0,0,0,0,0,1245,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1245,0,0,0,0,0,0,0,0,0,0,1245,0,0,0,0,
@@ -499,13 +499,13 @@
     <data encoding="csv">
 0,0,0,0,0,0,0,0,0,68,0,0,0,72,0,204,205,206,0,152,0,0,0,0,84,0,0,84,0,0,312,0,0,0,306,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,234,0,0,
 0,0,0,0,0,0,0,0,0,84,0,79,0,88,0,220,221,222,0,168,0,0,79,0,0,0,0,0,0,0,0,0,0,0,0,0,305,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,218,204,205,206,218,
-0,0,0,0,0,0,0,0,0,0,0,95,0,0,0,236,237,238,0,0,0,0,95,0,0,0,0,104,104,306,338,349,349,349,349,349,349,349,349,349,350,349,350,350,349,350,350,340,0,0,0,0,0,0,0,234,220,221,222,234,
+0,0,0,0,0,0,0,0,0,0,0,95,0,0,0,236,237,238,0,0,0,0,95,0,0,0,0,104,104,306,338,349,0,349,349,349,349,349,349,349,350,349,350,350,349,350,350,340,0,0,0,0,0,0,0,234,220,221,222,234,
 0,0,0,0,0,0,0,0,0,0,0,111,0,0,0,0,0,0,0,0,0,0,111,0,0,0,70,120,120,70,362,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,356,0,0,0,0,0,0,79,0,236,218,238,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,86,136,136,86,378,0,0,0,0,341,342,910,911,850,851,344,343,343,343,343,856,379,0,0,0,0,0,0,95,0,0,234,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,378,0,0,0,0,357,358,926,927,866,867,360,359,359,359,359,872,379,0,0,0,0,0,0,111,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,305,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,378,0,0,0,0,379,0,214,214,882,883,0,0,0,0,0,888,379,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,305,0,0,0,0,0,0,0,0,0,0,0,0,378,0,0,0,0,347,309,310,0,0,0,0,0,0,0,0,0,379,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,378,0,0,0,0,363,0,341,342,850,851,343,343,343,343,343,343,372,0,0,0,148,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,378,0,0,0,0,363,0,341,342,850,851,343,343,343,343,343,343,372,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,138,0,138,0,138,0,138,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,378,0,0,0,0,379,314,357,358,866,867,359,359,359,359,359,359,388,0,0,0,0,0,0,79,0,0,0,0,0,
 0,0,154,0,154,0,154,0,154,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,305,0,0,0,370,0,0,0,0,372,0,363,0,882,883,0,0,0,0,0,0,0,0,0,0,0,0,0,95,0,0,0,0,0,
 186,0,170,0,170,0,170,0,170,0,0,0,0,0,0,0,0,0,314,0,0,0,0,0,0,0,0,0,0,0,386,0,0,0,0,388,0,379,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,111,0,0,218,0,0,
@@ -523,23 +523,23 @@
     <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,577,578,579,580,581,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,347,0,0,0,0,0,0,
-0,0,0,0,593,594,595,596,597,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,125,0,148,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,593,594,595,596,597,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,125,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,609,610,611,612,613,0,0,0,581,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,141,0,0,0,0,0,0,0,0,166,166,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,577,0,625,626,627,628,629,0,0,0,0,668,669,0,0,0,0,667,668,669,0,667,668,669,0,0,0,0,125,0,0,0,0,77,0,0,0,182,182,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,641,642,643,644,645,0,0,0,0,0,0,0,0,0,0,683,684,602,603,604,684,685,0,0,0,0,141,0,0,0,0,93,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,618,619,620,0,0,0,0,0,0,125,0,0,0,0,77,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,641,0,0,0,0,0,0,0,0,0,0,0,0,634,635,636,0,0,0,0,0,0,141,0,0,0,0,93,0,0,0,0,0,0,0,0,180,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,641,0,0,0,0,0,0,0,0,0,0,0,0,634,635,636,0,0,0,0,0,0,141,0,0,0,0,93,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,645,0,657,0,0,0,0,0,581,0,0,0,0,0,0,650,651,652,0,0,0,0,0,0,125,0,0,0,0,77,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,657,658,659,660,661,0,0,0,0,0,0,0,0,0,0,148,0,0,0,0,0,0,0,0,0,0,0,0,141,0,0,0,0,93,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,657,658,659,660,661,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,141,0,0,0,0,93,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,148,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,347,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,582,583,584,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 577,578,579,580,581,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,598,599,600,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 593,594,595,596,597,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,614,615,616,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 609,610,611,612,613,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,630,631,632,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-625,626,627,628,629,0,0,0,0,0,0,0,148,0,0,0,0,0,0,0,0,0,0,0,646,647,648,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+625,626,627,628,629,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,646,647,648,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 641,642,643,644,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
    </layer>
@@ -834,29 +834,28 @@
       <property name="collisionValign" value="DOWN"/>
      </properties>
     </object>
-    <object id="51" type="COLLISIONBOX" x="1249.09" y="550.794" width="29.8125" height="30">
-     <properties>
-      <property name="collisionAlign" value="CENTER"/>
-      <property name="collisionType" value="STATIC"/>
-      <property name="collisionValign" value="DOWN"/>
-      <property name="isObstructingLight" type="bool" value="false"/>
-     </properties>
-    </object>
-    <object id="52" type="COLLISIONBOX" x="1312.85" y="614.771" width="29.9091" height="3">
+    <object id="51" type="COLLISIONBOX" x="1249.09" y="550.794" width="29.8125" height="10">
      <properties>
       <property name="collisionAlign" value="CENTER"/>
       <property name="collisionType" value="STATIC"/>
       <property name="collisionValign" value="DOWN"/>
      </properties>
     </object>
-    <object id="53" type="COLLISIONBOX" x="1345" y="519" width="29.5" height="3">
+    <object id="52" type="COLLISIONBOX" x="1312.85" y="614.771" width="29.9091" height="10">
      <properties>
       <property name="collisionAlign" value="CENTER"/>
       <property name="collisionType" value="STATIC"/>
       <property name="collisionValign" value="DOWN"/>
      </properties>
     </object>
-    <object id="54" type="COLLISIONBOX" x="1409.25" y="582.688" width="29.75" height="3">
+    <object id="53" type="COLLISIONBOX" x="1345" y="519" width="29.5" height="10">
+     <properties>
+      <property name="collisionAlign" value="CENTER"/>
+      <property name="collisionType" value="STATIC"/>
+      <property name="collisionValign" value="DOWN"/>
+     </properties>
+    </object>
+    <object id="54" type="COLLISIONBOX" x="1409.25" y="582.688" width="29.75" height="10">
      <properties>
       <property name="collisionAlign" value="CENTER"/>
       <property name="collisionType" value="STATIC"/>
@@ -947,14 +946,14 @@
       <property name="collisionValign" value="DOWN"/>
      </properties>
     </object>
-    <object id="67" type="COLLISIONBOX" x="1505" y="550.87" width="29.8182" height="3">
+    <object id="67" type="COLLISIONBOX" x="1505" y="550.87" width="29.8182" height="10">
      <properties>
       <property name="collisionAlign" value="CENTER"/>
       <property name="collisionType" value="STATIC"/>
       <property name="collisionValign" value="DOWN"/>
      </properties>
     </object>
-    <object id="68" type="COLLISIONBOX" x="1504" y="614" width="32" height="3">
+    <object id="68" type="COLLISIONBOX" x="1504" y="614" width="32" height="10">
      <properties>
       <property name="collisionAlign" value="CENTER"/>
       <property name="collisionType" value="STATIC"/>
@@ -1115,28 +1114,7 @@
       <property name="collisionValign" value="DOWN"/>
      </properties>
     </object>
-    <object id="24" type="COLLISIONBOX" x="384" y="576" width="32" height="17">
-     <properties>
-      <property name="collisionAlign" value="CENTER"/>
-      <property name="collisionType" value="STATIC"/>
-      <property name="collisionValign" value="DOWN"/>
-     </properties>
-    </object>
     <object id="25" type="COLLISIONBOX" x="1250.5" y="352.392" width="27" height="12.3068">
-     <properties>
-      <property name="collisionAlign" value="CENTER"/>
-      <property name="collisionType" value="STATIC"/>
-      <property name="collisionValign" value="DOWN"/>
-     </properties>
-    </object>
-    <object id="26" type="COLLISIONBOX" x="1409.5" y="225.18" width="27" height="12.3068">
-     <properties>
-      <property name="collisionAlign" value="CENTER"/>
-      <property name="collisionType" value="STATIC"/>
-      <property name="collisionValign" value="DOWN"/>
-     </properties>
-    </object>
-    <object id="27" type="COLLISIONBOX" x="1634.83" y="256.18" width="27" height="12.3068">
      <properties>
       <property name="collisionAlign" value="CENTER"/>
       <property name="collisionType" value="STATIC"/>
@@ -1580,7 +1558,7 @@
     </object>
    </objectgroup>
    <objectgroup id="12" name="spawns" visible="1">
-    <object id="83" name="enter" type="SPAWNPOINT" x="64" y="96" width="32" height="32">
+    <object id="83" name="enter" type="SPAWNPOINT" x="1800" y="250" width="32" height="32">
      <properties>
       <property name="collisionAlign" value="CENTER"/>
       <property name="collisionType" value="DYNAMIC"/>
@@ -1843,13 +1821,13 @@
  </spriteSheets>
  <tilesets>
   <tileset firstgid="0" name="grass" tilewidth="32" tileheight="32" tilecount="64" columns="8">
-   <image source="../../../../../Downloads/Pixel Art Top Down - Basic (1)/Texture/TX Tileset Grass.png" width="256" height="256"/>
+   <image source="../../../../Downloads/Pixel Art Top Down - Basic (1)/Texture/TX Tileset Grass.png" width="256" height="256"/>
   </tileset>
   <tileset firstgid="0" name="plantShadows" tilewidth="32" tileheight="32" tilecount="256" columns="16">
-   <image source="../../../../../Downloads/Pixel Art Top Down - Basic (1)/Texture/TX Shadow Plant.png" width="512" height="512"/>
+   <image source="../../../../Downloads/Pixel Art Top Down - Basic (1)/Texture/TX Shadow Plant.png" width="512" height="512"/>
   </tileset>
   <tileset firstgid="0" name="plants" tilewidth="32" tileheight="32" tilecount="256" columns="16">
-   <image source="../../../../../Downloads/Pixel Art Top Down - Basic (1)/Texture/TX Plant.png" width="512" height="512"/>
+   <image source="../../../../Downloads/Pixel Art Top Down - Basic (1)/Texture/TX Plant.png" width="512" height="512"/>
   </tileset>
   <tileset firstgid="0" name="props" tilewidth="32" tileheight="32" tilecount="256" columns="16">
    <image source="../../../../Downloads/Pixel Art Top Down - Basic (1)/Texture/TX Props.png" width="512" height="512"/>
@@ -1861,7 +1839,7 @@
    <image source="../../../../Downloads/Pixel Art Top Down - Basic (1)/Texture/TX Tileset Stone Ground.png" width="256" height="256"/>
   </tileset>
   <tileset firstgid="0" name="structures" tilewidth="32" tileheight="32" tilecount="256" columns="16">
-   <image source="../../../../../Downloads/Pixel Art Top Down - Basic (1)/Texture/TX Struct.png" width="512" height="512"/>
+   <image source="../../../../Downloads/Pixel Art Top Down - Basic (1)/Texture/TX Struct.png" width="512" height="512"/>
   </tileset>
   <tileset firstgid="0" name="walls" tilewidth="32" tileheight="32" tilecount="256" columns="16">
    <image source="../../../../Downloads/Pixel Art Top Down - Basic (1)/Texture/TX Tileset Wall.png" width="512" height="512"/>
