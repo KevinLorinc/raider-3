@@ -21,7 +21,7 @@ public class ReaperController extends MovementController<Reaper>{
 	private EntityNavigator navi;
 	private long lastNavigate;
 	private Reaper thisReaper;
-	private long action;
+	private long actionTime;
 	
 	private boolean removed;
 	
@@ -34,7 +34,6 @@ public class ReaperController extends MovementController<Reaper>{
 		AStarGrid grid = RaidersLogic.getCurrentGrid();
 		
 		thisReaper = movingEntity;
-		action = 0;
 		
 	    this.navi = new EntityNavigator(movingEntity, new AStarPathFinder(grid));
 	}
@@ -51,57 +50,61 @@ public class ReaperController extends MovementController<Reaper>{
 			thisReaper.setEnemyState(EnemyState.ORB);
 		}
 		
-		if(thisReaper.getEnemyState()==EnemyState.HIT && thisReaper.getIfSpawned()==false) {
+		if(thisReaper.getEnemyState()==EnemyState.HIT && !thisReaper.getIsSpawned()) {
 			thisReaper.animations().play("reaper-spawn");
-			action = Game.time().now();
-			thisReaper.setIfSpawned(true);
+			thisReaper.setIsSpawned(true);
 		}
 		
 		if(thisReaper.getEnemyState()==EnemyState.ORB)
 			return;
 		
-		if(Game.time().since(action)<3000)
-			return;
-		else if(thisReaper.getEnemyState()==EnemyState.HIT)
+	   if(thisReaper.getEnemyState()==EnemyState.HIT && Game.time().since(actionTime) <= 2000) {
 			thisReaper.setEnemyState(EnemyState.IDLE);
-		
-	    if (RaidersLogic.getState() != GameState.INGAME) 
-	      return;
+	    }
+	    else if(Game.time().since(actionTime) > 2000){
+	    	if (RaidersLogic.getState() != GameState.INGAME) 
+	  	      return;
 
-	    if (this.getEntity().getTarget() == null || this.removed) 
-	      return;
-	    
-	    if(this.getEntity().getHitPoints().getRelativeCurrentValue() <= 0) {
-	    	removed = true;
-	        Game.loop().perform(1000, () -> {
-	          Game.world().environment().remove(this.getEntity());
-	        });
-	        return;
+	  	    if (this.getEntity().getTarget() == null || this.removed) 
+	  	      return;
+	  	    
+	  	    if(this.getEntity().getHitPoints().getRelativeCurrentValue() <= 0) {
+	  	    	removed = true;
+	  	        Game.loop().perform(1000, () -> {
+	  	          Game.world().environment().remove(this.getEntity());
+	  	        });
+	  	        return;
+	  	    }
+	  	    
+	  	    if (this.getEntity().getTarget().isDead()) {
+	  	        return;
+	  	    }
+	  	    
+	  	    if (Game.time().since(this.lastNavigate) < NAVIGATE_DELAY) {
+	  	        return;
+	  	    }
+	  	    
+	  	    double dist = this.getEntity().getTarget().getCenter().distance(this.getEntity().getCenter());
+	  	    
+	  	    
+	  	    if(dist < 150 && !this.navi.isNavigating()) {
+	  	    	this.navi.navigate(this.getEntity().getTarget().getCenter());
+	  	    } else  if (this.navi.isNavigating()){
+	  	    	this.navi.stop();
+	  	    	if (this.getEntity().getReaperAttack().canCast() && dist < 20) {
+	  		    	this.getEntity().getReaperAttack().cast();
+	  		    	if(thisReaper.getFacingDirection() == Direction.RIGHT)
+	  		    		thisReaper.animations().play("reaper-attack-right");
+	  		    	else
+	  		    		thisReaper.animations().play("reaper-attack-left");
+	  	    	}
+	  	    	
+	  	    }
 	    }
 	    
-	    if (this.getEntity().getTarget().isDead()) {
-	        return;
-	    }
-	    
-	    if (Game.time().since(this.lastNavigate) < NAVIGATE_DELAY) {
-	        return;
-	    }
-	    
-	    double dist = this.getEntity().getTarget().getCenter().distance(this.getEntity().getCenter());
-	    
-	    
-	    if(dist < 150 && !this.navi.isNavigating()) {
-	    	this.navi.navigate(this.getEntity().getTarget().getCenter());
-	    } else  if (this.navi.isNavigating()){
-	    	this.navi.stop();
-	    	if (this.getEntity().getReaperAttack().canCast() && dist < 20) {
-		    	this.getEntity().getReaperAttack().cast();
-		    	if(thisReaper.getFacingDirection() == Direction.RIGHT)
-		    		thisReaper.animations().play("reaper-attack-right");
-		    	else
-		    		thisReaper.animations().play("reaper-attack-left");
-	    	}
-	    	
-	    }
+	}
+	
+	public void setActionTime(long time) {
+		actionTime = time;
 	}
 }

@@ -22,6 +22,7 @@ import de.gurkenlabs.litiengine.resources.Resources;
 import entities.Player;
 import entities.Player.PlayerState;
 import entities.Reaper;
+import entities.ReaperController;
 import ui.Hud;
 import entities.Enemy;
 import entities.Enemy.EnemyState;
@@ -92,19 +93,16 @@ public class MeleeAttack extends Ability{
 		      Enemy hit = (Enemy)affectedEntity;
 		      hit.hit(damage);
 		      if(hit instanceof Minion) {
-		      ((MinionController)(hit.movement())).setApplyPoint(Player.instance().getCollisionBoxCenter());
-		      ((MinionController)(hit.movement())).setApplyTime(Game.time().now());
+		        ((MinionController)(hit.movement())).setApplyPoint(Player.instance().getCollisionBoxCenter());
+		        ((MinionController)(hit.movement())).setApplyTime(Game.time().now());
 		      }
 		      
-//		      if(hit instanceof Reaper) {
-//		    	  Reaper reaper = (Reaper)hit;
-//		    	  if (reaper.getEnemyState()==EnemyState.ORB) {
-//		    		  reaper.animations().play("reaper-spawn");
-//		    		  reaper.setEnemyState(EnemyState.ROAMING);
-//		    	  }
-//		      }
-//		      
-	    	  hit.setEnemyState(EnemyState.HIT);
+		      if(hit instanceof Reaper) {
+		    	 if(((Reaper)hit).getEnemyState() == EnemyState.ORB) {
+	    	      ((ReaperController)(hit.movement())).setActionTime(Game.time().now());
+	    	    }
+		      }		      
+		      hit.setEnemyState(EnemyState.HIT);
 		    }
 		}
 	}

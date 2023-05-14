@@ -47,7 +47,7 @@ public class Reaper extends Enemy implements IUpdateable{
 	    this.addTag("enemy");
 	    this.addTag("boss");
 	    
-	    isSpawned=true;
+	    isSpawned=false;
 	    
 	    this.setEnemyState(EnemyState.NOTSPAWNED);
 	    System.out.println(this.getEnemyState()+"1");
@@ -90,11 +90,11 @@ public class Reaper extends Enemy implements IUpdateable{
 	    return spawn;
 	}
 	
-	public boolean getIfSpawned() {
+	public boolean getIsSpawned() {
 		return isSpawned;
 	}
 	
-	public void setIfSpawned(boolean state) {
+	public void setIsSpawned(boolean state) {
 		isSpawned=state;
 	}
 
