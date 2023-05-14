@@ -63,7 +63,8 @@ public class MinionController extends MovementController<Minion>{
 	    
 	    if(this.getEntity().getHitPoints().getRelativeCurrentValue() <= 0) {
 	    	removed = true;
-	        Game.loop().perform(1000, () -> {
+	    	thisMinion.animations().play("minion-death-right");
+	        Game.loop().perform(600, () -> {
 	          Game.world().environment().remove(this.getEntity());
 	        });
 	        return;

@@ -35,7 +35,6 @@ public class MinionAnimationController extends CreatureAnimationController<Minio
     	
     	this.addRule(x -> ((minion.getFacingDirection() == Direction.RIGHT) && !minion.isIdle()) && minion.getEnemyState() != EnemyState.HIT, x -> "minion-walk-right");
     	this.addRule(x -> ((minion.getFacingDirection() == Direction.LEFT) && !minion.isIdle()) && minion.getEnemyState() != EnemyState.HIT, x -> "minion-walk-left");
-    	this.addRule(x -> minion.isDead(), x -> "minion-death-right");
     	
     	CreatureShadowImageEffect effect = new CreatureShadowImageEffect(minion, new Color(24, 30, 28, 100));
 	    effect.setOffsetY(1);

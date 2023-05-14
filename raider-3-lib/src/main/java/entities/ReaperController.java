@@ -71,7 +71,7 @@ public class ReaperController extends MovementController<Reaper>{
 	  	    if(this.getEntity().getHitPoints().getRelativeCurrentValue() <= 0) {
 	  	    	removed = true;
 	  	    	thisReaper.animations().play("reaper-death");
-	  	        Game.loop().perform(1900, () -> {
+	  	        Game.loop().perform(2000, () -> {
 	  	          Game.world().environment().remove(this.getEntity());
 	  	        });
 	  	        return;
