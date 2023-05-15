@@ -12,20 +12,25 @@ import de.gurkenlabs.litiengine.abilities.effects.EffectTarget;
 import de.gurkenlabs.litiengine.entities.Creature;
 import de.gurkenlabs.litiengine.entities.ICombatEntity;
 import entities.Player;
+import entities.Reaper;
+import entities.Enemy.EnemyState;
 
 /**
  * a class that creates the minion attack ability
  * @author Kevin Lorinc
  */
-@AbilityInfo(name = "ReaperAttack", cooldown = 4000, range = 0, impact = 15, impactAngle = 360, value = 40, duration = 200, multiTarget = true)
+@AbilityInfo(name = "ReaperAttack", cooldown = 4000, range = 0, impact = 10, impactAngle = 360, value = 20, duration = 200, multiTarget = true)
 public class ReaperAttack extends Ability{
+	
+	private static Reaper thisReaper;
+	
 	/**
 	 * creates a new ability
 	 * @param executor the creature executing the ability
 	 */
 	public ReaperAttack(Creature executor) {
 		super(executor);
-		
+		thisReaper = (Reaper)executor;
 		this.addEffect(new ReaperAttackEffect(this));
 	}
 	
@@ -59,11 +64,14 @@ public class ReaperAttack extends Ability{
 		@Override
 		public void apply(final Shape impactArea) {
 			super.apply(new Rectangle(20,20,20,20));
-			
+			if(thisReaper.getHitPoints().getRelativeCurrentValue()<0.25)
+				thisReaper.getReaperAttack().getAttributes().value().setBaseValue(40);
+			else
+				thisReaper.getReaperAttack().getAttributes().value().setBaseValue(20);
 			final int damage = this.getAbility().getAttributes().value().get();
 			final List<ICombatEntity> affected = this.lookForAffectedEntities(impactArea);
 		    for (final ICombatEntity affectedEntity : affected) {
-		      affectedEntity.hit(damage);
+		    	affectedEntity.hit(damage);
 		      if(affectedEntity.isDead())
 		    	  ((Player)affectedEntity).onDead();
 		    }

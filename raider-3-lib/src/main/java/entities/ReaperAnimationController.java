@@ -29,6 +29,10 @@ public class ReaperAnimationController extends CreatureAnimationController<Reape
     	Spritesheet orbIdle = Resources.spritesheets().get("orb-idle");
     	Spritesheet orbSpawn = Resources.spritesheets().get("orb-spawn");
     	Spritesheet emptyOrb = Resources.spritesheets().get("orb-empty");
+    	Spritesheet walkR = Resources.spritesheets().get("reaper-walk-right");
+    	Spritesheet walkL = Resources.spritesheets().get("reaper-walk-left");
+    	Spritesheet frenzyWalkL = Resources.spritesheets().get("reaper-frenzyWalk-left");
+    	Spritesheet frenzyWalkR = Resources.spritesheets().get("reaper-frenzyWalk-right");
     	
     	this.add(new Animation(attackR,false));
     	this.add(new Animation(attackL,false));
@@ -45,14 +49,20 @@ public class ReaperAnimationController extends CreatureAnimationController<Reape
     	this.add(new Animation(orbIdle,true));
     	this.add(new Animation(orbSpawn,false));
     	this.add(new Animation(emptyOrb,false));
+    	this.add(new Animation(walkL,false));
+    	this.add(new Animation(walkR,false));
+    	this.add(new Animation(frenzyWalkL,false));
+    	this.add(new Animation(frenzyWalkR,false));
     	
     	this.addRule(x -> (reaper.getEnemyState()==EnemyState.NOTSPAWNED) , x -> "orb-empty");
     	this.addRule(x -> (reaper.getEnemyState()==EnemyState.ORB) , x -> "orb-idle");
     	//this.addRule(x -> (reaper.getEnemyState()==EnemyState.HIT) && reaper.getIfSpawned()==false, x -> "reaper-spawn");
     	
-    	this.addRule(x -> (reaper.getFacingDirection() == Direction.RIGHT) && !reaper.isIdle(), x -> "reaper-idle-right");//needs to change
-    	this.addRule(x -> (reaper.getFacingDirection() == Direction.LEFT) && !reaper.isIdle(), x -> "reaper-idle-left");
+    	this.addRule(x -> (reaper.getFacingDirection() == Direction.RIGHT) && !reaper.isIdle() && reaper.getHitPoints().getRelativeCurrentValue()>0.25, x -> "reaper-walk-right");//needs to change
+    	this.addRule(x -> (reaper.getFacingDirection() == Direction.LEFT) && !reaper.isIdle() && reaper.getHitPoints().getRelativeCurrentValue()>0.25, x -> "reaper-walk-left");
     	
+    	this.addRule(x -> (reaper.getFacingDirection() == Direction.LEFT) && !reaper.isIdle() && reaper.getHitPoints().getRelativeCurrentValue()<0.25, x -> "reaper-frenzyWalk-left");
+    	this.addRule(x -> (reaper.getFacingDirection() == Direction.RIGHT) && !reaper.isIdle() && reaper.getHitPoints().getRelativeCurrentValue()<0.25, x -> "reaper-frenzyWalk-right");
     	
     	CreatureShadowImageEffect effect = new CreatureShadowImageEffect(reaper, new Color(24, 30, 28, 100));
 	    effect.setOffsetY(1);

@@ -91,18 +91,30 @@ public class MeleeAttack extends Ability{
 		      if(affectedEntity instanceof Enemy == false) continue;
 		      
 		      Enemy hit = (Enemy)affectedEntity;
-		      hit.hit(damage);
+		      
 		      if(hit instanceof Minion) {
+		    	  hit.hit(damage);
 		        ((MinionController)(hit.movement())).setApplyPoint(Player.instance().getCollisionBoxCenter());
 		        ((MinionController)(hit.movement())).setApplyTime(Game.time().now());
+		        hit.setEnemyState(EnemyState.HIT);
 		      }
 		      
 		      if(hit instanceof Reaper) {
-		    	 if(((Reaper)hit).getEnemyState() == EnemyState.ORB) {
+		    	  Reaper reaper = (Reaper)hit;
+		    	 if(reaper.getEnemyState() == EnemyState.ORB) {
 	    	      ((ReaperController)(hit.movement())).setActionTime(Game.time().now());
+	    	      hit.setEnemyState(EnemyState.HIT);
+	    	    }else {
+	    	    	int chance = (int)Math.round(Math.random());
+	    	    	System.out.println(chance);
+	    	    	if(chance==0) hit.hit(damage);
+	    	    	else {
+	    	    		if(reaper.getFacingDirection()==Direction.RIGHT) reaper.animations().play("reaper-phase-right");
+	    	    		else reaper.animations().play("reaper-phase-left");
+	    	    	}
 	    	    }
 		      }		      
-		      hit.setEnemyState(EnemyState.HIT);
+		      
 		    }
 		}
 	}

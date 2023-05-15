@@ -46,6 +46,8 @@ public class ReaperController extends MovementController<Reaper>{
 	public void update(){
 		super.update();
 		
+		System.out.println(thisReaper.getHitPoints().getRelativeCurrentValue());
+		
 		if(actionTime == 0) {
 			if(thisReaper.getX()-Player.instance().getX()<150 && thisReaper.getEnemyState()==EnemyState.NOTSPAWNED){
 				thisReaper.animations().play("orb-spawn");
@@ -89,23 +91,30 @@ public class ReaperController extends MovementController<Reaper>{
 	  	        return;
 	  	    }
 	  	    
+	  	    
+	  	    
+	  	    if(thisReaper.getEnemyState()==EnemyState.IDLE)
+	  	    	Game.loop().perform(4000, () -> thisReaper.setEnemyState(EnemyState.ROAMING));
+	  	    
 	  	    double dist = this.getEntity().getTarget().getCenter().distance(this.getEntity().getCenter());
 	  	    
-	  	    
-	  	    if(dist < 400 && !this.navi.isNavigating()) {
+	  	    if(dist < 400 && !this.navi.isNavigating() && thisReaper.getEnemyState() != EnemyState.IDLE) {
 	  	    	this.navi.navigate(this.getEntity().getTarget().getCenter());
-	  	    } else  if (this.navi.isNavigating()){
+	  	    } else  if (this.navi.isNavigating() || thisReaper.getEnemyState()==EnemyState.IDLE){
 	  	    	this.navi.stop();
-	  	    	if (this.getEntity().getReaperAttack().canCast() && dist < 20) {
+	  	    	if (this.getEntity().getReaperAttack().canCast() && dist < 50 && thisReaper.getEnemyState()!=EnemyState.IDLE){
 	  		    	this.getEntity().getReaperAttack().cast();
-	  		    	if(thisReaper.getFacingDirection() == Direction.RIGHT)
-	  		    		thisReaper.animations().play("reaper-attack-right");
+	  		    	thisReaper.setEnemyState(EnemyState.IDLE);
+	  		    	if(thisReaper.getHitPoints().getRelativeCurrentValue() < 0.25)
+	  		    		if(thisReaper.getFacingDirection()==Direction.RIGHT) thisReaper.animations().play("reaper-frenzy-right");
+	  		    		else thisReaper.animations().play("reaper-frenzy-left");
 	  		    	else
-	  		    		thisReaper.animations().play("reaper-attack-left");
+	  		    		if(thisReaper.getFacingDirection()==Direction.RIGHT) thisReaper.animations().play("reaper-attack-right");
+	  		    		else thisReaper.animations().play("reaper-attack-left");
 	  	    	}
 	  	    	
 	  	    }
-	    }
+	    } 
 	    
 	}
 	
