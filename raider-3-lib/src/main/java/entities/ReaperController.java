@@ -5,7 +5,6 @@ import de.gurkenlabs.litiengine.Game;
 import de.gurkenlabs.litiengine.entities.behavior.AStarGrid;
 import de.gurkenlabs.litiengine.entities.behavior.AStarPathFinder;
 import de.gurkenlabs.litiengine.entities.behavior.EntityNavigator;
-import de.gurkenlabs.litiengine.physics.Force;
 import de.gurkenlabs.litiengine.physics.MovementController;
 import entities.Enemy.EnemyState;
 import raider.RaidersLogic;
@@ -17,7 +16,6 @@ import raider.RaidersLogic.GameState;
  */
 public class ReaperController extends MovementController<Reaper>{
 	private static final int NAVIGATE_DELAY = 1000;
-	private static final int HIT_DELAY = 100;
 	private EntityNavigator navi;
 	private long lastNavigate;
 	private Reaper thisReaper;
@@ -118,7 +116,7 @@ public class ReaperController extends MovementController<Reaper>{
 	    } 
 	    
 	}
-	
+
 	public void setActionTime(long time) {
 		actionTime = time;
 	}

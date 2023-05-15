@@ -4,12 +4,7 @@ import java.awt.event.KeyEvent;
 import java.util.LinkedList;
 
 import de.gurkenlabs.litiengine.Direction;
-import de.gurkenlabs.litiengine.Game;
-import de.gurkenlabs.litiengine.entities.Spawnpoint;
-import de.gurkenlabs.litiengine.graphics.Camera;
-import de.gurkenlabs.litiengine.graphics.PositionLockCamera;
 import de.gurkenlabs.litiengine.input.Input;
-import raider.RaidersLogic.GameState;
 import ui.InGameScreen;
 import entities.Player;
 import entities.Player.PlayerState;

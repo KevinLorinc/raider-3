@@ -28,7 +28,7 @@ import de.gurkenlabs.litiengine.resources.Resources;
  */
 @EntityInfo(width = 32, height = 32)
 @MovementInfo(velocity = 70)
-@CollisionInfo(collisionBoxWidth = 10, collisionBoxHeight = 16, collision = true)
+@CollisionInfo(collisionBoxWidth = 20, collisionBoxHeight = 32, collision = true)
 @CombatInfo(hitpoints = 200, team = 2)
 public class Reaper extends Enemy implements IUpdateable{
 	private final Spawnpoint spawn;

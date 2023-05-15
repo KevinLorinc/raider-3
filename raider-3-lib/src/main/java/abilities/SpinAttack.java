@@ -11,14 +11,8 @@ import de.gurkenlabs.litiengine.abilities.Ability;
 import de.gurkenlabs.litiengine.abilities.AbilityInfo;
 import de.gurkenlabs.litiengine.abilities.effects.Effect;
 import de.gurkenlabs.litiengine.abilities.effects.EffectTarget;
-import de.gurkenlabs.litiengine.abilities.effects.ForceEffect;
 import de.gurkenlabs.litiengine.entities.Creature;
 import de.gurkenlabs.litiengine.entities.ICombatEntity;
-import de.gurkenlabs.litiengine.entities.IMobileEntity;
-import de.gurkenlabs.litiengine.graphics.Spritesheet;
-import de.gurkenlabs.litiengine.graphics.animation.Animation;
-import de.gurkenlabs.litiengine.physics.Force;
-import de.gurkenlabs.litiengine.resources.Resources;
 import entities.Enemy;
 import entities.Minion;
 import entities.MinionController;
@@ -48,7 +42,7 @@ public class SpinAttack extends Ability{
 	 */
 	@Override
 	public Shape calculateImpactArea() {//change arc area to change range of attack
-		return new Arc2D.Double(Player.instance().getX()+2,Player.instance().getY()+16,30,30,0,360,Arc2D.PIE);
+		return new Arc2D.Double(Player.instance().getX()+6,Player.instance().getY(),35,35,0,360,Arc2D.PIE);
 	}
 	
 	/**
@@ -91,14 +85,14 @@ public class SpinAttack extends Ability{
 			    	      hit.setEnemyState(EnemyState.HIT);
 			    	    }else {
 			    	    	int chance = (int)Math.round(Math.random());
-			    	    	System.out.println(chance);
 			    	    	if(chance==0) hit.hit(damage);
 			    	    	else {
 			    	    		if(reaper.getFacingDirection()==Direction.RIGHT) reaper.animations().play("reaper-phase-right");
 			    	    		else reaper.animations().play("reaper-phase-left");
 			    	    	}
 			    	    }
-				  }	   
+				  }
+			      hit.setEnemyState(EnemyState.HIT);
 			    }
 		    }
 	    }

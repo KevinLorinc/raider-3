@@ -3,11 +3,8 @@ package raider;
 import java.util.HashMap;
 import java.util.LinkedList;
 
-import de.gurkenlabs.litiengine.Align;
 import de.gurkenlabs.litiengine.Game;
-import de.gurkenlabs.litiengine.Valign;
 import de.gurkenlabs.litiengine.entities.CollisionBox;
-import de.gurkenlabs.litiengine.entities.IEntity;
 import de.gurkenlabs.litiengine.entities.MapArea;
 import de.gurkenlabs.litiengine.entities.Spawnpoint;
 import de.gurkenlabs.litiengine.entities.behavior.AStarGrid;
@@ -19,7 +16,6 @@ import de.gurkenlabs.litiengine.graphics.PositionLockCamera;
 import entities.Minion;
 import entities.Player;
 import entities.Reaper;
-import raider.RaidersLogic.GameState;
 import ui.MenuScreen;
 
 /**
@@ -46,9 +42,6 @@ public final class RaidersLogic {
 	private static MapArea transitionArea;
 	
 	private static final LinkedList<MapArea> chestArea = new LinkedList<MapArea>();
-	
-	private static int restarts = 0;
-	
 	
 	/**
 	 * empty constructor
@@ -235,7 +228,6 @@ public final class RaidersLogic {
 		}
 		Game.world().unloadEnvironment();
 		Game.world().loadEnvironment("tutorial.tmx");
-		restarts++;
 	}
 	
 	/**

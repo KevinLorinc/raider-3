@@ -7,11 +7,8 @@ import de.gurkenlabs.litiengine.Game;
 import de.gurkenlabs.litiengine.entities.behavior.AStarGrid;
 import de.gurkenlabs.litiengine.entities.behavior.AStarPathFinder;
 import de.gurkenlabs.litiengine.entities.behavior.EntityNavigator;
-import de.gurkenlabs.litiengine.graphics.Spritesheet;
-import de.gurkenlabs.litiengine.graphics.animation.Animation;
 import de.gurkenlabs.litiengine.physics.Force;
 import de.gurkenlabs.litiengine.physics.MovementController;
-import de.gurkenlabs.litiengine.resources.Resources;
 import de.gurkenlabs.litiengine.util.geom.GeometricUtilities;
 import entities.Enemy.EnemyState;
 import raider.RaidersLogic;
@@ -23,7 +20,6 @@ import raider.RaidersLogic.GameState;
  */
 public class MinionController extends MovementController<Minion>{
 	private static final int NAVIGATE_DELAY = 1000;
-	private static final int HIT_DELAY = 100;
 	private EntityNavigator navi;
 	private long lastNavigate;
 	private Minion thisMinion;
@@ -81,17 +77,17 @@ public class MinionController extends MovementController<Minion>{
 	    double dist = this.getEntity().getTarget().getCenter().distance(this.getEntity().getCenter());
 	    
 	    
-	    if(dist < 150 && !this.navi.isNavigating()) { //will have to change this to account for hit box and what we want the range of minion to be
+	    if(dist < 150 && !this.navi.isNavigating()) {
 	    	this.navi.navigate(this.getEntity().getTarget().getCenter());
 	    } else  if (this.navi.isNavigating()){
 	    	this.navi.stop();
 	    	if(thisMinion.getEnemyState() == EnemyState.HIT) {
 	    		if(thisMinion.getFacingDirection() == Direction.LEFT) thisMinion.animations().play("minion-damaged-left");
 	    		else thisMinion.animations().play("minion-damaged-right");
-	    		this.apply(new Force(thisMinion.getLocation(),20,5));//50 1
+	    		this.apply(new Force(thisMinion.getLocation(),15,5));
 	    		thisMinion.setEnemyState(EnemyState.ROAMING);
 	    	}
-	    	else if (this.getEntity().getMinionAttack().canCast() && dist < 20) {
+	    	else if (this.getEntity().getMinionAttack().canCast() && dist < 15) {
 		    	this.getEntity().getMinionAttack().cast();
 		    	if(thisMinion.getFacingDirection() == Direction.RIGHT)
 		    		thisMinion.animations().play("minion-attack-right");
@@ -149,7 +145,7 @@ public class MinionController extends MovementController<Minion>{
 	        }
 	      }
 	      for (final Force force : this.getActiveForces()) {
-	          if (Game.time().since(applyTime) >= 340) {
+	          if (Game.time().since(applyTime) >= 300) {
 	            force.end();
 	          }
 	        }

@@ -13,7 +13,6 @@ import de.gurkenlabs.litiengine.entities.Creature;
 import de.gurkenlabs.litiengine.entities.ICombatEntity;
 import entities.Player;
 import entities.Reaper;
-import entities.Enemy.EnemyState;
 
 /**
  * a class that creates the minion attack ability
@@ -39,7 +38,7 @@ public class ReaperAttack extends Ability{
 	 */
 	@Override
 	public Shape calculateImpactArea() {//change arc area to change range of attack
-		return new Arc2D.Double(this.getExecutor().getX()+2,this.getExecutor().getY()+16,30,30,0,360,Arc2D.PIE);
+		return new Arc2D.Double(this.getExecutor().getX()-10,this.getExecutor().getY(),80,80,0,360,Arc2D.PIE);
 	}
 	
 	/**
@@ -71,9 +70,11 @@ public class ReaperAttack extends Ability{
 			final int damage = this.getAbility().getAttributes().value().get();
 			final List<ICombatEntity> affected = this.lookForAffectedEntities(impactArea);
 		    for (final ICombatEntity affectedEntity : affected) {
-		    	affectedEntity.hit(damage);
-		      if(affectedEntity.isDead())
-		    	  ((Player)affectedEntity).onDead();
+		      if(affectedEntity instanceof Player) {
+		    	  affectedEntity.hit(damage);
+			      if(affectedEntity.isDead())
+			    	  ((Player)affectedEntity).onDead();
+		      }
 		    }
 		}
 	}

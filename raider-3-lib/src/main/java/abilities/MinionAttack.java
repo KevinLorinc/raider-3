@@ -34,7 +34,7 @@ public class MinionAttack extends Ability{
 	 */
 	@Override
 	public Shape calculateImpactArea() {//change arc area to change range of attack
-		return new Arc2D.Double(this.getExecutor().getX()+2,this.getExecutor().getY()+16,30,30,0,360,Arc2D.PIE);
+		return new Arc2D.Double(this.getExecutor().getX()+16,this.getExecutor().getY(),30,30,0,360,Arc2D.PIE);
 	}
 	
 	/**
