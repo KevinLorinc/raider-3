@@ -5,6 +5,7 @@ import de.gurkenlabs.litiengine.entities.Spawnpoint;
 import de.gurkenlabs.litiengine.resources.Resources;
 import ui.InGameScreen;
 import ui.MenuScreen;
+import ui.DeathScreen;
 
 /**
  * runs the game Raiders
@@ -29,6 +30,7 @@ public class Main {
 		Resources.load("gamev4.litidata");
 		Game.screens().add(new MenuScreen());
 		Game.screens().add(new InGameScreen());
+		Game.screens().add(new DeathScreen());
 		
 		//Game.world().loadEnvironment("tutorial.tmx");
 		 
