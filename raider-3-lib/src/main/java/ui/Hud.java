@@ -21,6 +21,7 @@ import entities.Enemy;
 import entities.Enemy.EnemyState;
 import entities.Player;
 import entities.Player.PlayerState;
+import raider.PlayerInput;
 import raider.RaidersLogic;
 import raider.RaidersMath;
 
@@ -220,14 +221,14 @@ public class Hud extends GuiComponent{
 				Game.graphics().renderImage(g, space, Game.world().camera().getViewport().getMinX()+ 245,Game.world().camera().getViewport().getMaxY() - 20);
 				Game.graphics().renderText(g, "spin", Game.world().camera().getViewport().getMinX()+ 223,Game.world().camera().getViewport().getMaxY() - 13);
 				
+				g.setFont(gameFont.deriveFont(Font.TRUETYPE_FONT,15));
 				if(RaidersLogic.isInTransitionsArea()) {
-					g.setFont(gameFont.deriveFont(Font.TRUETYPE_FONT,15));
 					Game.graphics().renderText(g, "Press 'E' to Enter", Player.instance().getX()-5, Player.instance().getY()+40);
 				}
 				
 				if(RaidersLogic.isInChestArea() != -1) {
-					g.setFont(gameFont.deriveFont(Font.TRUETYPE_FONT,15));
-					Game.graphics().renderText(g, "Press 'E' to Open", Player.instance().getX()-5, Player.instance().getY()+40);
+					if(PlayerInput.chestActive.get(RaidersLogic.isInChestArea()-1))
+						Game.graphics().renderText(g, "Press 'E' to Open", Player.instance().getX()-5, Player.instance().getY()+40);
 				}
 			} catch (FontFormatException e) {
 				e.printStackTrace();

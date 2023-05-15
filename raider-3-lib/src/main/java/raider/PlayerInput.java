@@ -1,6 +1,7 @@
 package raider;
 
 import java.awt.event.KeyEvent;
+import java.util.LinkedList;
 
 import de.gurkenlabs.litiengine.Direction;
 import de.gurkenlabs.litiengine.input.Input;
@@ -14,6 +15,14 @@ import entities.Player.PlayerState;
  *
  */
 public class PlayerInput {
+	public static final LinkedList<Boolean> chestActive = new LinkedList<Boolean>();
+	
+	static {
+		chestActive.add(true);
+		chestActive.add(true);
+		chestActive.add(true);
+	}
+	
 	/**
 	 * empty constructor
 	 */
@@ -80,19 +89,17 @@ public class PlayerInput {
 		  
 		  if(RaidersLogic.isInChestArea() == 1) {
 			  Player.instance().gotItem("sword");
-			  RaidersLogic.removeChest(0);
+			  chestActive.set(0, false);
 		  }
 		  
-		  System.out.println(RaidersLogic.isInChestArea() == 2);//not working properly. have to get purple sword first
 		  if(RaidersLogic.isInChestArea() == 2) {
 			  Player.instance().gotItem("swordPurple");
-			  System.out.println(Player.instance().getInventory());
-			  RaidersLogic.removeChest(1);
+			  chestActive.set(1, false);
 		  }
 		  
 		  if(RaidersLogic.isInChestArea() == 3) {
 			  Player.instance().getHitPoints().setToMax();
-			  RaidersLogic.removeChest(2);
+			  chestActive.set(2, false);
 		  }
 	  });
   	}

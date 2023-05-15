@@ -7,6 +7,7 @@ import de.gurkenlabs.litiengine.Align;
 import de.gurkenlabs.litiengine.Game;
 import de.gurkenlabs.litiengine.Valign;
 import de.gurkenlabs.litiengine.entities.CollisionBox;
+import de.gurkenlabs.litiengine.entities.IEntity;
 import de.gurkenlabs.litiengine.entities.MapArea;
 import de.gurkenlabs.litiengine.entities.Spawnpoint;
 import de.gurkenlabs.litiengine.entities.behavior.AStarGrid;
@@ -126,6 +127,10 @@ public final class RaidersLogic {
 	    	Game.screens().remove(Game.screens().current());
 	}
 	
+	public static void onRestart() {
+		init();
+	}
+	
 	/**
 	 * checks if raider is in transition area
 	 * @return a boolean indicating if its in transition area
@@ -147,10 +152,6 @@ public final class RaidersLogic {
 				&& (chestArea.get(i).getY() <= Player.instance().getY()) && ((chestArea.get(i).getY()+ 30) >= Player.instance().getY())) return i+1;
 		}
 		return -1;
-	}
-	
-	public static void removeChest(int i){
-		chestArea.remove(i);
 	}
 	
 	/**
@@ -208,6 +209,15 @@ public final class RaidersLogic {
 	      }
 	    spawnEnemy(event);
 	  }
+	}
+	
+	public static void resetSpawns() {
+		for(IEntity entity: Game.world().environment().getEntities()) {
+			Game.world().environment().remove(entity);
+		}
+		for(EnemySpawnEvent event: spawnEvents.get(Game.world().environment().getMap().getName())) {
+			event.finished = false;
+		}
 	}
 	
 	/**
