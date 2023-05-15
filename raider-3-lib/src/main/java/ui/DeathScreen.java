@@ -16,7 +16,10 @@ import javax.imageio.ImageIO;
 
 import de.gurkenlabs.litiengine.Game;
 import de.gurkenlabs.litiengine.IUpdateable;
+import de.gurkenlabs.litiengine.entities.CollisionBox;
 import de.gurkenlabs.litiengine.entities.Spawnpoint;
+import de.gurkenlabs.litiengine.entities.behavior.AStarGrid;
+import de.gurkenlabs.litiengine.entities.behavior.AStarNode;
 import de.gurkenlabs.litiengine.graphics.Camera;
 import de.gurkenlabs.litiengine.graphics.PositionLockCamera;
 import de.gurkenlabs.litiengine.gui.ImageComponent;
@@ -156,6 +159,9 @@ public class DeathScreen extends GameScreen implements IUpdateable{
 		  this.mainMenu.setEnabled(false);	    
 		    
 		    Game.loop().perform(3000, () -> {
+		       Game.window().getRenderComponent().fadeIn(1500);
+			   Game.world().loadEnvironment("tutorial.tmx");
+		    	
 		       Camera camera = new PositionLockCamera(Player.instance());
 			   camera.setClampToMap(true);
 			   Game.world().setCamera(camera);
