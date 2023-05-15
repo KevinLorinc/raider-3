@@ -46,35 +46,87 @@ public class PlayerInput {
 		  if (Player.instance().getState() == PlayerState.LOCKED || Player.instance().isDead()) {//|| !Player.instance().getEquipped()
 		    return;
 		  }
+		  if(!Player.instance().getEquipped().equals("fist"))
+			  Player.instance().getSpinAttack().cast();
 		  
-		  Player.instance().getSpinAttack().cast();
-		  if(Player.instance().calcFacingDirection().equals(Direction.RIGHT))
+		  Direction facing = Player.instance().calcFacingDirection();
+		  String equipped = Player.instance().getEquipped();
+		  
+		if(equipped.equals("sword"))  
+		  if(facing.equals(Direction.RIGHT))
 			Player.instance().animations().play("raider-idle-swordSpin-right");
 		  else
 			Player.instance().animations().play("raider-idle-swordSpin-left");
+		else if(equipped.equals("swordPurple")){
+			if(facing.equals(Direction.RIGHT))
+				Player.instance().animations().play("raider-idle-swordPurpleSpin-right");
+			  else
+				Player.instance().animations().play("raider-idle-swordPurpleSpin-left");
+		}else if(equipped.equals("swordBlue")) {
+			if(facing.equals(Direction.RIGHT))
+				Player.instance().animations().play("raider-idle-swordBlueSpin-right");
+			  else
+				Player.instance().animations().play("raider-idle-swordBlueSpin-left");
+		}
 	  });
 	  
 	  Input.mouse().onPressed(e -> {//normal attack
 		  if (Player.instance().getState() == PlayerState.LOCKED || Player.instance().isDead()) { // || !Player.instance().getEquipped()
 		    return;
 		  }
-		  
-		  Player.instance().getMeleeAttack().cast();
-		  
 		  Direction attack = Player.instance().calcAttackDirection();
 		  Direction facing = Player.instance().calcFacingDirection();
 		  
-		  if(attack.equals(Direction.RIGHT)) {
-			  Player.instance().animations().play("raider-idle-swordMeleeSide-right");
-		  }else if(attack.equals(Direction.LEFT)) {
-			  Player.instance().animations().play("raider-idle-swordMeleeSide-left");
-		  }else if(attack.equals(Direction.UP)) {
-			  if(facing.equals(Direction.RIGHT)) Player.instance().animations().play("raider-idle-swordMeleeUp-right");
-			  else Player.instance().animations().play("raider-idle-swordMeleeUp-left");
-		  }else {
-			  if(facing.equals(Direction.RIGHT)) Player.instance().animations().play("raider-idle-swordMeleeDown-right");
-			  else Player.instance().animations().play("raider-idle-swordMeleeDown-left");
-		  }
+		  System.out.println(attack);
+		  System.out.println(Player.instance().getEquipped());
+		  
+		  Player.instance().getMeleeAttack().cast();
+		  
+		  if(Player.instance().getEquipped().equals("fist")) {
+			  if(facing.equals(Direction.RIGHT)) {
+				  Player.instance().animations().play("raider-idle-punch-right");
+			  }else if(facing.equals(Direction.LEFT))
+				  Player.instance().animations().play("raider-idle-punch-left");
+		  
+		  }else if(Player.instance().getEquipped().equals("sword")) {
+			  if(attack.equals(Direction.RIGHT)) {
+				  Player.instance().animations().play("raider-idle-swordMeleeSide-right");
+			  }else if(attack.equals(Direction.LEFT)) {
+				  Player.instance().animations().play("raider-idle-swordMeleeSide-left");
+			  }else if(attack.equals(Direction.UP)) {
+				  if(facing.equals(Direction.RIGHT)) Player.instance().animations().play("raider-idle-swordMeleeUp-right");
+				  else Player.instance().animations().play("raider-idle-swordMeleeUp-left");
+			  }else {
+				  if(facing.equals(Direction.RIGHT)) Player.instance().animations().play("raider-idle-swordMeleeDown-right");
+				  else Player.instance().animations().play("raider-idle-swordMeleeDown-left");
+			  }
+		  
+		  }else if(Player.instance().getEquipped().equals("swordPurple")) {
+			  if(attack.equals(Direction.RIGHT)) {
+				  Player.instance().animations().play("raider-idle-swordPurpleMeleeSide-right");
+			  }else if(attack.equals(Direction.LEFT)) {
+				  Player.instance().animations().play("raider-idle-swordPurpleMeleeSide-left");
+			  }else if(attack.equals(Direction.UP)) {
+				  if(facing.equals(Direction.RIGHT)) Player.instance().animations().play("raider-idle-swordPurpleMeleeUp-right");
+				  else Player.instance().animations().play("raider-idle-swordPurpleMeleeUp-left");
+			  }else {
+				  if(facing.equals(Direction.RIGHT)) Player.instance().animations().play("raider-idle-swordPurpleMeleeDown-right");
+				  else Player.instance().animations().play("raider-idle-swordPurpleMeleeDown-left");
+			  }
+		  
+		  }else if(Player.instance().getEquipped().equals("swordBlue"))
+			  if(attack.equals(Direction.RIGHT)) {
+				  Player.instance().animations().play("raider-idle-swordBlueMeleeSide-right");
+			  }else if(attack.equals(Direction.LEFT)) {
+				  Player.instance().animations().play("raider-idle-swordBlueMeleeSide-left");
+			  }else if(attack.equals(Direction.UP)) {
+				  if(facing.equals(Direction.RIGHT)) Player.instance().animations().play("raider-idle-swordBlueMeleeUp-right");
+				  else Player.instance().animations().play("raider-idle-swordBlueMeleeUp-left");
+			  }else {
+				  if(facing.equals(Direction.RIGHT)) Player.instance().animations().play("raider-idle-swordBlueMeleeDown-right");
+				  else Player.instance().animations().play("raider-idle-swordBlueMeleeDown-left");
+			  }
+		  
 		  
 		  });
 	  

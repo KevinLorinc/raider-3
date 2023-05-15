@@ -44,8 +44,8 @@ public class MeleeAttack extends Ability{
 		super(executor);
 		
 		this.addEffect(new MeleeAttackEffect(this));
+		
 	}
-	
 	/**
 	 * lets us determine what we define as the impact area
 	 */

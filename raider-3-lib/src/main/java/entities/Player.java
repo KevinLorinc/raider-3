@@ -122,15 +122,12 @@ public class Player extends Creature implements IUpdateable{
 		
 		Spritesheet idleSwordR = Resources.spritesheets().get("raider-idle-sword-right");
 		Spritesheet walkSwordR = Resources.spritesheets().get("raider-walk-sword-right");
-		
 		Spritesheet idleSwordL = Resources.spritesheets().get("raider-idle-sword-left");
 		Spritesheet walkSwordL = Resources.spritesheets().get("raider-walk-sword-left");
-		
 		Spritesheet swordSpinR = Resources.spritesheets().get("raider-idle-swordSpin-right");
 		Spritesheet swordMeleeSideR = Resources.spritesheets().get("raider-idle-swordMeleeSide-right");
 		Spritesheet swordMeleeDownR = Resources.spritesheets().get("raider-idle-swordMeleeDown-right");
 		Spritesheet swordMeleeUpR = Resources.spritesheets().get("raider-idle-swordMeleeUp-right");
-		
 		Spritesheet swordSpinL = Resources.spritesheets().get("raider-idle-swordSpin-left");
 		Spritesheet swordMeleeSideL = Resources.spritesheets().get("raider-idle-swordMeleeSide-left");
 		Spritesheet swordMeleeDownL = Resources.spritesheets().get("raider-idle-swordMeleeDown-left");
