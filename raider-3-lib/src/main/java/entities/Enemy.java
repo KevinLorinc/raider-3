@@ -1,14 +1,11 @@
 package entities;
 
 import de.gurkenlabs.litiengine.Direction;
-import de.gurkenlabs.litiengine.attributes.Attribute;
 import de.gurkenlabs.litiengine.entities.Creature;
 import de.gurkenlabs.litiengine.entities.ICollisionEntity;
 import de.gurkenlabs.litiengine.entities.Spawnpoint;
 import de.gurkenlabs.litiengine.environment.Environment;
-import de.gurkenlabs.litiengine.physics.Force;
 import de.gurkenlabs.litiengine.util.geom.GeometricUtilities;
-import entities.Enemy.EnemyState;
 
 /**
  * a parent class for all enemies in the game that changes some elements of creature that are common to all enemies

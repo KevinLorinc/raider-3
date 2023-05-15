@@ -1,9 +1,7 @@
 package raider; 
 
 import de.gurkenlabs.litiengine.*;
-import de.gurkenlabs.litiengine.entities.Spawnpoint;
 import de.gurkenlabs.litiengine.resources.Resources;
-import ui.DeathScreen;
 import ui.InGameScreen;
 import ui.MenuScreen;
 

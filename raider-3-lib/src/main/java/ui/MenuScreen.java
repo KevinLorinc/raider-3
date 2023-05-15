@@ -3,8 +3,6 @@ package ui;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontFormatException;
-import java.awt.Graphics2D;
-import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.awt.geom.AffineTransform;
 import java.awt.image.AffineTransformOp;
@@ -20,9 +18,7 @@ import de.gurkenlabs.litiengine.gui.ImageComponent;
 import de.gurkenlabs.litiengine.gui.Menu;
 import de.gurkenlabs.litiengine.gui.screens.GameScreen;
 import de.gurkenlabs.litiengine.input.Input;
-import de.gurkenlabs.litiengine.resources.Resources;
 import raider.RaidersLogic;
-import raider.RaidersMath;
 
 /**
  * creates a class for menu screen and initializes that screen. Allows for better screen management
