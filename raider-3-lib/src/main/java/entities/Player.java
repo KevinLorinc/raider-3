@@ -128,12 +128,39 @@ public class Player extends Creature implements IUpdateable{
 		Spritesheet swordMeleeDownL = Resources.spritesheets().get("raider-idle-swordMeleeDown-left");
 		Spritesheet swordMeleeUpL = Resources.spritesheets().get("raider-idle-swordMeleeUp-left");
 		
+		Spritesheet idleSwordPR = Resources.spritesheets().get("raider-idle-swordPurple-right");
+		Spritesheet walkSwordPR = Resources.spritesheets().get("raider-walk-swordPurple-right");
+		Spritesheet idleSwordPL = Resources.spritesheets().get("raider-idle-swordPurple-left");
+		Spritesheet walkSwordPL = Resources.spritesheets().get("raider-walk-swordPurple-left");
+		Spritesheet swordSpinPR = Resources.spritesheets().get("raider-idle-swordPurpleSpin-right");
+		Spritesheet swordMeleeSidePR = Resources.spritesheets().get("raider-idle-swordPurpleMeleeSide-right");
+		Spritesheet swordMeleeDownPR = Resources.spritesheets().get("raider-idle-swordPurpleMeleeDown-right");
+		Spritesheet swordMeleeUpPR = Resources.spritesheets().get("raider-idle-swordPurpleMeleeUp-right");
+		Spritesheet swordSpinPL = Resources.spritesheets().get("raider-idle-swordPurpleSpin-left");
+		Spritesheet swordMeleeSidePL = Resources.spritesheets().get("raider-idle-swordPurpleMeleeSide-left");
+		Spritesheet swordMeleeDownPL = Resources.spritesheets().get("raider-idle-swordPurpleMeleeDown-left");
+		Spritesheet swordMeleeUpPL = Resources.spritesheets().get("raider-idle-swordPurpleMeleeUp-left");
+
+		Spritesheet idleSwordBR = Resources.spritesheets().get("raider-idle-swordBlue-right");
+		Spritesheet walkSwordBR = Resources.spritesheets().get("raider-walk-swordBlue-right");
+		Spritesheet idleSwordBL = Resources.spritesheets().get("raider-idle-swordBlue-left");
+		Spritesheet walkSwordBL = Resources.spritesheets().get("raider-walk-swordBlue-left");
+		Spritesheet swordSpinBR = Resources.spritesheets().get("raider-idle-swordBlueSpin-right");
+		Spritesheet swordMeleeSideBR = Resources.spritesheets().get("raider-idle-swordBlueMeleeSide-right");
+		Spritesheet swordMeleeDownBR = Resources.spritesheets().get("raider-idle-swordBlueMeleeDown-right");
+		Spritesheet swordMeleeUpBR = Resources.spritesheets().get("raider-idle-swordBlueMeleeUp-right");
+		Spritesheet swordSpinBL = Resources.spritesheets().get("raider-idle-swordBlueSpin-left");
+		Spritesheet swordMeleeSideBL = Resources.spritesheets().get("raider-idle-swordBlueMeleeSide-left");
+		Spritesheet swordMeleeDownBL = Resources.spritesheets().get("raider-idle-swordBlueMeleeDown-left");
+		Spritesheet swordMeleeUpBL = Resources.spritesheets().get("raider-idle-swordBlueMeleeUp-left");
+		
 		Spritesheet death = Resources.spritesheets().get("raider-death");
 		
 		IEntityAnimationController<?> animationController;
 		
 		animationController = new CreatureAnimationController<Player>(this,new Animation(idle,false));
 		animationController.add(new Animation(walk,true));
+		
 		animationController.add(new Animation(walkSwordR,true));
 		animationController.add(new Animation(idleSwordR, true));
 		animationController.add(new Animation(swordSpinR,false));
@@ -147,6 +174,32 @@ public class Player extends Creature implements IUpdateable{
 		animationController.add(new Animation(swordMeleeDownL,false));
 		animationController.add(new Animation(swordMeleeUpL,false));
 		animationController.add(new Animation(death,false));
+		
+		animationController.add(new Animation(walkSwordPR,true));
+		animationController.add(new Animation(idleSwordPR, true));
+		animationController.add(new Animation(swordSpinPR,false));
+		animationController.add(new Animation(walkSwordPL,true));
+		animationController.add(new Animation(idleSwordPL, true));
+		animationController.add(new Animation(swordSpinPL,false));
+		animationController.add(new Animation(swordMeleeSidePR, false));
+		animationController.add(new Animation(swordMeleeDownPR,false));
+		animationController.add(new Animation(swordMeleeUpPR,false));
+		animationController.add(new Animation(swordMeleeSidePL, false));
+		animationController.add(new Animation(swordMeleeDownPL,false));
+		animationController.add(new Animation(swordMeleeUpPL,false));
+
+		animationController.add(new Animation(walkSwordBR,true));
+		animationController.add(new Animation(idleSwordBR, true));
+		animationController.add(new Animation(swordSpinBR,false));
+		animationController.add(new Animation(walkSwordBL,true));
+		animationController.add(new Animation(idleSwordBL, true));
+		animationController.add(new Animation(swordSpinBL,false));
+		animationController.add(new Animation(swordMeleeSideBR, false));
+		animationController.add(new Animation(swordMeleeDownBR,false));
+		animationController.add(new Animation(swordMeleeUpBR,false));
+		animationController.add(new Animation(swordMeleeSideBL, false));
+		animationController.add(new Animation(swordMeleeDownBL,false));
+		animationController.add(new Animation(swordMeleeUpBL,false));
 			
 	    animationController.addRule(x -> (this.calcFacingDirection() == Direction.LEFT) && this.isIdle() && !equipped, x -> "raider-idle-left");
 	    animationController.addRule(x -> (this.calcFacingDirection() == Direction.LEFT) && !this.isIdle() && !equipped, x -> "raider-walk-left");
