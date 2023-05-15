@@ -64,7 +64,7 @@ public final class RaidersLogic {
 		
 		//adding trigger areas for chests
 		chestArea.add(new MapArea(270,15,40,30));
-		chestArea.add(new MapArea(785,530,40,30));
+		chestArea.add(new MapArea(785,530,50,40));
 		chestArea.add(new MapArea(850,-10,40,30));
 	}
 	
@@ -149,7 +149,9 @@ public final class RaidersLogic {
 		return -1;
 	}
 	
-	
+	public static void removeChest(int i){
+		chestArea.remove(i);
+	}
 	
 	/**
 	 * gets the state of the game

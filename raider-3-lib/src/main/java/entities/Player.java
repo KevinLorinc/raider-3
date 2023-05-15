@@ -33,7 +33,7 @@ import ui.DeathScreen;
  *
  */
 @EntityInfo(width = 32, height = 32)
-@MovementInfo(velocity = 100)
+@MovementInfo(velocity = 200)
 @CollisionInfo(collisionBoxWidth = 12, collisionBoxHeight = 15, collision = true)
 @CombatInfo(hitpoints = 100, team = 1)
 public class Player extends Creature implements IUpdateable{
@@ -51,7 +51,7 @@ public class Player extends Creature implements IUpdateable{
 	private static Player instance;
 	private PlayerState state = PlayerState.CONTROLLABLE;//for testing purposes might need to be changed to Controllable once we get litidata in
 	
-	private boolean equipped;
+	private String equipped;
 	private HashMap<String,Boolean> inventory;
 	
 	private SpinAttack spinAttack;
@@ -63,7 +63,7 @@ public class Player extends Creature implements IUpdateable{
 	private Player() {
 		super("raider");
 		
-		equipped = false;
+		equipped = "fist";
 		
 		spinAttack = new SpinAttack(this);
 		meleeAttack = new MeleeAttack(this);
@@ -73,7 +73,10 @@ public class Player extends Creature implements IUpdateable{
 	    });
 
 		inventory = new HashMap<String,Boolean>();
+		inventory.put("fist", true);
 		inventory.put("sword", false);
+		inventory.put("swordPurple", false);
+		inventory.put("swordBlue", false);
 		//add new things we want to put in the inventory here
 	}
 	
@@ -206,15 +209,25 @@ public class Player extends Creature implements IUpdateable{
 		animationController.add(new Animation(swordMeleeDownBL,false));
 		animationController.add(new Animation(swordMeleeUpBL,false));
 			
-	    animationController.addRule(x -> (this.calcFacingDirection() == Direction.LEFT) && this.isIdle() && !equipped, x -> "raider-idle-left");
-	    animationController.addRule(x -> (this.calcFacingDirection() == Direction.LEFT) && !this.isIdle() && !equipped, x -> "raider-walk-left");
-	    animationController.addRule(x -> (this.calcFacingDirection() == Direction.RIGHT) && this.isIdle() && !equipped, x -> "raider-idle-right");
-	    animationController.addRule(x -> (this.calcFacingDirection() == Direction.RIGHT) && !this.isIdle() && !equipped, x -> "raider-walk-right");
+	    animationController.addRule(x -> (this.calcFacingDirection() == Direction.LEFT) && this.isIdle() && equipped.equals("fist"), x -> "raider-idle-left");
+	    animationController.addRule(x -> (this.calcFacingDirection() == Direction.LEFT) && !this.isIdle() && equipped.equals("fist"), x -> "raider-walk-left");
+	    animationController.addRule(x -> (this.calcFacingDirection() == Direction.RIGHT) && this.isIdle() && equipped.equals("fist"), x -> "raider-idle-right");
+	    animationController.addRule(x -> (this.calcFacingDirection() == Direction.RIGHT) && !this.isIdle() && equipped.equals("fist"), x -> "raider-walk-right");
 	    
-	    animationController.addRule(x -> (this.calcFacingDirection() == Direction.LEFT) && this.isIdle() && equipped, x -> "raider-idle-sword-left");
-	    animationController.addRule(x -> (this.calcFacingDirection() == Direction.LEFT) && !this.isIdle() && equipped, x -> "raider-walk-sword-left");
-	    animationController.addRule(x -> (this.calcFacingDirection() == Direction.RIGHT) && this.isIdle() && equipped, x -> "raider-idle-sword-right");
-	    animationController.addRule(x -> (this.calcFacingDirection() == Direction.RIGHT) && !this.isIdle() && equipped, x -> "raider-walk-sword-right");
+	    animationController.addRule(x -> (this.calcFacingDirection() == Direction.LEFT) && this.isIdle() && equipped.equals("sword"), x -> "raider-idle-sword-left");
+	    animationController.addRule(x -> (this.calcFacingDirection() == Direction.LEFT) && !this.isIdle() && equipped.equals("sword"), x -> "raider-walk-sword-left");
+	    animationController.addRule(x -> (this.calcFacingDirection() == Direction.RIGHT) && this.isIdle() && equipped.equals("sword"), x -> "raider-idle-sword-right");
+	    animationController.addRule(x -> (this.calcFacingDirection() == Direction.RIGHT) && !this.isIdle() && equipped.equals("sword"), x -> "raider-walk-sword-right");
+	    
+	    animationController.addRule(x -> (this.calcFacingDirection() == Direction.LEFT) && this.isIdle() && equipped.equals("swordPurple"), x -> "raider-idle-swordPurple-left");
+	    animationController.addRule(x -> (this.calcFacingDirection() == Direction.LEFT) && !this.isIdle() && equipped.equals("swordPurple"), x -> "raider-walk-swordPurple-left");
+	    animationController.addRule(x -> (this.calcFacingDirection() == Direction.RIGHT) && this.isIdle() && equipped.equals("swordPurple"), x -> "raider-idle-swordPurple-right");
+	    animationController.addRule(x -> (this.calcFacingDirection() == Direction.RIGHT) && !this.isIdle() && equipped.equals("swordPurple"), x -> "raider-walk-swordPurple-right");
+	    
+	    animationController.addRule(x -> (this.calcFacingDirection() == Direction.LEFT) && this.isIdle() && equipped.equals("swordBlue"), x -> "raider-idle-swordBlue-left");
+	    animationController.addRule(x -> (this.calcFacingDirection() == Direction.LEFT) && !this.isIdle() && equipped.equals("swordBlue"), x -> "raider-walk-swordBlue-left");
+	    animationController.addRule(x -> (this.calcFacingDirection() == Direction.RIGHT) && this.isIdle() && equipped.equals("swordBlue"), x -> "raider-idle-swordBlue-right");
+	    animationController.addRule(x -> (this.calcFacingDirection() == Direction.RIGHT) && !this.isIdle() && equipped.equals("swordBlue"), x -> "raider-walk-swordBlue-right");
 	
 	    CreatureShadowImageEffect effect = new CreatureShadowImageEffect(this, new Color(24, 30, 28, 100));
 	    effect.setOffsetY(1);
@@ -256,10 +269,10 @@ public class Player extends Creature implements IUpdateable{
 	}
 	
 	/**
-	 * sets equipped boolean to assigned state
+	 * sets equipped to assigned weapon
 	 * @param set state to set whether sword is equipped or not
 	 */
-	public void setEquipped(boolean set) {
+	public void setEquipped(String set) {
 		equipped = set;
 	}
 	
@@ -267,7 +280,7 @@ public class Player extends Creature implements IUpdateable{
 	 * if equipped
 	 * @return whether player has sword equipped or not
 	 */
-	public boolean getEquipped() {
+	public String getEquipped() {
 		return equipped;
 	}
 	
@@ -279,8 +292,12 @@ public class Player extends Creature implements IUpdateable{
 		return inventory;
 	}
 	
-	public void updateInventory(String item,boolean hasItem) {
-		
+	public void gotItem(String item) {
+		inventory.put(item,true);
+	}
+	
+	public boolean hasItem(String item) {
+		return inventory.get(item);
 	}
 	
 	/**

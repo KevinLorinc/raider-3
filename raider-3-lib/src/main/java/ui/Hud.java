@@ -9,6 +9,8 @@ import java.awt.geom.RoundRectangle2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.LinkedList;
 
 import javax.imageio.*;
 
@@ -37,14 +39,33 @@ public class Hud extends GuiComponent{
 	private static final Image wasd = wasd1.getScaledInstance((int)(wasd1.getWidth()*.1), (int)(wasd1.getHeight()*.1 ), Image.SCALE_DEFAULT);
 	private static final BufferedImage q1 = Resources.images().get("images/qIcon.png");
 	private static final Image q = q1.getScaledInstance((int)(q1.getWidth()*.04), (int)(q1.getHeight()*.04), Image.SCALE_DEFAULT);
-	private static final BufferedImage fist1 = Resources.images().get("images/fistIcon.png");
-	private static final Image fist = fist1.getScaledInstance((int)(fist1.getWidth()*2.5), (int)(fist1.getHeight()*2.5), Image.SCALE_DEFAULT);
+	private static final LinkedList<Image> inventoryIcons = new LinkedList<Image>();
+	
+	static {
+		BufferedImage fist1 = Resources.images().get("images/fistIcon.png");
+		Image fist = fist1.getScaledInstance((int)(fist1.getWidth()*2.5), (int)(fist1.getHeight()*2.5), Image.SCALE_DEFAULT);
+		
+		BufferedImage sword1 = Resources.images().get("images/whiteSwordIcon.png");
+		Image sword = sword1.getScaledInstance((int)(sword1.getWidth()*2.5), (int)(sword1.getHeight()*2.5), Image.SCALE_DEFAULT);
+		
+		BufferedImage swordPurple1 = Resources.images().get("images/purpleSwordIcon.png");//doesn't always work
+		Image swordPurple = swordPurple1.getScaledInstance((int)(swordPurple1.getWidth()*2.5), (int)(swordPurple1.getHeight()*2.5), Image.SCALE_DEFAULT);
+		
+		BufferedImage swordBlue1 = Resources.images().get("images/blueSwordIcon.png");
+		Image swordBlue = swordBlue1.getScaledInstance((int)(swordBlue1.getWidth()*2.5), (int)(swordBlue1.getHeight()*2.5), Image.SCALE_DEFAULT);
+		
+		inventoryIcons.add(fist);
+		inventoryIcons.add(sword);
+		inventoryIcons.add(swordPurple);
+		inventoryIcons.add(swordBlue);
+	}
+	
 	
 	/**
 	 * creates an instance of the Hud class
 	 */
 	
-	private int slot = 0;
+	private static int slot = 0;
 	
 	protected Hud() {
 		super(0, 0, Game.window().getResolution().getWidth(), Game.window().getResolution().getHeight());
@@ -160,6 +181,7 @@ public class Hud extends GuiComponent{
 		final double height = 30;
 		double x = Game.world().camera().getViewport().getMinX() + 20;
 		double y = Game.world().camera().getViewport().getMaxY() - 40;
+		HashMap<String,Boolean> inventory = Player.instance().getInventory();
 		
 		RoundRectangle2D highlight = new RoundRectangle2D.Double(x-2.5+slot*40, y-2.5,width+5, height+5, 1.5, 1.5);
 		Game.graphics().renderShape(g, highlight);
@@ -168,8 +190,16 @@ public class Hud extends GuiComponent{
 			RoundRectangle2D rect = new RoundRectangle2D.Double(x + (i*40), y, width, height, 1.5, 1.5);
 			g.setColor(Color.LIGHT_GRAY);
 			Game.graphics().renderShape(g, rect);
-			Game.graphics().renderImage(g, fist, x+1, y-3);
 		}
+		
+		if(inventory.get("fist"))
+			Game.graphics().renderImage(g, inventoryIcons.get(0), x+1, y-3);
+		if(inventory.get("sword"))
+			Game.graphics().renderImage(g, inventoryIcons.get(1), x+1+40, y);
+		if(inventory.get("swordPurple"))
+			Game.graphics().renderImage(g, inventoryIcons.get(2), x+1+80, y);
+		if(inventory.get("swordBlue"))
+			Game.graphics().renderImage(g, inventoryIcons.get(3), x+1+120, y);
 	}
 	
 	private void renderControls(Graphics2D g) throws IOException {

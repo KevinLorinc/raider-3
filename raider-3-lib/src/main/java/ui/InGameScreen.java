@@ -1,6 +1,7 @@
 package ui;
 
 import java.awt.event.KeyEvent;
+import java.util.HashMap;
 
 import de.gurkenlabs.litiengine.Game;
 import de.gurkenlabs.litiengine.IUpdateable;
@@ -47,11 +48,24 @@ public class InGameScreen extends GameScreen implements IUpdateable{
 			  if (Player.instance().getState() == PlayerState.LOCKED || Player.instance().isDead()) {
 			    return;
 			  }
+			  HashMap<String,Boolean> inventory = Player.instance().getInventory();
 			  
 			  if(hud.getSlot()<3) hud.setSlot(hud.getSlot() + 1);
 			  else hud.setSlot(0);
 			  
-			  Player.instance().setEquipped(!Player.instance().getEquipped());//ig we can leave this here for now
+			  switch(hud.getSlot() + 1) {
+			  	case 1: if(inventory.get("fist")) Player.instance().setEquipped("fist");
+			  			break;
+			  	case 2: if(inventory.get("sword")) Player.instance().setEquipped("sword");
+			  			else Player.instance().setEquipped("fist");
+			  			break;
+			  	case 3: if(inventory.get("swordPurple")) Player.instance().setEquipped("swordPurple");
+	  				    else Player.instance().setEquipped("fist");
+	  					break;
+			  	case 4: if(inventory.get("swordBlue")) Player.instance().setEquipped("swordBlue");
+				        else Player.instance().setEquipped("fist");
+					    break;
+			  }
 		  });
 		  
 		  this.getComponents().add(this.hud);

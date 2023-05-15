@@ -30,15 +30,11 @@ public class PlayerInput {
 	        return;
 	      }
 
-	      if (RaidersLogic.getState() == GameState.INGAME_MENU) {
-	        RaidersLogic.setState(GameState.INGAME);
-	      } else if (RaidersLogic.getState() == GameState.INGAME) {
-	        RaidersLogic.setState(GameState.INGAME_MENU);
-	      }
+		  System.exit(0);
 	  });
 	  
 	  Input.keyboard().onKeyPressed(KeyEvent.VK_SPACE, e -> {//spin attack
-		  if (Player.instance().getState() == PlayerState.LOCKED || Player.instance().isDead() || !Player.instance().getEquipped()) {
+		  if (Player.instance().getState() == PlayerState.LOCKED || Player.instance().isDead()) {//|| !Player.instance().getEquipped()
 		    return;
 		  }
 		  
@@ -50,7 +46,7 @@ public class PlayerInput {
 	  });
 	  
 	  Input.mouse().onPressed(e -> {//normal attack
-		  if (Player.instance().getState() == PlayerState.LOCKED || Player.instance().isDead() || !Player.instance().getEquipped()) {
+		  if (Player.instance().getState() == PlayerState.LOCKED || Player.instance().isDead()) { // || !Player.instance().getEquipped()
 		    return;
 		  }
 		  
@@ -73,7 +69,7 @@ public class PlayerInput {
 		  
 		  });
 	  
-	  Input.keyboard().onKeyPressed(KeyEvent.VK_E, e -> {//spin attack
+	  Input.keyboard().onKeyPressed(KeyEvent.VK_E, e -> {
 		  if (Player.instance().getState() == PlayerState.LOCKED || Player.instance().isDead()) {
 		    return;
 		  }
@@ -83,15 +79,20 @@ public class PlayerInput {
 		  }
 		  
 		  if(RaidersLogic.isInChestArea() == 1) {
-			  //add icon
+			  Player.instance().gotItem("sword");
+			  RaidersLogic.removeChest(0);
 		  }
 		  
+		  System.out.println(RaidersLogic.isInChestArea() == 2);//not working properly. have to get purple sword first
 		  if(RaidersLogic.isInChestArea() == 2) {
-			  //add icon
+			  Player.instance().gotItem("swordPurple");
+			  System.out.println(Player.instance().getInventory());
+			  RaidersLogic.removeChest(1);
 		  }
 		  
 		  if(RaidersLogic.isInChestArea() == 3) {
 			  Player.instance().getHitPoints().setToMax();
+			  RaidersLogic.removeChest(2);
 		  }
 	  });
   	}
