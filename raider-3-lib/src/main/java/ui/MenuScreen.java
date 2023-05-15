@@ -56,7 +56,6 @@ public class MenuScreen extends GameScreen implements IUpdateable{
 	    this.mainMenu.setForwardMouseEvents(false);
 	    this.mainMenu.getCellComponents().forEach(comp -> {
 	    try {
-	    	System.out.println(Font.createFont(Font.TRUETYPE_FONT, new File("misc/gameFont.ttf")));
 			comp.setFont(Font.createFont(Font.TRUETYPE_FONT, new File("misc/gameFont.ttf")));
 			comp.setFontSize(50);
 		} catch (FontFormatException e) {
@@ -92,6 +91,7 @@ public class MenuScreen extends GameScreen implements IUpdateable{
 		    final double buttonWidth = 450;
 
 		    this.mainMenu = new Menu(centerX - buttonWidth / 2, centerY * 1.3, buttonWidth, centerY / 2, "Play", "Exit");
+		    System.out.println(this.mainMenu.getCellComponents());
 
 		    Input.keyboard().onKeyReleased(event -> {
 		      if (this.isSuspended()) {
@@ -103,12 +103,13 @@ public class MenuScreen extends GameScreen implements IUpdateable{
 		        for (ImageComponent comp : this.mainMenu.getCellComponents()) {
 		          comp.setHovered(false);
 		        }
+		        System.out.println("hello" + this.mainMenu.getCellComponents());
 		        this.mainMenu.getCellComponents().get(this.mainMenu.getCurrentSelection()).setHovered(true);
 		      }
 
 		      if (event.getKeyCode() == KeyEvent.VK_DOWN || event.getKeyCode() == KeyEvent.VK_S) {
 		    	int nextSelection = this.mainMenu.getCurrentSelection() + 1;
-		    	if(nextSelection > 2) nextSelection = 2;
+		    	if(nextSelection > 1) nextSelection = 1;
 		        this.mainMenu.setCurrentSelection(nextSelection);
 		        for (ImageComponent comp : this.mainMenu.getCellComponents()) {
 		          comp.setHovered(false);

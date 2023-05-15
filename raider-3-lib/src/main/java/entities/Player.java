@@ -317,7 +317,7 @@ public class Player extends Creature implements IUpdateable{
 	
 	public void onDead() {
 		this.animations().play("raider-death");
-		Game.screens().display("DEATH-SCREEN");
+		//Game.screens().display("DEATH-SCREEN");
 	}
 	
 	/**
