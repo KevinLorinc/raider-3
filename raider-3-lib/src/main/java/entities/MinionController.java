@@ -87,12 +87,14 @@ public class MinionController extends MovementController<Minion>{
 	    		this.apply(new Force(thisMinion.getLocation(),15,5));
 	    		thisMinion.setEnemyState(EnemyState.ROAMING);
 	    	}
-	    	else if (this.getEntity().getMinionAttack().canCast() && dist < 15) {
-		    	this.getEntity().getMinionAttack().cast();
-		    	if(thisMinion.getFacingDirection() == Direction.RIGHT)
-		    		thisMinion.animations().play("minion-attack-right");
-		    	else
-		    		thisMinion.animations().play("minion-attack-left");
+	    	else if (this.getEntity().getMinionAttack().canCast() && dist < 18) {
+	    		Game.loop().perform(100, () -> {
+	    			this.getEntity().getMinionAttack().cast();
+			    	if(thisMinion.getFacingDirection() == Direction.RIGHT)
+			    		thisMinion.animations().play("minion-attack-right");
+			    	else
+			    		thisMinion.animations().play("minion-attack-left");
+	    		});	
 	    	}
 	    	
 	    }
