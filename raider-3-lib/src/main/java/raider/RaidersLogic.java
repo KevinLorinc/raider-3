@@ -18,6 +18,7 @@ import de.gurkenlabs.litiengine.graphics.PositionLockCamera;
 import entities.Minion;
 import entities.Player;
 import entities.Reaper;
+import ui.MenuScreen;
 
 /**
  * a class that handles the logic for the Raiders game
@@ -121,6 +122,8 @@ public final class RaidersLogic {
 		Game.world().loadEnvironment("tutorial.tmx");
 		transitionArea = new MapArea(1820,192,78,128);
 	    Game.world().environment().add(transitionArea);
+	    if(Game.screens().current() instanceof MenuScreen)
+	    	Game.screens().remove(Game.screens().current());
 	}
 	
 	/**

@@ -130,7 +130,10 @@ public class MenuScreen extends GameScreen implements IUpdateable{
 		    
 		    
 			try {
-				BufferedImage title1 = ImageIO.read(new File("images/raiderLogo.png"));
+				BufferedImage title1 = null;
+				while(title1 == null) {
+					title1 = ImageIO.read(new File("images/raiderLogo.png"));
+				}
 				int w = title1.getWidth();
 				int h = title1.getHeight();
 				int width = Game.window().getWidth();

@@ -3,8 +3,10 @@ package ui;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontFormatException;
+import java.awt.TextComponent;
 import java.awt.event.KeyEvent;
 import java.awt.geom.AffineTransform;
+import java.awt.geom.Point2D;
 import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -14,11 +16,17 @@ import javax.imageio.ImageIO;
 
 import de.gurkenlabs.litiengine.Game;
 import de.gurkenlabs.litiengine.IUpdateable;
+import de.gurkenlabs.litiengine.entities.Spawnpoint;
+import de.gurkenlabs.litiengine.graphics.Camera;
+import de.gurkenlabs.litiengine.graphics.PositionLockCamera;
 import de.gurkenlabs.litiengine.gui.ImageComponent;
 import de.gurkenlabs.litiengine.gui.Menu;
 import de.gurkenlabs.litiengine.gui.screens.GameScreen;
 import de.gurkenlabs.litiengine.input.Input;
+import entities.Player;
+import entities.Player.PlayerState;
 import raider.RaidersLogic;
+import raider.RaidersLogic.GameState;
 
 public class DeathScreen extends GameScreen implements IUpdateable{
 	  public static final String NAME = "DEATH-SCREEN";
@@ -39,10 +47,10 @@ public class DeathScreen extends GameScreen implements IUpdateable{
 	  public void prepare() {
 	    super.prepare();
 	    Game.loop().attach(this);
+	    Game.screens().remove(Game.screens().get("MENU-SCREEN"));
 	    
 	    if(this.isEnabled()) {
-	    	Game.window().getRenderComponent().setBackground(Color.BLACK);
-		    //Game.window().getRenderComponent().
+	    	Game.window().getRenderComponent().setBackground(new Color(20,20,20));
 		    
 		    
 		    this.mainMenu.setForwardMouseEvents(false);
@@ -81,8 +89,7 @@ public class DeathScreen extends GameScreen implements IUpdateable{
 			    final double centerY = Game.window().getResolution().getHeight() * 1 / 2;
 			    final double buttonWidth = 450;
 
-			    this.mainMenu = new Menu(centerX - buttonWidth / 2, centerY * 1.3, buttonWidth, centerY / 2, "Play", "Exit");
-			    System.out.println(this.mainMenu.getCellComponents());
+			    this.mainMenu = new Menu(centerX - buttonWidth / 2, centerY * 1.3, buttonWidth, centerY / 2, "Play Again", "Exit");
 
 			    Input.keyboard().onKeyReleased(event -> {
 			      if (this.isSuspended()) {
@@ -110,7 +117,7 @@ public class DeathScreen extends GameScreen implements IUpdateable{
 
 			      if (event.getKeyCode() == KeyEvent.VK_ENTER || event.getKeyCode() == KeyEvent.VK_SPACE) {
 			        switch (this.mainMenu.getCurrentSelection()) {
-			          case 0 -> this.startGame();
+			          case 0 -> this.restartGame();
 			          case 1 -> System.exit(0);
 			        }
 
@@ -118,22 +125,54 @@ public class DeathScreen extends GameScreen implements IUpdateable{
 			    });
 
 			    this.getComponents().add(this.mainMenu);
+			    
+			    try {
+					BufferedImage title1 = null;
+					while(title1 == null) {
+						title1 = ImageIO.read(new File("images/gameOverImage.png"));
+					}
+					int w = title1.getWidth();
+					int h = title1.getHeight();
+					int width = Game.window().getWidth();
+					int height = Game.window().getHeight();
+					//double renderScale = RaidersMath.getRenderScale(width,height);
+					BufferedImage title = new BufferedImage((int)(width*.75), (int)(height*.5), BufferedImage.TYPE_INT_ARGB);
+					AffineTransform at = new AffineTransform();
+					at.scale((width*.7)/w, (height*.5)/h);
+					AffineTransformOp scaleOp = new AffineTransformOp(at, AffineTransformOp.TYPE_NEAREST_NEIGHBOR);
+					title = scaleOp.filter(title1, title);
+				    this.getComponents().add(new ImageComponent(275,50,title));
+				} catch (IOException e) {
+					e.printStackTrace();
+				}    
 		  }
-		    
 	  }
 	  
 	  /**
 	   * code for when the start button is clicked
 	   */
-	  private void startGame() {
-		    this.mainMenu.setEnabled(false);
-		    Game.window().getRenderComponent().fadeOut(1500);
-
-		    Game.loop().perform(1500, () -> {
-		      Game.window().getRenderComponent().fadeIn(1500);
-		      Game.screens().display("INGAME-SCREEN");
-		      RaidersLogic.onPlay();
-		    });
+	  private void restartGame() {
+		  Player.instance().setInstanceNull();
+		  this.mainMenu.setEnabled(false);	    
+		    
+		    Game.loop().perform(3000, () -> {
+		       Camera camera = new PositionLockCamera(Player.instance());
+			   camera.setClampToMap(true);
+			   Game.world().setCamera(camera);
+			   Game.window().getRenderComponent().fadeIn(1500);
+			   Game.world().loadEnvironment("tutorial.tmx");
+			   Game.world().camera().setFocus(Game.world().environment().getCenter());
+			    Spawnpoint spawn = Game.world().environment().getSpawnpoint("enter");
+		        if (spawn != null) {
+		          RaidersLogic.setState(GameState.INGAME);
+		          spawn.spawn(Player.instance());
+		        }
+			    Player.instance().getHitPoints().setToMax();
+			    Player.instance().setIndestructible(false);
+		        Player.instance().setCollision(true);
+			    Player.instance().setState(PlayerState.CONTROLLABLE);
+		    }); 
+			Game.screens().remove(Game.screens().get("DEATH-SCREEN"));
       }
 	
 	

@@ -25,6 +25,7 @@ import de.gurkenlabs.litiengine.input.KeyboardEntityController;
 import de.gurkenlabs.litiengine.physics.IMovementController;
 import de.gurkenlabs.litiengine.resources.Resources;
 import raider.RaidersMath;
+import ui.DeathScreen;
 
 /**
  * the class that creates the entity of player
@@ -84,6 +85,10 @@ public class Player extends Creature implements IUpdateable{
 		if(instance == null) {instance = new Player();}
 		
 		return instance;
+	}
+	
+	public void setInstanceNull() {
+		instance = null;
 	}
 	
 	/**
@@ -317,7 +322,12 @@ public class Player extends Creature implements IUpdateable{
 	
 	public void onDead() {
 		this.animations().play("raider-death");
-		//Game.screens().display("DEATH-SCREEN");
+		Game.loop().perform(1000, () -> {
+			Game.world().environment().remove(Player.instance());
+			Game.world().unloadEnvironment();
+			Game.screens().add(new DeathScreen());
+			Game.screens().display("DEATH-SCREEN");
+		});
 	}
 	
 	/**

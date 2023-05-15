@@ -57,18 +57,19 @@ public class Hud extends GuiComponent{
 	public void render(Graphics2D g){
 		
 		super.render(g);
-		
-		this.renderHP(g);
-		try {
-			this.renderEnemyHP(g);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		this.renderInventory(g);
-		try {
-			this.renderControls(g);
-		} catch (IOException e) {
-			e.printStackTrace();
+		if(Game.world().environment() != null) {
+			this.renderHP(g);
+			try {
+				this.renderEnemyHP(g);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			this.renderInventory(g);
+			try {
+				this.renderControls(g);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 	
