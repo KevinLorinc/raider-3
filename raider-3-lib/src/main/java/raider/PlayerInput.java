@@ -10,6 +10,7 @@ import de.gurkenlabs.litiengine.graphics.Camera;
 import de.gurkenlabs.litiengine.graphics.PositionLockCamera;
 import de.gurkenlabs.litiengine.input.Input;
 import raider.RaidersLogic.GameState;
+import ui.InGameScreen;
 import entities.Player;
 import entities.Player.PlayerState;
 
@@ -146,11 +147,15 @@ public class PlayerInput {
 		  if(RaidersLogic.isInChestArea() == 1) {
 			  Player.instance().gotItem("sword");
 			  chestActive.set(0, false);
+			  if(InGameScreen.hud.getSlot() == 1)
+				  Player.instance().setEquipped("sword");
 		  }
 		  
 		  if(RaidersLogic.isInChestArea() == 2) {
 			  Player.instance().gotItem("swordPurple");
 			  chestActive.set(1, false);
+			  if(InGameScreen.hud.getSlot() == 2)
+				  Player.instance().setEquipped("swordPurple");
 		  }
 		  
 		  if(RaidersLogic.isInChestArea() == 3) {

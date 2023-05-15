@@ -18,7 +18,7 @@ import entities.Player.PlayerState;
 public class InGameScreen extends GameScreen implements IUpdateable{
 	  public static final String NAME = "INGAME-SCREEN";
 	  
-	  private Hud hud;
+	  public static Hud hud;
 	  
 	  /**
 	   * creates an ingame sreen with the name INGAME_SCREEN
@@ -42,7 +42,7 @@ public class InGameScreen extends GameScreen implements IUpdateable{
 	  
 	  @Override
 	  protected void initializeComponents() {
-		  this.hud = new Hud();
+		  hud = new Hud();
 		  
 		  Input.keyboard().onKeyReleased(KeyEvent.VK_Q, e -> {
 			  if (Player.instance().getState() == PlayerState.LOCKED || Player.instance().isDead()) {
@@ -68,7 +68,7 @@ public class InGameScreen extends GameScreen implements IUpdateable{
 			  }
 		  });
 		  
-		  this.getComponents().add(this.hud);
+		  this.getComponents().add(hud);
 	  }
 	  
 	  //we can override the render function here to add cinematic clips if we wish
