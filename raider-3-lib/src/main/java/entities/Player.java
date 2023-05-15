@@ -15,6 +15,7 @@ import de.gurkenlabs.litiengine.entities.CollisionInfo;
 import de.gurkenlabs.litiengine.entities.CombatInfo;
 import de.gurkenlabs.litiengine.entities.Creature;
 import de.gurkenlabs.litiengine.entities.EntityInfo;
+import de.gurkenlabs.litiengine.entities.IEntity;
 import de.gurkenlabs.litiengine.entities.MovementInfo;
 import de.gurkenlabs.litiengine.graphics.CreatureShadowImageEffect;
 import de.gurkenlabs.litiengine.graphics.Spritesheet;
@@ -33,7 +34,7 @@ import ui.DeathScreen;
  *
  */
 @EntityInfo(width = 32, height = 32)
-@MovementInfo(velocity = 200)
+@MovementInfo(velocity = 500)
 @CollisionInfo(collisionBoxWidth = 12, collisionBoxHeight = 15, collision = true)
 @CombatInfo(hitpoints = 100, team = 1)
 public class Player extends Creature implements IUpdateable{
@@ -113,10 +114,6 @@ public class Player extends Creature implements IUpdateable{
 	 */
 	@Override
 	protected IEntityAnimationController<?> createAnimationController() {
-		
-//		for(Spritesheet x : Resources.spritesheets().getAll())
-//			System.out.println(x.getName());
-		
 		Spritesheet idle = Resources.spritesheets().get("raider-idle-right");
 		Spritesheet walk = Resources.spritesheets().get("raider-walk-right");
 		
@@ -336,8 +333,19 @@ public class Player extends Creature implements IUpdateable{
 	
 	public void onDead() {
 		this.animations().play("raider-death");
-		Game.loop().perform(1000, () -> {
+		Game.loop().perform(800, () -> {
 			Game.world().environment().remove(Player.instance());
+			for(IEntity entity: Game.world().environment().getEntities()) {
+				if(entity instanceof Enemy)
+				Game.world().environment().remove(entity);
+			}
+			Game.world().unloadEnvironment();
+			Game.world().loadEnvironment("tutorial.tmx");
+			Game.world().environment().remove(Player.instance());
+			for(IEntity entity: Game.world().environment().getEntities()) {
+				if(entity instanceof Enemy)
+				Game.world().environment().remove(entity);
+			}
 			Game.world().unloadEnvironment();
 			Game.screens().add(new DeathScreen());
 			Game.screens().display("DEATH-SCREEN");

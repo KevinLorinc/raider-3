@@ -19,6 +19,7 @@ import de.gurkenlabs.litiengine.graphics.PositionLockCamera;
 import entities.Minion;
 import entities.Player;
 import entities.Reaper;
+import raider.RaidersLogic.GameState;
 import ui.MenuScreen;
 
 /**
@@ -45,6 +46,8 @@ public final class RaidersLogic {
 	private static MapArea transitionArea;
 	
 	private static final LinkedList<MapArea> chestArea = new LinkedList<MapArea>();
+	
+	private static int restarts = 0;
 	
 	
 	/**
@@ -92,7 +95,7 @@ public final class RaidersLogic {
 		          setState(GameState.INGAME);
 		          spawn.spawn(Player.instance());
 		        }
-		        //i have no clue what this does tbh
+
 		        AStarGrid grid = new AStarGrid(e.getMap().getSizeInPixels(), 8);
 		        for (CollisionBox collisionBox : e.getEntities(CollisionBox.class)) {
 		          for (AStarNode node : grid.getIntersectedNodes(collisionBox.getBoundingBox())) {
@@ -127,9 +130,6 @@ public final class RaidersLogic {
 	    	Game.screens().remove(Game.screens().current());
 	}
 	
-	public static void onRestart() {
-		init();
-	}
 	
 	/**
 	 * checks if raider is in transition area
@@ -187,6 +187,19 @@ public final class RaidersLogic {
 		Game.loop().perform(1000, () -> {
 			  Game.world().unloadEnvironment();
 			  Game.world().loadEnvironment(newEnvironment);
+			  Camera camera = new PositionLockCamera(Player.instance());
+		      camera.setClampToMap(true);
+			  Game.world().setCamera(camera);
+		      Player.instance().setIndestructible(false);
+		      Player.instance().setCollision(true);
+
+		      Game.world().camera().setFocus(Game.world().environment().getCenter());
+		      Spawnpoint spawn = Game.world().environment().getSpawnpoint("enter");
+		      if (spawn != null) {
+		          setState(GameState.INGAME);
+		          spawn.spawn(Player.instance());
+		      }
+		      
 			  Game.window().getRenderComponent().fadeIn(1500);
 		});
 	}
@@ -211,13 +224,11 @@ public final class RaidersLogic {
 	  }
 	}
 	
-	public static void resetSpawns() {
-		for(IEntity entity: Game.world().environment().getEntities()) {
-			Game.world().environment().remove(entity);
-		}
+	public static void resetSpawns() {			
 		for(EnemySpawnEvent event: spawnEvents.get(Game.world().environment().getMap().getName())) {
 			event.finished = false;
 		}
+		restarts++;
 	}
 	
 	/**
@@ -229,6 +240,7 @@ public final class RaidersLogic {
 
 	    Spawnpoint spawn = Game.world().environment().getSpawnpoint(event.spawnPoint);
 	    if (spawn == null) {
+	      System.out.println(Game.world().environment().getSpawnpoints());
 	      System.out.println("Spawn " + event.spawnPoint + " could not be found on map " + Game.world().environment().getMap().getName());
 	      return;
 	    }

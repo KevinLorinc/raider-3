@@ -17,6 +17,7 @@ import javax.imageio.ImageIO;
 import de.gurkenlabs.litiengine.Game;
 import de.gurkenlabs.litiengine.IUpdateable;
 import de.gurkenlabs.litiengine.entities.CollisionBox;
+import de.gurkenlabs.litiengine.entities.IEntity;
 import de.gurkenlabs.litiengine.entities.Spawnpoint;
 import de.gurkenlabs.litiengine.entities.behavior.AStarGrid;
 import de.gurkenlabs.litiengine.entities.behavior.AStarNode;
@@ -28,6 +29,7 @@ import de.gurkenlabs.litiengine.gui.screens.GameScreen;
 import de.gurkenlabs.litiengine.input.Input;
 import entities.Player;
 import entities.Player.PlayerState;
+import raider.PlayerInput;
 import raider.RaidersLogic;
 import raider.RaidersLogic.GameState;
 
@@ -161,13 +163,12 @@ public class DeathScreen extends GameScreen implements IUpdateable{
 		    Game.loop().perform(3000, () -> {
 		       Game.window().getRenderComponent().fadeIn(1500);
 			   Game.world().loadEnvironment("tutorial.tmx");
-		    	
 		       Camera camera = new PositionLockCamera(Player.instance());
 			   camera.setClampToMap(true);
 			   Game.world().setCamera(camera);
 			   Game.window().getRenderComponent().fadeIn(1500);
-			   Game.world().loadEnvironment("tutorial.tmx");
 			   Game.world().camera().setFocus(Game.world().environment().getCenter());
+			   RaidersLogic.resetSpawns();
 			    Spawnpoint spawn = Game.world().environment().getSpawnpoint("enter");
 		        if (spawn != null) {
 		          RaidersLogic.setState(GameState.INGAME);
@@ -177,6 +178,11 @@ public class DeathScreen extends GameScreen implements IUpdateable{
 			    Player.instance().setIndestructible(false);
 		        Player.instance().setCollision(true);
 			    Player.instance().setState(PlayerState.CONTROLLABLE);
+			    
+			    for(int i = 0;i<PlayerInput.chestActive.size();i++) {
+			    	PlayerInput.chestActive.set(i, true);
+			    }
+			    	
 		    }); 
 			Game.screens().remove(Game.screens().get("DEATH-SCREEN"));
       }

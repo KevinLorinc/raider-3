@@ -83,39 +83,41 @@ public class MeleeAttack extends Ability{
 		 */
 		@Override
 		public void apply(final Shape impactArea) {
-			super.apply(new Rectangle(20,20,20,20));
-			
-			final int damage = this.getAbility().getAttributes().value().get();
-			final List<ICombatEntity> affected = this.lookForAffectedEntities(impactArea);
-		    for (final ICombatEntity affectedEntity : affected) {
-		      if(affectedEntity instanceof Enemy == false) continue;
-		      
-		      Enemy hit = (Enemy)affectedEntity;
-		      
-		      if(hit instanceof Minion) {
-		    	  hit.hit(damage);
-		        ((MinionController)(hit.movement())).setApplyPoint(Player.instance().getCollisionBoxCenter());
-		        ((MinionController)(hit.movement())).setApplyTime(Game.time().now());
-		        hit.setEnemyState(EnemyState.HIT);
-		      }
-		      
-		      if(hit instanceof Reaper) {
-		    	  Reaper reaper = (Reaper)hit;
-		    	 if(reaper.getEnemyState() == EnemyState.ORB) {
-	    	      ((ReaperController)(hit.movement())).setActionTime(Game.time().now());
-	    	      hit.setEnemyState(EnemyState.HIT);
-	    	    }else {
-	    	    	int chance = (int)Math.round(Math.random());
-	    	    	System.out.println(chance);
-	    	    	if(chance==0) hit.hit(damage);
-	    	    	else {
-	    	    		if(reaper.getFacingDirection()==Direction.RIGHT) reaper.animations().play("reaper-phase-right");
-	    	    		else reaper.animations().play("reaper-phase-left");
-	    	    	}
-	    	    }
-		      }		      
-		      
-		    }
-		}
+			if(Game.world().environment() != null)
+			{
+				super.apply(new Rectangle(20,20,20,20));
+				
+				final int damage = this.getAbility().getAttributes().value().get();
+				final List<ICombatEntity> affected = this.lookForAffectedEntities(impactArea);
+			    for (final ICombatEntity affectedEntity : affected) {
+			      if(affectedEntity instanceof Enemy == false) continue;
+			      
+			      Enemy hit = (Enemy)affectedEntity;
+			      
+			      if(hit instanceof Minion) {
+			    	  hit.hit(damage);
+			        ((MinionController)(hit.movement())).setApplyPoint(Player.instance().getCollisionBoxCenter());
+			        ((MinionController)(hit.movement())).setApplyTime(Game.time().now());
+			        hit.setEnemyState(EnemyState.HIT);
+			      }
+			      
+			      if(hit instanceof Reaper) {
+			    	  Reaper reaper = (Reaper)hit;
+			    	 if(reaper.getEnemyState() == EnemyState.ORB) {
+		    	      ((ReaperController)(hit.movement())).setActionTime(Game.time().now());
+		    	      hit.setEnemyState(EnemyState.HIT);
+		    	    }else {
+		    	    	int chance = (int)Math.round(Math.random());
+		    	    	System.out.println(chance);
+		    	    	if(chance==0) hit.hit(damage);
+		    	    	else {
+		    	    		if(reaper.getFacingDirection()==Direction.RIGHT) reaper.animations().play("reaper-phase-right");
+		    	    		else reaper.animations().play("reaper-phase-left");
+		    	    	}
+		    	    }
+			      }		       
+			    }
+			}
+	    }
 	}
 }
