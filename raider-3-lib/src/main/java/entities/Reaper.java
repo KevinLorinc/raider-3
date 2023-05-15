@@ -2,10 +2,12 @@ package entities;
 
 import abilities.ReaperAttack;
 import de.gurkenlabs.litiengine.Direction;
+import de.gurkenlabs.litiengine.Game;
 import de.gurkenlabs.litiengine.IUpdateable;
 import de.gurkenlabs.litiengine.entities.CollisionInfo;
 import de.gurkenlabs.litiengine.entities.CombatInfo;
 import de.gurkenlabs.litiengine.entities.EntityInfo;
+import de.gurkenlabs.litiengine.entities.IEntity;
 import de.gurkenlabs.litiengine.entities.MovementInfo;
 import de.gurkenlabs.litiengine.entities.Spawnpoint;
 import de.gurkenlabs.litiengine.graphics.Spritesheet;
@@ -13,6 +15,7 @@ import de.gurkenlabs.litiengine.graphics.animation.Animation;
 import de.gurkenlabs.litiengine.graphics.animation.IEntityAnimationController;
 import de.gurkenlabs.litiengine.physics.IMovementController;
 import de.gurkenlabs.litiengine.resources.Resources;
+import ui.WinScreen;
 
 /**
  * The class for the minion (Blue hood) enemy
@@ -91,6 +94,24 @@ public class Reaper extends Enemy implements IUpdateable{
 	public void update() {
 			if(Player.instance().getX()<this.getX()) this.setFacingDirection(Direction.LEFT);
 			else this.setFacingDirection(Direction.RIGHT);
+	}
+	
+	public void onDead() {
+			Game.world().environment().remove(Player.instance());
+			for(IEntity entity: Game.world().environment().getEntities()) {
+				if(entity instanceof Enemy)
+				Game.world().environment().remove(entity);
+			}
+			Game.world().unloadEnvironment();
+			Game.world().loadEnvironment("tutorial.tmx");
+			Game.world().environment().remove(Player.instance());
+			for(IEntity entity: Game.world().environment().getEntities()) {
+				if(entity instanceof Enemy)
+				Game.world().environment().remove(entity);
+			}
+			Game.world().unloadEnvironment();
+			Game.screens().add(new WinScreen());
+			Game.screens().display("WIN-SCREEN");
 	}
 	
 	/**

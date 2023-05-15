@@ -27,15 +27,15 @@ import raider.PlayerInput;
 import raider.RaidersLogic;
 import raider.RaidersLogic.GameState;
 
-public class DeathScreen extends GameScreen implements IUpdateable{
-	  public static final String NAME = "DEATH-SCREEN";
+public class WinScreen extends GameScreen implements IUpdateable{
+	  public static final String NAME = "WIN-SCREEN";
 	  
 	  private Menu mainMenu;
 	  
 	  /**
 	   * creates an menu sreen with the name MENU-SCREEN
 	   */
-	  public DeathScreen() {
+	  public WinScreen() {
 	    super(NAME);
 
 	  }
@@ -128,19 +128,19 @@ public class DeathScreen extends GameScreen implements IUpdateable{
 			    try {
 					BufferedImage title1 = null;
 					while(title1 == null) {
-						title1 = ImageIO.read(new File("images/gameOverImage.png"));
+						title1 = ImageIO.read(new File("images/winImage.png"));
 					}
 					int w = title1.getWidth();
 					int h = title1.getHeight();
 					int width = Game.window().getWidth();
 					int height = Game.window().getHeight();
 					//double renderScale = RaidersMath.getRenderScale(width,height);
-					BufferedImage title = new BufferedImage((int)(width*.75), (int)(height*.5), BufferedImage.TYPE_INT_ARGB);
+					BufferedImage title = new BufferedImage((int)(width*.4), (int)(height*.4), BufferedImage.TYPE_INT_ARGB);
 					AffineTransform at = new AffineTransform();
-					at.scale((width*.7)/w, (height*.5)/h);
-					AffineTransformOp scaleOp = new AffineTransformOp(at, AffineTransformOp.TYPE_NEAREST_NEIGHBOR);
+					at.scale((width*.4)/w, (height*.4)/h);
+					AffineTransformOp scaleOp = new AffineTransformOp(at, AffineTransformOp.TYPE_BILINEAR);
 					title = scaleOp.filter(title1, title);
-				    this.getComponents().add(new ImageComponent(275,50,title));
+				    this.getComponents().add(new ImageComponent(520,150,title));
 				} catch (IOException e) {
 					e.printStackTrace();
 				}    
@@ -172,13 +172,14 @@ public class DeathScreen extends GameScreen implements IUpdateable{
 			    Player.instance().setIndestructible(false);
 		        Player.instance().setCollision(true);
 			    Player.instance().setState(PlayerState.CONTROLLABLE);
+			    Player.instance().gotItem("swordBlue");
 			    
 			    for(int i = 0;i<PlayerInput.chestActive.size();i++) {
 			    	PlayerInput.chestActive.set(i, true);
 			    }
 			    	
 		    }); 
-			Game.screens().remove(Game.screens().get("DEATH-SCREEN"));
+			Game.screens().remove(Game.screens().get("WIN-SCREEN"));
       }
 	
 	

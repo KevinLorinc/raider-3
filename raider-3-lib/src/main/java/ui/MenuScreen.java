@@ -99,7 +99,6 @@ public class MenuScreen extends GameScreen implements IUpdateable{
 		        for (ImageComponent comp : this.mainMenu.getCellComponents()) {
 		          comp.setHovered(false);
 		        }
-		        System.out.println("hello" + this.mainMenu.getCellComponents());
 		        this.mainMenu.getCellComponents().get(this.mainMenu.getCurrentSelection()).setHovered(true);
 		      }
 
@@ -113,7 +112,7 @@ public class MenuScreen extends GameScreen implements IUpdateable{
 		        this.mainMenu.getCellComponents().get(this.mainMenu.getCurrentSelection()).setHovered(true);
 		      }
 
-		      if (event.getKeyCode() == KeyEvent.VK_ENTER || event.getKeyCode() == KeyEvent.VK_SPACE) {
+		      if (event.getKeyCode() == KeyEvent.VK_ENTER) {
 		        switch (this.mainMenu.getCurrentSelection()) {
 		          case 0 -> this.startGame();
 		          case 1 -> System.exit(0);

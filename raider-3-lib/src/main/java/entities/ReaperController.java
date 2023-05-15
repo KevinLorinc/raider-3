@@ -54,7 +54,7 @@ public class ReaperController extends MovementController<Reaper>{
 		else if(Game.time().since(actionTime) <= 2000) {
 			if(thisReaper.getEnemyState()==EnemyState.HIT && !thisReaper.getIsSpawned()) {
 				thisReaper.animations().play("reaper-spawn");
-				Game.loop().perform(2000, () -> {
+				Game.loop().perform(2700, () -> {
 					thisReaper.animations().play("raider-laugh-right");
 					thisReaper.setIsSpawned(true);
 				});
@@ -75,6 +75,7 @@ public class ReaperController extends MovementController<Reaper>{
 	  	    	thisReaper.animations().play("reaper-death");
 	  	        Game.loop().perform(2000, () -> {
 	  	          Game.world().environment().remove(this.getEntity());
+	  	          thisReaper.onDead();
 	  	        });
 	  	        return;
 	  	    }

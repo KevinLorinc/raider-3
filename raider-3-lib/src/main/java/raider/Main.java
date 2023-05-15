@@ -17,7 +17,7 @@ public class Main {
 	 */
 	public static void main(String[] args) {
 		Game.info().setName("Raider");
-		Game.info().setVersion("v1.0.2");
+		Game.info().setVersion("v1.0.5");
 			
 		Game.init(args);
 		
@@ -28,10 +28,6 @@ public class Main {
 		Resources.load("gamev4.litidata");
 		Game.screens().add(new MenuScreen());
 		Game.screens().add(new InGameScreen());
-		//Game.screens().add(new DeathScreen());
-		
-		
-		//Game.world().loadEnvironment("tutorial.tmx");
 		 
 		Game.start();
 	}
