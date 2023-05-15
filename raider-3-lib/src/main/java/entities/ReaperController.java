@@ -55,7 +55,7 @@ public class ReaperController extends MovementController<Reaper>{
 			}
 		}
 		
-		else if(Game.time().since(actionTime) <= 3000) {
+		else if(Game.time().since(actionTime) <= 2000) {
 			if(thisReaper.getEnemyState()==EnemyState.HIT && !thisReaper.getIsSpawned()) {
 				thisReaper.animations().play("reaper-spawn");
 				Game.loop().perform(2000, () -> {
@@ -105,13 +105,16 @@ public class ReaperController extends MovementController<Reaper>{
 	  	    	if (this.getEntity().getReaperAttack().canCast() && dist < 50 && thisReaper.getEnemyState()!=EnemyState.IDLE){
 	  		    	this.getEntity().getReaperAttack().cast();
 	  		    	thisReaper.setEnemyState(EnemyState.IDLE);
-	  		    	if(thisReaper.getHitPoints().getRelativeCurrentValue() < 0.25)
+	  		    	if(thisReaper.getHitPoints().getRelativeCurrentValue() < 0.35) {
+	  		    		thisReaper.setVelocity(150);
 	  		    		if(thisReaper.getFacingDirection()==Direction.RIGHT) thisReaper.animations().play("reaper-frenzy-right");
 	  		    		else thisReaper.animations().play("reaper-frenzy-left");
-	  		    	else
+	  		    	}else {
+	  		    		thisReaper.setVelocity(80);
 	  		    		if(thisReaper.getFacingDirection()==Direction.RIGHT) thisReaper.animations().play("reaper-attack-right");
 	  		    		else thisReaper.animations().play("reaper-attack-left");
-	  	    	}
+	  		    	}
+	  		    	}
 	  	    	
 	  	    }
 	    } 

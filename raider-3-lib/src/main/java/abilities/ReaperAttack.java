@@ -64,7 +64,7 @@ public class ReaperAttack extends Ability{
 		@Override
 		public void apply(final Shape impactArea) {
 			super.apply(new Rectangle(20,20,20,20));
-			if(thisReaper.getHitPoints().getRelativeCurrentValue()<0.25)
+			if(thisReaper.getHitPoints().getRelativeCurrentValue()<0.35)
 				thisReaper.getReaperAttack().getAttributes().value().setBaseValue(40);
 			else
 				thisReaper.getReaperAttack().getAttributes().value().setBaseValue(20);
