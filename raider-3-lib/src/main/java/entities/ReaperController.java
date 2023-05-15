@@ -46,8 +46,6 @@ public class ReaperController extends MovementController<Reaper>{
 	public void update(){
 		super.update();
 		
-		System.out.println(Game.world().environment().getEntities());
-		
 		if(actionTime == 0) {
 			if(thisReaper.getX()-Player.instance().getX()<150 && thisReaper.getEnemyState()==EnemyState.NOTSPAWNED){
 				thisReaper.animations().play("orb-spawn");

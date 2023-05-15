@@ -228,6 +228,13 @@ public final class RaidersLogic {
 		for(EnemySpawnEvent event: spawnEvents.get(Game.world().environment().getMap().getName())) {
 			event.finished = false;
 		}
+		Game.world().unloadEnvironment();
+		Game.world().loadEnvironment("boss1.tmx");
+		for(EnemySpawnEvent event: spawnEvents.get(Game.world().environment().getMap().getName())) {
+			event.finished = false;
+		}
+		Game.world().unloadEnvironment();
+		Game.world().loadEnvironment("tutorial.tmx");
 		restarts++;
 	}
 	

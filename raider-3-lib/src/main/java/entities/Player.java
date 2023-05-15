@@ -34,7 +34,7 @@ import ui.DeathScreen;
  *
  */
 @EntityInfo(width = 32, height = 32)
-@MovementInfo(velocity = 500)
+@MovementInfo(velocity = 100)
 @CollisionInfo(collisionBoxWidth = 12, collisionBoxHeight = 15, collision = true)
 @CombatInfo(hitpoints = 100, team = 1)
 public class Player extends Creature implements IUpdateable{
