@@ -19,7 +19,7 @@ import de.gurkenlabs.litiengine.resources.Resources;
  * @author Kevin Lorinc, Kush Vashishtha
  */
 @EntityInfo(width = 32, height = 32)
-@MovementInfo(velocity = 90)
+@MovementInfo(velocity = 95)
 @CollisionInfo(collisionBoxWidth = 10, collisionBoxHeight = 16, collision = true)
 @CombatInfo(hitpoints = 15, team = 2)
 public class Minion extends Enemy implements IUpdateable{

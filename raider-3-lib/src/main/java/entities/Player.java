@@ -358,6 +358,7 @@ public class Player extends Creature implements IUpdateable{
 	public void onDead() {
 		this.animations().play("raider-death");
 		Game.loop().perform(800, () -> {
+			if(Game.world().environment() == null) return;
 			Game.world().environment().remove(Player.instance());
 			for(IEntity entity: Game.world().environment().getEntities()) {
 				if(entity instanceof Enemy)

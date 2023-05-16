@@ -45,28 +45,31 @@ public class PlayerInput {
 		  if (Player.instance().getState() == PlayerState.LOCKED || Player.instance().isDead()) {//|| !Player.instance().getEquipped()
 		    return;
 		  }
-		  if(!Player.instance().getEquipped().equals("fist"))
-			  Player.instance().getSpinAttack().cast();
-		  
-		  Direction facing = Player.instance().calcFacingDirection();
-		  String equipped = Player.instance().getEquipped();
-		  
-		if(equipped.equals("sword"))  
-		  if(facing.equals(Direction.RIGHT))
-			Player.instance().animations().play("raider-idle-swordSpin-right");
-		  else
-			Player.instance().animations().play("raider-idle-swordSpin-left");
-		else if(equipped.equals("swordPurple")){
-			if(facing.equals(Direction.RIGHT))
-				Player.instance().animations().play("raider-idle-swordPurpleSpin-right");
+		  if(!Player.instance().getSpinAttack().isOnCooldown()) {
+			  if(!Player.instance().getEquipped().equals("fist"))
+				  Player.instance().getSpinAttack().cast();
+			  
+			  Direction facing = Player.instance().calcFacingDirection();
+			  String equipped = Player.instance().getEquipped();
+			  
+			if(equipped.equals("sword"))  
+			  if(facing.equals(Direction.RIGHT))
+				Player.instance().animations().play("raider-idle-swordSpin-right");
 			  else
-				Player.instance().animations().play("raider-idle-swordPurpleSpin-left");
-		}else if(equipped.equals("swordBlue")) {
-			if(facing.equals(Direction.RIGHT))
-				Player.instance().animations().play("raider-idle-swordBlueSpin-right");
-			  else
-				Player.instance().animations().play("raider-idle-swordBlueSpin-left");
-		}
+				Player.instance().animations().play("raider-idle-swordSpin-left");
+			else if(equipped.equals("swordPurple")){
+				if(facing.equals(Direction.RIGHT))
+					Player.instance().animations().play("raider-idle-swordPurpleSpin-right");
+				  else
+					Player.instance().animations().play("raider-idle-swordPurpleSpin-left");
+			}else if(equipped.equals("swordBlue")) {
+				if(facing.equals(Direction.RIGHT))
+					Player.instance().animations().play("raider-idle-swordBlueSpin-right");
+				  else
+					Player.instance().animations().play("raider-idle-swordBlueSpin-left");
+			
+		  }
+		  }
 	  });
 	  
 	  Input.mouse().onPressed(e -> {//normal attack

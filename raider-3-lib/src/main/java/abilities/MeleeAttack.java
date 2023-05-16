@@ -96,7 +96,7 @@ public class MeleeAttack extends Ability{
 			      }
 			      
 			      if(hit instanceof Reaper) {
-			    	  Reaper reaper = (Reaper)hit;
+			    	 Reaper reaper = (Reaper)hit;
 			    	 if(reaper.getEnemyState() == EnemyState.ORB) {
 		    	      ((ReaperController)(hit.movement())).setActionTime(Game.time().now());
 		    	      hit.setEnemyState(EnemyState.HIT);

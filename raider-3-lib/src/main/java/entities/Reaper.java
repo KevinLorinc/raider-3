@@ -1,6 +1,7 @@
 package entities;
 
 import abilities.ReaperAttack;
+import de.gurkenlabs.litiengine.Align;
 import de.gurkenlabs.litiengine.Direction;
 import de.gurkenlabs.litiengine.Game;
 import de.gurkenlabs.litiengine.IUpdateable;
@@ -23,9 +24,9 @@ import ui.WinScreen;
  * @author Kevin Lorinc, Kush Vashishtha
  */
 @EntityInfo(width = 100, height = 100)
-@MovementInfo(velocity = 70)
-@CollisionInfo(collisionBoxWidth = 20, collisionBoxHeight = 35, collision = true)
-@CombatInfo(hitpoints = 200, team = 2)
+@MovementInfo(velocity = 75)
+@CollisionInfo(collisionBoxWidth = 15, collisionBoxHeight = 30, collision = true)
+@CombatInfo(hitpoints = 250, team = 2)
 public class Reaper extends Enemy implements IUpdateable{
 	private final Spawnpoint spawn;
 	private final ReaperAttack reaperAttack = new ReaperAttack(this);
@@ -47,6 +48,7 @@ public class Reaper extends Enemy implements IUpdateable{
 	    
 	    this.setEnemyState(EnemyState.NOTSPAWNED);
 	    this.setCollisionBoxValign(Valign.MIDDLE);
+	    this.setCollisionBoxAlign(Align.CENTER);
 	}
 	
 	/**
@@ -115,6 +117,9 @@ public class Reaper extends Enemy implements IUpdateable{
 	 * actions to be handled on death of reaper
 	 */
 	public void onDead() {
+			if(Player.instance().isDead()) {
+				return;
+			}
 			Game.world().environment().remove(Player.instance());
 			for(IEntity entity: Game.world().environment().getEntities()) {
 				if(entity instanceof Enemy)

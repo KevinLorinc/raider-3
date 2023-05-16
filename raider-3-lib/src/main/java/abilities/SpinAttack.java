@@ -25,7 +25,7 @@ import entities.Enemy.EnemyState;
  * a class for the spin attack ability
  * @author Kevin Lorinc, Kush Vashishtha
  */
-@AbilityInfo(name = "SpinAttack", cooldown = 700, range = 0, impact = 15, impactAngle = 360, value = 5, duration = 400, multiTarget = true)
+@AbilityInfo(name = "SpinAttack", cooldown = 1500, range = 0, impact = 15, impactAngle = 360, value = 5, duration = 400, multiTarget = true)
 public class SpinAttack extends Ability{
 	/**
 	 * creates a new ability attributed to a specific executor
@@ -66,36 +66,35 @@ public class SpinAttack extends Ability{
 		@Override
 		public void apply(final Shape impactArea) {
 			if(Game.world().environment() !=null){
-				super.apply(new Rectangle(20,20,20,20));
-				
-				int damage = calculateDamage();
-				final List<ICombatEntity> affected = this.lookForAffectedEntities(impactArea);
-				for (final ICombatEntity affectedEntity : affected) {
-			    //playing hit animation, damaging, and very temporarily stunning enemy
-			     if(affectedEntity instanceof Enemy == false) continue;
-			      Enemy hit = (Enemy)affectedEntity;
-			      hit.hit(damage);
-			      if(hit instanceof Minion) {
-			    	  ((MinionController)(hit.movement())).setApplyPoint(Player.instance().getCollisionBoxCenter());
-				      ((MinionController)(hit.movement())).setApplyTime(Game.time().now());
-			      }
-			      
-			      if(hit instanceof Reaper) {
-			    	  Reaper reaper = (Reaper)hit;
-				    	 if(reaper.getEnemyState() == EnemyState.ORB) {
-			    	      ((ReaperController)(hit.movement())).setActionTime(Game.time().now());
-			    	      hit.setEnemyState(EnemyState.HIT);
-			    	    }else {
-			    	    	int chance = (int)Math.round(Math.random());
-			    	    	if(chance==0) hit.hit(damage);
-			    	    	else {
-			    	    		if(reaper.getFacingDirection()==Direction.RIGHT) reaper.animations().play("reaper-phase-right");
-			    	    		else reaper.animations().play("reaper-phase-left");
-			    	    	}
-			    	    }
-				  }
-			      hit.setEnemyState(EnemyState.HIT);
-			    }
+					super.apply(new Rectangle(20,20,20,20));
+					
+					int damage = calculateDamage();
+					final List<ICombatEntity> affected = this.lookForAffectedEntities(impactArea);
+					for (final ICombatEntity affectedEntity : affected) {
+				     if(affectedEntity instanceof Enemy == false) continue;
+				      Enemy hit = (Enemy)affectedEntity;
+				      hit.hit(damage);
+				      if(hit instanceof Minion) {
+				    	  ((MinionController)(hit.movement())).setApplyPoint(Player.instance().getCollisionBoxCenter());
+					      ((MinionController)(hit.movement())).setApplyTime(Game.time().now());
+				      }
+				      
+				      if(hit instanceof Reaper) {  
+				    	  Reaper reaper = (Reaper)hit;
+					      if(reaper.getEnemyState() == EnemyState.ORB) {
+				    	      ((ReaperController)(hit.movement())).setActionTime(Game.time().now());
+				    	      hit.setEnemyState(EnemyState.HIT);
+				    	    }else {
+				    	    	int chance = (int)Math.round(Math.random());
+				    	    	if(chance==0) hit.hit(damage);
+				    	    	else {
+				    	    		if(reaper.getFacingDirection()==Direction.RIGHT) reaper.animations().play("reaper-phase-right");
+				    	    		else reaper.animations().play("reaper-phase-left");
+				    	    	}
+				    	    }
+					  }
+				      hit.setEnemyState(EnemyState.HIT);
+				    }
 		    }
 	    }
 		

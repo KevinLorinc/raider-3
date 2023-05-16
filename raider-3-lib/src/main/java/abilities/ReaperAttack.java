@@ -40,7 +40,7 @@ public class ReaperAttack extends Ability{
 	 */
 	@Override
 	public Shape calculateImpactArea() {//change arc area to change range of attack
-		return new Arc2D.Double(this.getExecutor().getX()+20,this.getExecutor().getY(),65,65,0,360,Arc2D.PIE);
+		return new Arc2D.Double(this.getExecutor().getX()+20,this.getExecutor().getY(),80,80,0,360,Arc2D.PIE);
 	}
 	
 	/**
