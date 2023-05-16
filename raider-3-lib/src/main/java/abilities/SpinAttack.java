@@ -66,7 +66,7 @@ public class SpinAttack extends Ability{
 			if(Game.world().environment() !=null){
 				super.apply(new Rectangle(20,20,20,20));
 				
-				final int damage = this.getAbility().getAttributes().value().get();
+				int damage = calculateDamage();
 				final List<ICombatEntity> affected = this.lookForAffectedEntities(impactArea);
 				for (final ICombatEntity affectedEntity : affected) {
 			    //playing hit animation, damaging, and very temporarily stunning enemy
@@ -96,5 +96,13 @@ public class SpinAttack extends Ability{
 			    }
 		    }
 	    }
+		
+		private int calculateDamage() {
+			String wep = Player.instance().getEquipped();
+			if(wep.equals("fist")) return 0;
+			if(wep.equals("sword")) return 5;
+			if(wep.equals("swordPurple")) return 10;
+			else return 30;
+		}
 	}
 }

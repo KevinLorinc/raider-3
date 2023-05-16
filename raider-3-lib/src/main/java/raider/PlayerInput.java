@@ -84,9 +84,9 @@ public class PlayerInput {
 		  
 		  if(Player.instance().getEquipped().equals("fist")) {
 			  if(facing.equals(Direction.RIGHT)) {
-				  Player.instance().animations().play("raider-idle-punch-right");
+				  Player.instance().animations().play("raider-fist-right");
 			  }else if(facing.equals(Direction.LEFT))
-				  Player.instance().animations().play("raider-idle-punch-left");
+				  Player.instance().animations().play("raider-fist-left");
 		  
 		  }else if(Player.instance().getEquipped().equals("sword")) {
 			  if(attack.equals(Direction.RIGHT)) {

@@ -116,6 +116,8 @@ public class Player extends Creature implements IUpdateable{
 	protected IEntityAnimationController<?> createAnimationController() {
 		Spritesheet idle = Resources.spritesheets().get("raider-idle-right");
 		Spritesheet walk = Resources.spritesheets().get("raider-walk-right");
+		Spritesheet fistR = Resources.spritesheets().get("raider-fist-right");
+		Spritesheet fistL = Resources.spritesheets().get("raider-fist-left");
 		
 		Spritesheet idleSwordR = Resources.spritesheets().get("raider-idle-sword-right");
 		Spritesheet walkSwordR = Resources.spritesheets().get("raider-walk-sword-right");
@@ -157,11 +159,15 @@ public class Player extends Creature implements IUpdateable{
 		Spritesheet swordMeleeUpBL = Resources.spritesheets().get("raider-idle-swordBlueMeleeUp-left");
 		
 		Spritesheet death = Resources.spritesheets().get("raider-death");
+		Spritesheet deathState = Resources.spritesheets().get("raider-deathState");
+
 		
 		IEntityAnimationController<?> animationController;
 		
 		animationController = new CreatureAnimationController<Player>(this,new Animation(idle,false));
 		animationController.add(new Animation(walk,true));
+		animationController.add(new Animation(fistR,false));
+		animationController.add(new Animation(fistL,false));
 		
 		animationController.add(new Animation(walkSwordR,true));
 		animationController.add(new Animation(idleSwordR, true));
@@ -175,8 +181,10 @@ public class Player extends Creature implements IUpdateable{
 		animationController.add(new Animation(swordMeleeSideL, false));
 		animationController.add(new Animation(swordMeleeDownL,false));
 		animationController.add(new Animation(swordMeleeUpL,false));
-		animationController.add(new Animation(death,false));
 		
+		animationController.add(new Animation(death,false));
+		animationController.add(new Animation(deathState,true));
+
 		animationController.add(new Animation(walkSwordPR,true));
 		animationController.add(new Animation(idleSwordPR, true));
 		animationController.add(new Animation(swordSpinPR,false));
@@ -223,6 +231,8 @@ public class Player extends Creature implements IUpdateable{
 	    animationController.addRule(x -> (this.calcFacingDirection() == Direction.RIGHT) && this.isIdle() && equipped.equals("swordBlue"), x -> "raider-idle-swordBlue-right");
 	    animationController.addRule(x -> (this.calcFacingDirection() == Direction.RIGHT) && !this.isIdle() && equipped.equals("swordBlue"), x -> "raider-walk-swordBlue-right");
 	
+	    animationController.addRule(x -> this.isDead(), x -> "raider-deathState");
+
 	    CreatureShadowImageEffect effect = new CreatureShadowImageEffect(this, new Color(24, 30, 28, 100));
 	    effect.setOffsetY(1);
 	    animationController.add(effect);

@@ -79,7 +79,7 @@ public class MeleeAttack extends Ability{
 			{
 				super.apply(new Rectangle(20,20,20,20));
 				
-				final int damage = this.getAbility().getAttributes().value().get();
+				int damage = calculateDamage();
 				final List<ICombatEntity> affected = this.lookForAffectedEntities(impactArea);
 			    for (final ICombatEntity affectedEntity : affected) {
 			      if(affectedEntity instanceof Enemy == false) continue;
@@ -111,5 +111,14 @@ public class MeleeAttack extends Ability{
 			    }
 			}
 	    }
+		
+		private int calculateDamage() {
+			String wep = Player.instance().getEquipped();
+			if(wep.equals("fist")) return 1;
+			if(wep.equals("sword")) return 3;
+			if(wep.equals("swordPurple")) return 5;
+			else return 10;
+		}
+		
 	}
 }
