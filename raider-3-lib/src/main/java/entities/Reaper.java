@@ -4,6 +4,7 @@ import abilities.ReaperAttack;
 import de.gurkenlabs.litiengine.Direction;
 import de.gurkenlabs.litiengine.Game;
 import de.gurkenlabs.litiengine.IUpdateable;
+import de.gurkenlabs.litiengine.Valign;
 import de.gurkenlabs.litiengine.entities.CollisionInfo;
 import de.gurkenlabs.litiengine.entities.CombatInfo;
 import de.gurkenlabs.litiengine.entities.EntityInfo;
@@ -21,9 +22,9 @@ import ui.WinScreen;
  * The class for the Reaper enemy
  * @author Kevin Lorinc, Kush Vashishtha
  */
-@EntityInfo(width = 32, height = 32)
+@EntityInfo(width = 100, height = 100)
 @MovementInfo(velocity = 70)
-@CollisionInfo(collisionBoxWidth = 20, collisionBoxHeight = 32, collision = true)
+@CollisionInfo(collisionBoxWidth = 20, collisionBoxHeight = 35, collision = true)
 @CombatInfo(hitpoints = 200, team = 2)
 public class Reaper extends Enemy implements IUpdateable{
 	private final Spawnpoint spawn;
@@ -45,6 +46,7 @@ public class Reaper extends Enemy implements IUpdateable{
 	    isSpawned=false;
 	    
 	    this.setEnemyState(EnemyState.NOTSPAWNED);
+	    this.setCollisionBoxValign(Valign.MIDDLE);
 	}
 	
 	/**

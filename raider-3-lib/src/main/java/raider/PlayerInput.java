@@ -76,9 +76,6 @@ public class PlayerInput {
 		  Direction attack = Player.instance().calcAttackDirection();
 		  Direction facing = Player.instance().calcFacingDirection();
 		  
-		  System.out.println(attack);
-		  System.out.println(Player.instance().getEquipped());
-		  
 		  Player.instance().getMeleeAttack().cast();
 		  
 		  if(Player.instance().getEquipped().equals("fist")) {

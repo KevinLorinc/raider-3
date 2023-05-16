@@ -16,6 +16,7 @@ import de.gurkenlabs.litiengine.Game;
 import de.gurkenlabs.litiengine.IUpdateable;
 import de.gurkenlabs.litiengine.gui.ImageComponent;
 import de.gurkenlabs.litiengine.gui.Menu;
+import de.gurkenlabs.litiengine.gui.TextFieldComponent;
 import de.gurkenlabs.litiengine.gui.screens.GameScreen;
 import de.gurkenlabs.litiengine.input.Input;
 import raider.RaidersLogic;
@@ -46,8 +47,6 @@ public class MenuScreen extends GameScreen implements IUpdateable{
 	    Game.loop().attach(this);
 	    
 	    Game.window().getRenderComponent().setBackground(Color.BLACK);
-	    //Game.window().getRenderComponent().
-	    
 	    
 	    this.mainMenu.setForwardMouseEvents(false);
 	    this.mainMenu.getCellComponents().forEach(comp -> {
@@ -87,7 +86,6 @@ public class MenuScreen extends GameScreen implements IUpdateable{
 		    final double buttonWidth = 450;
 
 		    this.mainMenu = new Menu(centerX - buttonWidth / 2, centerY * 1.3, buttonWidth, centerY / 2, "Play", "Exit");
-		    System.out.println(this.mainMenu.getCellComponents());
 
 		    Input.keyboard().onKeyReleased(event -> {
 		      if (this.isSuspended()) {
@@ -122,6 +120,16 @@ public class MenuScreen extends GameScreen implements IUpdateable{
 		    });
 
 		    this.getComponents().add(this.mainMenu);
+		    TextFieldComponent instructions = new TextFieldComponent(Game.window().getWidth()/3.2, Game.window().getHeight()-100,800,100,"Use Arrow Keys Or WASD to navigate and Enter to select on Menu");
+		    try {
+				Font gameFont = Font.createFont(Font.TRUETYPE_FONT, new File("misc/gameFont.ttf"));
+				instructions.setFont(gameFont.deriveFont(Font.TRUETYPE_FONT,20));
+				this.getComponents().add(instructions);
+			} catch (FontFormatException e1) {
+				e1.printStackTrace();
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
 		    
 		    
 			try {

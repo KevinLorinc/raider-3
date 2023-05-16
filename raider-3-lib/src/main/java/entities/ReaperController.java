@@ -100,17 +100,19 @@ public class ReaperController extends MovementController<Reaper>{
 	  	    } else  if (this.navi.isNavigating() || thisReaper.getEnemyState()==EnemyState.IDLE){
 	  	    	this.navi.stop();
 	  	    	if (this.getEntity().getReaperAttack().canCast() && dist < 50 && thisReaper.getEnemyState()!=EnemyState.IDLE){
-	  		    	this.getEntity().getReaperAttack().cast();
-	  		    	thisReaper.setEnemyState(EnemyState.IDLE);
-	  		    	if(thisReaper.getHitPoints().getRelativeCurrentValue() < 0.35) {
-	  		    		thisReaper.setVelocity(150);
-	  		    		if(thisReaper.getFacingDirection()==Direction.RIGHT) thisReaper.animations().play("reaper-frenzy-right");
-	  		    		else thisReaper.animations().play("reaper-frenzy-left");
-	  		    	}else {
-	  		    		thisReaper.setVelocity(80);
-	  		    		if(thisReaper.getFacingDirection()==Direction.RIGHT) thisReaper.animations().play("reaper-attack-right");
-	  		    		else thisReaper.animations().play("reaper-attack-left");
-	  		    	}
+	  	    		Game.loop().perform(250, () -> {
+	  	    			this.getEntity().getReaperAttack().cast();
+		  		    	thisReaper.setEnemyState(EnemyState.IDLE);
+		  		    	if(thisReaper.getHitPoints().getRelativeCurrentValue() < 0.35) {
+		  		    		thisReaper.setVelocity(150);
+		  		    		if(thisReaper.getFacingDirection()==Direction.RIGHT) thisReaper.animations().play("reaper-frenzy-right");
+		  		    		else thisReaper.animations().play("reaper-frenzy-left");
+		  		    	}else {
+		  		    		thisReaper.setVelocity(80);
+		  		    		if(thisReaper.getX() <= Player.instance().getX()) thisReaper.animations().play("reaper-attack-right");
+		  		    		else thisReaper.animations().play("reaper-attack-left");
+		  		    	}
+	  	    		});
 	  		    	}
 	  	    }
 	    } 

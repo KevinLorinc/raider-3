@@ -1544,7 +1544,7 @@
     </object>
    </objectgroup>
    <objectgroup id="12" name="spawns" visible="1">
-    <object id="83" name="enter" type="SPAWNPOINT" x="1800" y="250" width="32" height="32">
+    <object id="83" name="enter" type="SPAWNPOINT" x="64" y="96" width="32" height="32">
      <properties>
       <property name="collisionAlign" value="CENTER"/>
       <property name="collisionType" value="DYNAMIC"/>

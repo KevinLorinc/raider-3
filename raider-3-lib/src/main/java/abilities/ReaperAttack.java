@@ -5,6 +5,7 @@ import java.awt.Shape;
 import java.awt.geom.Arc2D;
 import java.util.List;
 
+import de.gurkenlabs.litiengine.Game;
 import de.gurkenlabs.litiengine.abilities.Ability;
 import de.gurkenlabs.litiengine.abilities.AbilityInfo;
 import de.gurkenlabs.litiengine.abilities.effects.Effect;
@@ -39,7 +40,7 @@ public class ReaperAttack extends Ability{
 	 */
 	@Override
 	public Shape calculateImpactArea() {//change arc area to change range of attack
-		return new Arc2D.Double(this.getExecutor().getX()-10,this.getExecutor().getY(),80,80,0,360,Arc2D.PIE);
+		return new Arc2D.Double(this.getExecutor().getX()+20,this.getExecutor().getY(),65,65,0,360,Arc2D.PIE);
 	}
 	
 	/**
@@ -71,9 +72,16 @@ public class ReaperAttack extends Ability{
 			final List<ICombatEntity> affected = this.lookForAffectedEntities(impactArea);
 		    for (final ICombatEntity affectedEntity : affected) {
 		      if(affectedEntity instanceof Player) {
-		    	  affectedEntity.hit(damage);
+		    	  affectedEntity.hit(damage/2);
 			      if(affectedEntity.isDead())
 			    	  ((Player)affectedEntity).onDead();
+			      Game.loop().perform(700, () -> {
+			    	  if(this.getAbility().getExecutor().getTarget().getCenter().distance(this.getAbility().getExecutor().getCenter()) < 50) {
+			    		  affectedEntity.hit(damage/2);
+			    		  if(affectedEntity.isDead())
+			    			  ((Player)affectedEntity).onDead(); 
+			    	  }  
+			      });
 		      }
 		    }
 		}
