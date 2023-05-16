@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.1" tiledversion="1.10.0" orientation="orthogonal" renderorder="right-down" width="60" height="20" tilewidth="32" tileheight="32" infinite="0" nextlayerid="17" nextobjectid="28" name="tutorial">
+<map version="1.10" tiledversion="1.10.0" orientation="orthogonal" renderorder="right-down" width="60" height="20" tilewidth="32" tileheight="32" infinite="0" nextlayerid="17" nextobjectid="28">
  <tileset firstgid="1" source="grass.tsx"/>
  <tileset firstgid="65" source="props.tsx"/>
  <tileset firstgid="321" source="walls.tsx"/>
@@ -200,7 +200,7 @@
 0,1398,1399,1400,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1414,1415,1416,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2684355808,2684355808,2684355808,2684355808
 </data>
  </layer>
- <objectgroup id="11" name="walls" visible="1">
+ <objectgroup id="11" name="walls">
   <object id="1" type="COLLISIONBOX" x="832" y="0" width="7" height="295.667">
    <properties>
     <property name="collisionAlign" value="CENTER"/>
@@ -852,7 +852,7 @@
     <property name="collisionValign" value="DOWN"/>
    </properties>
   </object>
-  <object id="100" name="enemy1" type="SPAWNPOINT" x="96" y="384" width="32" height="32">
+  <object id="100" name="enemy1" type="SPAWNPOINT" x="224" y="256" width="32" height="32">
    <properties>
     <property name="collisionAlign" value="CENTER"/>
     <property name="collisionType" value="DYNAMIC"/>
@@ -861,7 +861,7 @@
     <property name="spawnPivot" value="DIMENSION_CENTER"/>
    </properties>
   </object>
-  <object id="101" name="enemy2" type="SPAWNPOINT" x="160" y="384" width="32" height="32">
+  <object id="101" name="enemy2" type="SPAWNPOINT" x="416" y="576" width="32" height="32">
    <properties>
     <property name="collisionAlign" value="CENTER"/>
     <property name="collisionType" value="DYNAMIC"/>
@@ -870,7 +870,7 @@
     <property name="spawnPivot" value="DIMENSION_CENTER"/>
    </properties>
   </object>
-  <object id="102" name="enemy3" type="SPAWNPOINT" x="704" y="192" width="32" height="32">
+  <object id="102" name="enemy3" type="SPAWNPOINT" x="960" y="0" width="32" height="32">
    <properties>
     <property name="collisionAlign" value="CENTER"/>
     <property name="collisionType" value="DYNAMIC"/>
@@ -879,7 +879,7 @@
     <property name="spawnPivot" value="DIMENSION_CENTER"/>
    </properties>
   </object>
-  <object id="103" name="enemy4" type="SPAWNPOINT" x="608" y="384" width="32" height="32">
+  <object id="103" name="enemy4" type="SPAWNPOINT" x="608" y="352" width="32" height="32">
    <properties>
     <property name="collisionAlign" value="CENTER"/>
     <property name="collisionType" value="DYNAMIC"/>
@@ -888,7 +888,7 @@
     <property name="spawnPivot" value="DIMENSION_CENTER"/>
    </properties>
   </object>
-  <object id="104" name="enemy5" type="SPAWNPOINT" x="704" y="320" width="32" height="32">
+  <object id="104" name="enemy5" type="SPAWNPOINT" x="736" y="352" width="32" height="32">
    <properties>
     <property name="collisionAlign" value="CENTER"/>
     <property name="collisionType" value="DYNAMIC"/>
@@ -897,7 +897,7 @@
     <property name="spawnPivot" value="DIMENSION_CENTER"/>
    </properties>
   </object>
-  <object id="105" name="enemy6" type="SPAWNPOINT" x="896" y="192" width="32" height="32">
+  <object id="105" name="enemy6" type="SPAWNPOINT" x="1664" y="288" width="32" height="32">
    <properties>
     <property name="collisionAlign" value="CENTER"/>
     <property name="collisionType" value="DYNAMIC"/>
@@ -915,7 +915,7 @@
     <property name="spawnPivot" value="DIMENSION_CENTER"/>
    </properties>
   </object>
-  <object id="107" name="enemy8" type="SPAWNPOINT" x="1248" y="0" width="32" height="32">
+  <object id="107" name="enemy8" type="SPAWNPOINT" x="928" y="0" width="32" height="32">
    <properties>
     <property name="collisionAlign" value="CENTER"/>
     <property name="collisionType" value="DYNAMIC"/>
@@ -924,7 +924,7 @@
     <property name="spawnPivot" value="DIMENSION_CENTER"/>
    </properties>
   </object>
-  <object id="108" name="enemy9" type="SPAWNPOINT" x="1472" y="512" width="32" height="32">
+  <object id="108" name="enemy9" type="SPAWNPOINT" x="1664" y="256" width="32" height="32">
    <properties>
     <property name="collisionAlign" value="CENTER"/>
     <property name="collisionType" value="DYNAMIC"/>
@@ -933,7 +933,7 @@
     <property name="spawnPivot" value="DIMENSION_CENTER"/>
    </properties>
   </object>
-  <object id="109" name="enemy10" type="SPAWNPOINT" x="1344" y="544" width="32" height="32">
+  <object id="109" name="enemy10" type="SPAWNPOINT" x="1664" y="320" width="32" height="32">
    <properties>
     <property name="collisionAlign" value="CENTER"/>
     <property name="collisionType" value="DYNAMIC"/>
@@ -1176,7 +1176,7 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="12" name="spawns" visible="1">
+ <objectgroup id="12" name="spawns">
   <object id="83" name="enter" type="SPAWNPOINT" x="64" y="96" width="32" height="32">
    <properties>
     <property name="collisionAlign" value="CENTER"/>
