@@ -55,7 +55,6 @@ public class ReaperController extends MovementController<Reaper>{
 			if(thisReaper.getEnemyState()==EnemyState.HIT && !thisReaper.getIsSpawned()) {
 				thisReaper.animations().play("reaper-spawn");
 				thisReaper.setIsSpawned(true);
-				thisReaper.getHitPoints().setToMax();
 				Game.loop().perform(2700, () -> {
 					thisReaper.animations().play("raider-laugh-right");
 				});

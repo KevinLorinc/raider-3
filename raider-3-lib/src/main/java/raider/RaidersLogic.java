@@ -78,7 +78,7 @@ public final class RaidersLogic {
 				Camera camera = new PositionLockCamera(Player.instance());
 				camera.setClampToMap(true);
 				Game.world().setCamera(camera);
-				Player.instance().getHitPoints().setToMax();
+				//Player.instance().getHitPoints().setToMax();
 		        Player.instance().setIndestructible(false);
 		        Player.instance().setCollision(true);
 
