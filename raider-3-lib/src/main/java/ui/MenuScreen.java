@@ -163,5 +163,8 @@ public class MenuScreen extends GameScreen implements IUpdateable{
 	  
 	  //can use this for audio later on. I need it for this class to compile for now
 	  @Override
+	  /**
+	   * updates every frame, for testing purposes
+	   */
 	  public void update() {};
 }

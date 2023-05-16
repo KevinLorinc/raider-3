@@ -126,7 +126,7 @@ public final class RaidersLogic {
 	
 	/**
 	 * checks if raider is in transition area
-	 * @return a boolean indicating if its in transition area
+	 * @return a boolean indicating if player is in transition area
 	 */
 	public static boolean isInTransitionsArea() {
 		if(transitionArea.getX() <= Player.instance().getX() && transitionArea.getY() <= Player.instance().getY()) {
@@ -136,7 +136,7 @@ public final class RaidersLogic {
 	}
 	
 	/**
-	 * checks if raider is in chest area
+	 * checks if raider is in a chest area
 	 * @return a int indicating if its in chest area and which chest it is
 	 */
 	public static int isInChestArea() {
@@ -174,6 +174,10 @@ public final class RaidersLogic {
 	    handleEnemySpawns();
 	}
 	
+	/**
+	 * transitions game to a new environment
+	 * @param newEnvironment the environment to be transitioned to
+	 */
 	public static void transition(String newEnvironment) {
 		Game.window().getRenderComponent().fadeOut(1000);
 				
@@ -217,6 +221,9 @@ public final class RaidersLogic {
 	  }
 	}
 	
+	/**
+	 * resets all spawns
+	 */
 	public static void resetSpawns() {			
 		for(EnemySpawnEvent event: spawnEvents.get(Game.world().environment().getMap().getName())) {
 			event.finished = false;

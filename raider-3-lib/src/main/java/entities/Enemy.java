@@ -9,12 +9,12 @@ import de.gurkenlabs.litiengine.util.geom.GeometricUtilities;
 
 /**
  * a parent class for all enemies in the game that changes some elements of creature that are common to all enemies
- * @author Kevin Lorinc
+ * @author Kevin Lorinc, Kush Vashishtha
  */
 public abstract class Enemy extends Creature {
 	/**
-	 * creates an enum to help handle whether a creature should move or not
-	 * @author Kevin Lorinc
+	 * creates enums that describe various states of enemies
+	 * @author Kevin Lorinc, Kush Vashishtha
 	 */
 	public enum EnemyState {
 		NOTSPAWNED,
@@ -36,8 +36,10 @@ public abstract class Enemy extends Creature {
 		state = EnemyState.ROAMING;
 	}
 	
-	/*
+	/**
 	 * updates the can collide so that enemies don't collide with other instances of enemy
+	 * @param otherEntity the entity this enemy is compared to
+	 * @return a boolean that states whether an enemy can collide with other instances of enemy
 	 */
 	@Override
 	public boolean canCollideWith(ICollisionEntity otherEntity) {
@@ -45,7 +47,8 @@ public abstract class Enemy extends Creature {
 	}
 	
 	/**
-	 * now gives instructions on what to do when the enemy is loaded
+	 * gives instructions on what to do when the enemy is loaded
+	 * @param environment the environment where actions take place
 	 */
 	@Override
     public void loaded(Environment environment) {
@@ -56,6 +59,7 @@ public abstract class Enemy extends Creature {
 	
 	/**
 	 * gets facing direction for an enemy generically using angles.
+	 * @return the direction this enemy is facing
 	 */
 	@Override
 	public Direction getFacingDirection() {
@@ -77,7 +81,7 @@ public abstract class Enemy extends Creature {
 	}
 	
 	/**
-	 * gets the enemys state
+	 * gets the enemy's state
 	 * @return the enemy's state
 	 */
 	public EnemyState getEnemyState() {
@@ -91,6 +95,11 @@ public abstract class Enemy extends Creature {
 	public void setEnemyState(EnemyState newState) {
 		state = newState;
 	}
+	
+	/**
+	 * Returns whether this enemy is currently engaged to its target
+	 * @return a boolean indicating if this enemy is engaged to its target
+	 */
 	
 	public boolean isEngaged() {
 		return engaged;

@@ -15,8 +15,8 @@ import de.gurkenlabs.litiengine.physics.IMovementController;
 import de.gurkenlabs.litiengine.resources.Resources;
 
 /**
- * The class for the minion (Blue hood) enemy
- * @author Kevin Lorinc
+ * the class for the minion enemy
+ * @author Kevin Lorinc, Kush Vashishtha
  */
 @EntityInfo(width = 32, height = 32)
 @MovementInfo(velocity = 90)
@@ -40,6 +40,7 @@ public class Minion extends Enemy implements IUpdateable{
 	
 	/**
 	 * creates the movement controller for the minion
+	 * @return the movement controller of this minion
 	 */
     @Override
     protected IMovementController createMovementController() {
@@ -48,6 +49,7 @@ public class Minion extends Enemy implements IUpdateable{
 
     /**
      * creates the animation controller for this class
+     * @return the animation controller for this class
      */
     @Override
     protected IEntityAnimationController<?> createAnimationController() {
@@ -68,12 +70,16 @@ public class Minion extends Enemy implements IUpdateable{
 	}
 
 	/**
-	 * checks if this enemy is in range of players
+	 * checks if this enemy is in range of player
 	 */
 	@Override
 	public void updateTarget() {
 		this.setTarget(Player.instance());
 	}
+	
+	/**
+	 * updates every frame of game, currently used to set enemy facing direction
+	 */
 	
 	public void update() {
 		double dist = Player.instance().getCenter().distance(this.getCenter());

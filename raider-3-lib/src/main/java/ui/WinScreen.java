@@ -27,13 +27,18 @@ import raider.PlayerInput;
 import raider.RaidersLogic;
 import raider.RaidersLogic.GameState;
 
+/**
+ * creates a class for win screen and initializes that screen. Allows for better screen management
+ * @author Kevin Lorinc
+ *
+ */
 public class WinScreen extends GameScreen implements IUpdateable{
 	  public static final String NAME = "WIN-SCREEN";
 	  
 	  private Menu mainMenu;
 	  
 	  /**
-	   * creates an menu sreen with the name MENU-SCREEN
+	   * creates an menu sreen with the name WIN-SCREEN
 	   */
 	  public WinScreen() {
 	    super(NAME);
@@ -81,6 +86,9 @@ public class WinScreen extends GameScreen implements IUpdateable{
 	    Game.loop().detach(this);
 	  }
 	
+	  /**
+	   * adds various components to this screen
+	   */
 	  @Override
 	  protected void initializeComponents() {
 		  if(this.isEnabled()) {
@@ -148,7 +156,7 @@ public class WinScreen extends GameScreen implements IUpdateable{
 	  }
 	  
 	  /**
-	   * code for when the start button is clicked
+	   * code for when the play again button is clicked
 	   */
 	  private void restartGame() {
 		  Player.instance().setInstanceNull();
@@ -182,7 +190,9 @@ public class WinScreen extends GameScreen implements IUpdateable{
 			Game.screens().remove(Game.screens().get("WIN-SCREEN"));
       }
 	
-	
+	/**
+	 * updates every frame, for testing purposes
+	 */
 	@Override
 	public void update() {
 	}

@@ -15,8 +15,8 @@ import entities.Player;
 import entities.Reaper;
 
 /**
- * a class that creates the minion attack ability
- * @author Kevin Lorinc
+ * a class that creates the Reaper attack ability
+ * @author Kevin Lorinc, Kush vashishtha
  */
 @AbilityInfo(name = "ReaperAttack", cooldown = 4000, range = 0, impact = 10, impactAngle = 360, value = 20, duration = 200, multiTarget = true)
 public class ReaperAttack extends Ability{
@@ -34,7 +34,8 @@ public class ReaperAttack extends Ability{
 	}
 	
 	/**
-	 * changes impact area
+	 * determines the impact area of this attack
+	 * @return the shape of the impact area
 	 */
 	@Override
 	public Shape calculateImpactArea() {//change arc area to change range of attack
@@ -42,8 +43,8 @@ public class ReaperAttack extends Ability{
 	}
 	
 	/**
-	 * a class that describes the effect of the ability
-	 * @author Kevin Lorinc
+	 * defines the effect of the Reaper attack ability
+	 * @author Kevin Lorinc, Kush Vashishtha
 	 */
 	private static class ReaperAttackEffect extends Effect{
 		/**
@@ -55,14 +56,13 @@ public class ReaperAttack extends Ability{
 		}
 		
 		/**
-		 * describes how this specifc effect is different.
-		 */
-		/**
-		 * changes the way that the ability is applied
+		 * changes the way that the effect is applied to do damage to the player
+		 * @param impactArea the shape the effect is applied to
 		 */
 		@Override
 		public void apply(final Shape impactArea) {
 			super.apply(new Rectangle(20,20,20,20));
+			//damage number based on health of boss
 			if(thisReaper.getHitPoints().getRelativeCurrentValue()<0.35)
 				thisReaper.getReaperAttack().getAttributes().value().setBaseValue(40);
 			else

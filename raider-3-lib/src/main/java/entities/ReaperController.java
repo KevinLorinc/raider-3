@@ -12,7 +12,7 @@ import raider.RaidersLogic.GameState;
 
 /**
  * a class that handles movement for the minion enemy
- * @author Kevin Lorinc
+ * @author Kevin Lorinc, Kush Vashishtha
  */
 public class ReaperController extends MovementController<Reaper>{
 	private static final int NAVIGATE_DELAY = 1000;
@@ -24,7 +24,7 @@ public class ReaperController extends MovementController<Reaper>{
 	private boolean removed;
 	
 	/**
-	 * creates a new movement controller for a minion
+	 * creates a new movement controller for a Reaper
 	 * @param movingEntity the minion to create the movement controller for
 	 */
 	public ReaperController(Reaper movingEntity) {
@@ -38,7 +38,7 @@ public class ReaperController extends MovementController<Reaper>{
 	}
 	
 	/**
-	 * changes the way the movement controller updates
+	 * logic of the controller that handles all reaper states
 	 */
 	@Override
 	public void update(){
@@ -112,12 +112,14 @@ public class ReaperController extends MovementController<Reaper>{
 	  		    		else thisReaper.animations().play("reaper-attack-left");
 	  		    	}
 	  		    	}
-	  	    	
 	  	    }
 	    } 
-	    
 	}
 
+	/**
+	 * sets a variable used to time spawn animation
+	 * @param time when spawn animation starts
+	 */
 	public void setActionTime(long time) {
 		actionTime = time;
 	}

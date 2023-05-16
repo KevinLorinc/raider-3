@@ -27,8 +27,7 @@ import raider.RaidersMath;
 
 /**
  * a class that creates the Hud for the game. This will have arrows, probably inventory, and health related things in it.
- * This will have some animation controllers in it
- * @author Kevin Lorinc
+ * @author Kevin Lorinc, Kush Vashishtha
  *
  */
 public class Hud extends GuiComponent{
@@ -61,19 +60,18 @@ public class Hud extends GuiComponent{
 		inventoryIcons.add(swordBlue);
 	}
 	
+	private static int slot = 0;
 	
 	/**
 	 * creates an instance of the Hud class
 	 */
-	
-	private static int slot = 0;
-	
 	protected Hud() {
 		super(0, 0, Game.window().getResolution().getWidth(), Game.window().getResolution().getHeight());
 	}
 
 	/**
 	 * renders all the components of the hud
+	 * @param g the graphics to render to
 	 */
 	@Override
 	public void render(Graphics2D g){
@@ -97,7 +95,7 @@ public class Hud extends GuiComponent{
 	
 	
 	/**
-	 * renders the enemies hp which is situated right above them when they are in combat
+	 * renders the enemies hp which is situated right above them
 	 * @param g the graphic to render to
 	 * @throws IOException 
 	 */
@@ -174,7 +172,7 @@ public class Hud extends GuiComponent{
 	}
 	
 	/**
-	 * adds the inventory slots
+	 * renders the inventory slots
 	 * @param g the graphic to add it to
 	 */
 	private void renderInventory(Graphics2D g) {
@@ -203,6 +201,11 @@ public class Hud extends GuiComponent{
 			Game.graphics().renderImage(g, inventoryIcons.get(3), x+1+120, y);
 	}
 	
+	/**
+	 * renders directions near inventory slots
+	 * @param g
+	 * @throws IOException
+	 */
 	private void renderControls(Graphics2D g) throws IOException {
 		if(Player.instance().getState() == PlayerState.CONTROLLABLE) {
 			try {
@@ -241,10 +244,18 @@ public class Hud extends GuiComponent{
 		
 	}
 	
+	/**
+	 * sets selected slot of the inventory
+	 * @param newSlot slot to be set
+	 */
 	public void setSlot(int newSlot) {
 		slot = newSlot;
 	} 
 	
+	/**
+	 * returns the current slot of the inventory
+	 * @return the current slot of the inventory
+	 */
 	public int getSlot() {
 		return slot;
 	}

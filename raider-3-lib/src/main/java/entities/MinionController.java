@@ -15,8 +15,8 @@ import raider.RaidersLogic;
 import raider.RaidersLogic.GameState;
 
 /**
- * a class that handles movement for the minion enemy
- * @author Kevin Lorinc
+ * a class that handles movement and logic for the minion enemy
+ * @author Kevin Lorinc, Kush Vashishtha
  */
 public class MinionController extends MovementController<Minion>{
 	private static final int NAVIGATE_DELAY = 1000;
@@ -29,8 +29,8 @@ public class MinionController extends MovementController<Minion>{
 	private boolean removed;
 	
 	/**
-	 * creates a new movement controller for a minion
-	 * @param movingEntity the minion to create the movement controller for
+	 * creates a new controller for a minion with navigation
+	 * @param movingEntity the minion to create the navigation controller for
 	 */
 	public MinionController(Minion movingEntity) {
 		super(movingEntity);
@@ -42,7 +42,7 @@ public class MinionController extends MovementController<Minion>{
 	}
 	
 	/**
-	 * changes the way the movement controller updates
+	 * logic of the controller that handles all minion states
 	 */
 	@Override
 	public void update(){
@@ -100,14 +100,25 @@ public class MinionController extends MovementController<Minion>{
 	    }
 	}
 	
+	/**
+	 * sets ApplyPoint to a given point
+	 * @param point the point to set ApplyPoint to
+	 */
 	public void setApplyPoint(Point2D point) {
 		applyPoint = point;
 	}
 	
+	/**
+	 * sets setApplytime to a given long
+	 * @param time the ticks to set setApplyTime to
+	 */
 	public void setApplyTime(long time) {
 		applyTime = time;
 	}
 	
+	/**
+	 * Handles all forces applied on the minion by the player
+	 */
 	private void handleForces(){
 		// clean up forces
 	    this.getActiveForces().forEach(x -> {

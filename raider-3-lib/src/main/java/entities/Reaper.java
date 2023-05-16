@@ -18,8 +18,8 @@ import de.gurkenlabs.litiengine.resources.Resources;
 import ui.WinScreen;
 
 /**
- * The class for the minion (Blue hood) enemy
- * @author Kevin Lorinc
+ * The class for the Reaper enemy
+ * @author Kevin Lorinc, Kush Vashishtha
  */
 @EntityInfo(width = 32, height = 32)
 @MovementInfo(velocity = 70)
@@ -31,7 +31,7 @@ public class Reaper extends Enemy implements IUpdateable{
 	private boolean isSpawned;
 	
 	/**
-	 * creates a new minion with a given spawn point
+	 * creates a new reaper with a given spawn point
 	 * @param spawn the spawn point
 	 */
 	public Reaper(Spawnpoint spawn) {
@@ -48,7 +48,8 @@ public class Reaper extends Enemy implements IUpdateable{
 	}
 	
 	/**
-	 * creates the movement controller for the minion
+	 * creates the movement controller for the reaper
+	 * @return the movement controller of the reaper
 	 */
     @Override
     protected IMovementController createMovementController() {
@@ -57,6 +58,7 @@ public class Reaper extends Enemy implements IUpdateable{
 
     /**
      * creates the animation controller for this class
+     * @return the animation controller of the reaper
      */
     @Override
     protected IEntityAnimationController<?> createAnimationController() {
@@ -75,10 +77,18 @@ public class Reaper extends Enemy implements IUpdateable{
 	    return spawn;
 	}
 	
+	/**
+	 * returns whether reaper is spawned or not
+	 * @return whether reaper is spawned or not
+	 */
 	public boolean getIsSpawned() {
 		return isSpawned;
 	}
 	
+	/**
+	 * sets if reaper is spawned
+	 * @param state the spawn state to set the reaper in
+	 */
 	public void setIsSpawned(boolean state) {
 		isSpawned=state;
 	}
@@ -91,11 +101,17 @@ public class Reaper extends Enemy implements IUpdateable{
 		this.setTarget(Player.instance());
 	}
 	
+	/**
+	 * updates every frame, sets facing direction of reaper
+	 */
 	public void update() {
 			if(Player.instance().getX()<this.getX()) this.setFacingDirection(Direction.LEFT);
 			else this.setFacingDirection(Direction.RIGHT);
 	}
 	
+	/**
+	 * actions to be handled on death of reaper
+	 */
 	public void onDead() {
 			Game.world().environment().remove(Player.instance());
 			for(IEntity entity: Game.world().environment().getEntities()) {

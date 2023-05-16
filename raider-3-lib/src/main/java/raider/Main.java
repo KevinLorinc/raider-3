@@ -7,7 +7,7 @@ import ui.MenuScreen;
 
 /**
  * runs the game Raiders
- * @author Kevin Lorinc
+ * @author Kevin Lorinc, Kush Vashishtha
  *
  */
 public class Main {

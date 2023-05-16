@@ -10,7 +10,17 @@ import de.gurkenlabs.litiengine.graphics.animation.CreatureAnimationController;
 import de.gurkenlabs.litiengine.resources.Resources;
 import entities.Enemy.EnemyState;
 
+/**
+ * the animation controller of the reaper enemy class
+ * @author Kush Vashishtha, Kevin Lorinc
+ */
 public class ReaperAnimationController extends CreatureAnimationController<Reaper>{
+	
+	/**
+	 * 
+	 * @param reaper the reaper to add this controller to
+	 * @param defaultAnim the default animation
+	 */
 	public ReaperAnimationController(Reaper reaper,Animation defaultAnim) {
 		super(reaper,defaultAnim);
 

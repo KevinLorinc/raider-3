@@ -31,7 +31,6 @@ import ui.DeathScreen;
 /**
  * the class that creates the entity of player
  * @author Kevin Lorinc, Kush Vashishtha
- *
  */
 @EntityInfo(width = 32, height = 32)
 @MovementInfo(velocity = 100)
@@ -40,8 +39,6 @@ import ui.DeathScreen;
 public class Player extends Creature implements IUpdateable{
 	/**
 	 * various constants for the state of a player which will be more deeply dealt with in the UI package.
-	 * @author Kevin Lorinc, Kush Vashishtha
-	 *
 	 */
 	public enum PlayerState {
 		CONTROLLABLE,
@@ -91,12 +88,16 @@ public class Player extends Creature implements IUpdateable{
 		return instance;
 	}
 	
+	/**
+	 * sets instance of player to null
+	 */
 	public void setInstanceNull() {
 		instance = null;
 	}
 	
 	/**
-	 * updates the movement controller to make the player move in a new way
+	 * Returns the movement controller of the player
+	 * @return the movement controller of player
 	 */
 	@Override
 	protected IMovementController createMovementController() {
@@ -110,7 +111,8 @@ public class Player extends Creature implements IUpdateable{
 	}
 	
 	/**
-	 * updates the animation controller to make the players animations work
+	 * Returns an animation controller with all player animations and rules
+	 * @return an animation controller with all player animations and rules
 	 */
 	@Override
 	protected IEntityAnimationController<?> createAnimationController() {
@@ -281,8 +283,8 @@ public class Player extends Creature implements IUpdateable{
 	}
 	
 	/**
-	 * if equipped
-	 * @return whether player has sword equipped or not
+	 * return current equipped weapon
+	 * @return the current equipped weapon
 	 */
 	public String getEquipped() {
 		return equipped;
@@ -290,16 +292,25 @@ public class Player extends Creature implements IUpdateable{
 	
 	/**
 	 * gets the inventory
-	 * @return inventory
+	 * @return the player's inventory
 	 */
 	public HashMap<String,Boolean> getInventory(){
 		return inventory;
 	}
 	
+	/**
+	 * adds an item to the inventory
+	 * @param item the item to be added to the inventory
+	 */
 	public void gotItem(String item) {
 		inventory.put(item,true);
 	}
 	
+	/**
+	 * Returns whether player has a certain item or not
+	 * @param item to check if player has it
+	 * @return whether play has it or not
+	 */
 	public boolean hasItem(String item) {
 		return inventory.get(item);
 	}
@@ -341,6 +352,9 @@ public class Player extends Creature implements IUpdateable{
 		return toReturn;
 	}
 	
+	/**
+	 * actions to be done on death of player
+	 */
 	public void onDead() {
 		this.animations().play("raider-death");
 		Game.loop().perform(800, () -> {

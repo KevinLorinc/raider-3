@@ -8,12 +8,17 @@ import de.gurkenlabs.litiengine.Game;
 import de.gurkenlabs.litiengine.IUpdateable;
 import entities.Player;
 
+
+/**
+ * A class to various mathematical operations
+ * @author Kevin Lorinc
+ */
 public class RaidersMath implements IUpdateable{
 	/**
 	 * takes a mouse location and compares it to the location of player
 	 * @param mouseLoc the present location of the mouse
 	 * @param playerLoc the present location of the player
-	 * @return the relative location of the mouse to the player
+	 * @return the relative location of the mouse to the player (left or right)
 	 */
 	public static Direction getLeftOrRight(Point mouseLoc, Point2D playerLoc) {
 		int width = Game.window().getWidth();
@@ -32,6 +37,15 @@ public class RaidersMath implements IUpdateable{
 		return null;
 	}
 	
+	/**
+	 * uses player position to determine mouse position relative distance
+	 * @param indicator indicates left or right
+	 * @param n the screen constant
+	 * @param mouseX x positoin of mouse
+	 * @param playerX x position of player
+	 * @param playerY y position of player
+	 * @return
+	 */
 	private static double heightOfWidth(int indicator,double n,double mouseX, double playerX, double playerY) {
 		if(indicator == -1) 
 			return (n) * (mouseX) + 8;
@@ -39,10 +53,22 @@ public class RaidersMath implements IUpdateable{
 			return (2*playerY) - (n * mouseX) + 8;
 	}
 	
+	/**
+	 * a constant used to convert scren pixels to litiengine units
+	 * @param w the width of screen
+	 * @param h height of screen
+	 * @return a constant used to convert screen pixels to litieninge screen units
+	 */
 	public static double getRenderScale(double w, double h) {
 		return w/Game.world().camera().getViewport().getWidth();
 	}
 	
+	/**
+	 * returns which direction the mouse is in relative to player, up, down, left, or right
+	 * @param mouseLoc location of mouse
+	 * @param playerLoc location of player
+	 * @return
+	 */
 	public static Direction getAttackDirection(Point mouseLoc, Point2D playerLoc) {
 		int width = Game.window().getWidth();
 		int height = Game.window().getHeight();
@@ -75,6 +101,9 @@ public class RaidersMath implements IUpdateable{
 		return null;
 	}
 	
+	/**
+	 * updates every frame, used for testing
+	 */
 	public void update() {
 		//System.out.println()
 	}

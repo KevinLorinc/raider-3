@@ -1,7 +1,6 @@
 package entities;
 
 import java.awt.Color;
-
 import de.gurkenlabs.litiengine.Direction;
 import de.gurkenlabs.litiengine.graphics.CreatureShadowImageEffect;
 import de.gurkenlabs.litiengine.graphics.Spritesheet;
@@ -10,7 +9,18 @@ import de.gurkenlabs.litiengine.graphics.animation.CreatureAnimationController;
 import de.gurkenlabs.litiengine.resources.Resources;
 import entities.Enemy.EnemyState;
 
+/**
+ * a class that contains all animations and rules of the minion enemy
+ * @author Kush Vashishtha, Kevin Lorinc
+ *
+ */
 public class MinionAnimationController extends CreatureAnimationController<Minion>{
+	
+	/**
+	 * gets all animations, adds them to controller, and sets rules for the animations, also adds shadow effect to enemy
+	 * @param minion the minion to apply this controller to
+	 * @param defaultAnim the default animation
+	 */
 	public MinionAnimationController(Minion minion,Animation defaultAnim) {
 		super(minion,defaultAnim);
 		

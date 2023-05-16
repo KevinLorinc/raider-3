@@ -15,7 +15,7 @@ import entities.Player;
 
 /**
  * a class that creates the minion attack ability
- * @author Kevin Lorinc
+ * @author Kevin Lorinc, Kush Vashishtha
  */
 @AbilityInfo(name = "MinionAttack", cooldown = 2000, range = 0, impact = 15, impactAngle = 360, value = 10, duration = 200, multiTarget = true)
 public class MinionAttack extends Ability{
@@ -30,7 +30,8 @@ public class MinionAttack extends Ability{
 	}
 	
 	/**
-	 * changes impact area
+	 * determines the impact area of this attack
+	 * @return the shape of the impact area
 	 */
 	@Override
 	public Shape calculateImpactArea() {//change arc area to change range of attack
@@ -38,8 +39,8 @@ public class MinionAttack extends Ability{
 	}
 	
 	/**
-	 * a class that describes the effect of the ability
-	 * @author Kevin Lorinc
+	 * defines the effect of the minion attack ability
+	 * @author Kevin Lorinc, Kush Vashishtha
 	 */
 	private static class MinionAttackEffect extends Effect{
 		/**
@@ -51,10 +52,8 @@ public class MinionAttack extends Ability{
 		}
 		
 		/**
-		 * describes how this specifc effect is different.
-		 */
-		/**
-		 * changes the way that the ability is applied
+		 * changes the way that the effect is applied to do damage to the player
+		 * @param impactArea the shape the effect is applied to
 		 */
 		@Override
 		public void apply(final Shape impactArea) {

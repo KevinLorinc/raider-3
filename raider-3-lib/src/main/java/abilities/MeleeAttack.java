@@ -22,8 +22,8 @@ import entities.Minion;
 import entities.MinionController;
 
 /**
- * creates the melee attack ability that is used by player
- * @author Kevin Lorinc
+ * the melee attack ability that is used by player
+ * @author Kevin Lorinc, Kush Vashishtha
  */
 @AbilityInfo(name = "MeleeAttack", cooldown = 350, range = 0, impact = 15, impactAngle = 360, value = 1, duration = 200, multiTarget = true)
 public class MeleeAttack extends Ability{
@@ -39,7 +39,8 @@ public class MeleeAttack extends Ability{
 		
 	}
 	/**
-	 * lets us determine what we define as the impact area
+	 * determines the impact area of this attack
+	 * @return the shape of the impact area
 	 */
 	@Override
 	public Shape calculateImpactArea() {//change arc area to change range of attack
@@ -59,7 +60,7 @@ public class MeleeAttack extends Ability{
 	
 	/**
 	 * defines the effect of the melee attack ability
-	 * @author Kevin Lorinc
+	 * @author Kevin Lorinc, Kush Vashishtha
 	 */
 	private static class MeleeAttackEffect extends Effect{
 		/**
@@ -72,6 +73,7 @@ public class MeleeAttack extends Ability{
 		
 		/**
 		 * changes the way that the effect is applied to do damage to the target
+		 * @param impactArea the shape the effect is applied to
 		 */
 		@Override
 		public void apply(final Shape impactArea) {
@@ -100,7 +102,6 @@ public class MeleeAttack extends Ability{
 		    	      hit.setEnemyState(EnemyState.HIT);
 		    	    }else {
 		    	    	int chance = (int)Math.round(Math.random());
-		    	    	System.out.println(chance);
 		    	    	if(chance==0) hit.hit(damage);
 		    	    	else {
 		    	    		if(reaper.getFacingDirection()==Direction.RIGHT) reaper.animations().play("reaper-phase-right");
@@ -112,6 +113,10 @@ public class MeleeAttack extends Ability{
 			}
 	    }
 		
+		/**
+		 * returns damage this attack does based off weapon equipped
+		 * @return damage of this attack based of weapon equipped
+		 */
 		private int calculateDamage() {
 			String wep = Player.instance().getEquipped();
 			if(wep.equals("fist")) return 1;

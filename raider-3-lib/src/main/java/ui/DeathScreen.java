@@ -33,7 +33,7 @@ public class DeathScreen extends GameScreen implements IUpdateable{
 	  private Menu mainMenu;
 	  
 	  /**
-	   * creates an menu sreen with the name MENU-SCREEN
+	   * creates an menu sreen with the name DEATH-SCREEN
 	   */
 	  public DeathScreen() {
 	    super(NAME);
@@ -80,7 +80,10 @@ public class DeathScreen extends GameScreen implements IUpdateable{
 	    super.suspend();
 	    Game.loop().detach(this);
 	  }
-	
+	  
+	  /**
+	   * adds components to this screen
+	   */
 	  @Override
 	  protected void initializeComponents() {
 		  if(this.isEnabled()) {
@@ -181,7 +184,9 @@ public class DeathScreen extends GameScreen implements IUpdateable{
 			Game.screens().remove(Game.screens().get("DEATH-SCREEN"));
       }
 	
-	
+	/**
+	 * updates every frame, for testing purposes
+	 */
 	@Override
 	public void update() {
 	}

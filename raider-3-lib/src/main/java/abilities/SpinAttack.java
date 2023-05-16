@@ -22,8 +22,8 @@ import entities.ReaperController;
 import entities.Enemy.EnemyState;
 
 /**
- * A class for the spin attack ability
- * @author Kevin Lorinc
+ * a class for the spin attack ability
+ * @author Kevin Lorinc, Kush Vashishtha
  */
 @AbilityInfo(name = "SpinAttack", cooldown = 700, range = 0, impact = 15, impactAngle = 360, value = 5, duration = 400, multiTarget = true)
 public class SpinAttack extends Ability{
@@ -38,7 +38,8 @@ public class SpinAttack extends Ability{
 	}
 	
 	/**
-	 * lets us determine what we define as the impact area
+	 * determines the impact area of this attack
+	 * @return the shape of the impact area
 	 */
 	@Override
 	public Shape calculateImpactArea() {//change arc area to change range of attack
@@ -46,8 +47,8 @@ public class SpinAttack extends Ability{
 	}
 	
 	/**
-	 * The attack that goes along with the spin attack ability
-	 * @author Kevin Lorinc
+	 * the effect that goes along with the spin attack ability
+	 * @author Kevin Lorinc, Kush Vashishtha
 	 */
 	private static class SpinAttackEffect extends Effect{
 		/**
@@ -59,7 +60,8 @@ public class SpinAttack extends Ability{
 		}
 		
 		/**
-		 * changes the way that the ability is applied
+		 * changes the way that the effect is applied to do damage to the player
+		 * @param impactArea the shape the effect is applied to
 		 */
 		@Override
 		public void apply(final Shape impactArea) {
@@ -97,6 +99,10 @@ public class SpinAttack extends Ability{
 		    }
 	    }
 		
+		/**
+		 * returns damage this attack does based off weapon equipped
+		 * @return damage of this attack based of weapon equipped
+		 */
 		private int calculateDamage() {
 			String wep = Player.instance().getEquipped();
 			if(wep.equals("fist")) return 0;

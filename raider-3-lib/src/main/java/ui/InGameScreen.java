@@ -21,25 +21,33 @@ public class InGameScreen extends GameScreen implements IUpdateable{
 	  public static Hud hud;
 	  
 	  /**
-	   * creates an ingame sreen with the name INGAME_SCREEN
+	   * creates an ingame screen with the name INGAME_SCREEN
 	   */
 	  public InGameScreen() {
 	    super(NAME);
 	  }
 	  
+	  /**
+	   * prepares and adds screen to the game loop
+	   */
 	  @Override
 	  public void prepare() {
 	    super.prepare();
 	    Game.loop().attach(this);
-
 	  }
 
+	  /**
+	   * detaches this screen from the game loop
+	   */
 	  @Override
 	  public void suspend() {
 	    super.suspend();
 	    Game.loop().detach(this);
 	  }
 	  
+	  /**
+	   * initializes icons in inventory
+	   */
 	  @Override
 	  protected void initializeComponents() {
 		  hud = new Hud();
@@ -74,6 +82,10 @@ public class InGameScreen extends GameScreen implements IUpdateable{
 	  //we can override the render function here to add cinematic clips if we wish
 	  
 	  //can use this for audio later on. I need it for this class to compile for now
+	  
+	  /**
+	   * updates every frame, for testing purposes
+	   */
 	  @Override
 	  public void update(){};
 }
